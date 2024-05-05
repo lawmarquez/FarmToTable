@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "6637c7d010c1f1a647f570ec"
+  },
+  "fname": "Nina",
+  "mname": "Salazar",
+  "lname": "Roberts",
+  "utype": "User",
+  "email": "nsroberts@gmail.com",
+  "password": "12345678",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6637c88810c1f1a647f570ed"
+  },
+  "fname": "Admin",
+  "mname": "",
+  "lname": "DA",
+  "utype": "Admin",
+  "email": "admin_da@gmail.com",
+  "password": "admin123",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6637d3aeb52952a3d3db0c74"
+  },
+  "fname": "Mary Jane",
+  "mname": "",
+  "lname": "Watson",
+  "utype": "User",
+  "email": "mjwatson@gmail.com",
+  "password": "maryjane",
+  "__v": 0
+}]
