@@ -92,3 +92,9 @@ app.post("/login", async(req, res)=>{
         res.status(500).json({error: 'Login error'});
     }
 })
+
+//FOR STARTING BACKEND
+//1. Change to the directory where the server.js file is located (backend)
+//2. Run the command "npx modemon server.js" in the terminal
+
+///Nodemon is used to automate restating server when changes are made to the code.
