@@ -1,0 +1,8 @@
+.NavigationBar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 3px;
+    background-color: #1a1a1a8a;
+    color: white;
+}
