@@ -125,11 +125,44 @@ const saveOrderTransaction = async (req, res) => {
 
 
 // Updates
+const updateProductQty = async (req, res) => {
+    if (req.body.pid && req.body.pqty) {
+        await Product.updateOne({pid: req.body.pid}, {$set: {pqty: req.body.pqty}})
+        res.json({ udProdQtySuccess: true });
+    } else {
+        res.json({ udProdQtySuccess: false });
+    }
+};
 
+const updateCart = async (req, res) => {
+    if (req.body.cid && req.body.cartProduct) {
+        const shoppingCart = await ShoppingCart.findById(req.body.cid)
+        shoppingCart.cart.push(req.body.cartProduct);
+        await shoppingCart.save();
+        res.json({ udCartSuccess: true });
+    } else {
+        res.json({ udCartSuccess: false });
+    }
+};
 
+const updateUser = async (req, res) => {
+    if (req.body.id){
+        await User.updateOne({id: req.body.id}, {$set: req.body})
+        res.json({ udUserSuccess: true });
+    } else {
+        res.json({ udUserSuccess: false });
+    }
+    
+};
 
-
-
+const updateOrderTransaction = async (req, res) => {
+    if (req.body.tid, req.body.ostatus){
+        await OrderTransaction.updateOne({tid: req.body.tid}, {$set: {ostatus: req.body.ostatus}})
+        res.json({ udOrderTransaction: true });
+    } else {
+        res.json({ udOrderTransaction: false });
+    }
+};
 
 // Deletes
 
@@ -140,4 +173,4 @@ const saveOrderTransaction = async (req, res) => {
 
 
 
-export { homepage, users, products, orderTransactions, saveUser, saveProduct, saveOrderTransaction };
+export { homepage, users, products, orderTransactions, saveUser, saveProduct, saveOrderTransaction, updateProductQty, updateCart, updateUser, updateOrderTransaction };
