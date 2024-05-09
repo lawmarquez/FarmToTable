@@ -147,7 +147,7 @@ const updateCart = async (req, res) => {
             res.json({ udCartSuccess: false });
         }
     } else {
-        res.json({ udhereCartSuccess: false });
+        res.json({ udCartSuccess: false });
     }
 };
 
@@ -182,25 +182,27 @@ const deleteProduct = async (req, res) => {
     if (req.body.pid) {
         if (await Product.exists({ pid: req.body.pid })){
             await Product.deleteOne({ pid: req.body.pid });
-            res.json({ deleteProductSuccess: true });
+            res.json({ delProductSuccess: true });
         } else {
-            res.json({ deleteProductSuccess: false }); 
+            res.json({ delProductSuccess: false }); 
         }
     } else {
-        res.json({ deletehereProductSuccess: false }); 
+        res.json({ delProductSuccess: false }); 
     }
 };
 
 const deleteUser = async (req, res) => {
     if (req.body.email) {
         if (await User.exists({ email: req.body.email })){
+            const delUser = await User.findOne({email: req.body.email});
+            await ShoppingCart.deleteOne({cid: delUser.id});
             await User.deleteOne({ email: req.body.email });
-            res.json({ deleteUserSuccess: true });
+            res.json({ delUserSuccess: true });
         } else {
-            res.json({ deleteUserSuccess: false });
+            res.json({ delUserSuccess: false });
         }
     } else {
-        res.json({ deletehereUserSuccess: false });
+        res.json({ delUserSuccess: false });
     }
 };
 
@@ -208,13 +210,13 @@ const deleteCartProduct = async (req, res) => {
     if (req.body.cid && req.body.itemid) {
         if (await ShoppingCart.exists({ cid: req.body.cid })){
             await ShoppingCart.updateOne({cid: req.body.cid}, {$pull: {cart: {"itemid": req.body.itemid}}})
-            res.json({ deleteCartProductSuccess: true })
+            res.json({ delCartProductSuccess: true })
         } else {
-            res.json({ deleteCartProductSucess: false });
+            res.json({ delCartProductSucess: false });
         }
     } else {
-        res.json({ deleteCartProductSucess: false });
+        res.json({ delCartProductSucess: false });
     }
 }
 
-export { homepage, users, products, orderTransactions, saveUser, saveProduct, saveOrderTransaction, updateProductQty, updateCart, updateUser, updateOrderTransaction, deleteProduct, deleteUser, deleteCartProduct };
+export { homepage, users, products, orderTransactions, userCart, saveUser, saveProduct, saveOrderTransaction, updateProductQty, updateCart, updateUser, updateOrderTransaction, deleteProduct, deleteUser, deleteCartProduct };

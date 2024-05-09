@@ -1,4 +1,4 @@
-import {homepage, users, products, orderTransactions, userCart, saveUser, saveProduct, saveOrderTransaction} from './controller.js'
+import { homepage, users, products, orderTransactions, userCart, saveUser, saveProduct, saveOrderTransaction, updateProductQty, updateCart, updateUser, updateOrderTransaction, deleteProduct, deleteUser, deleteCartProduct } from './controller.js'
 
 const router = (app) =>{
     app.get('/', homepage);

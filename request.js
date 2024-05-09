@@ -41,7 +41,7 @@ import needle from 'needle';
 // });
 
 // needle.post('http://localhost:3000/update-cart',{
-//     cid: "663cbf42b52cf3353eb5dfe1",
+//     cid: "663cd823d411ea96766d0ab7",
 //     itemid: "21346547",
 //     itemqty: 5,
 // }, (err,res) => {
@@ -72,18 +72,18 @@ import needle from 'needle';
 //     console.log(res.body);
 // });
 
-// needle.post('http://localhost:3000/delete-user',{
-//     email: "mjwatson@gmail.com"
-// }, (err, res) => {
-//     console.log(res.body);
-// });
-
 // needle.post('http://localhost:3000/delete-cartproduct', {
-//     cid: "663cbf42b52cf3353eb5dfe1",
+//     cid: "663cd823d411ea96766d0ab7",
 //     itemid: "21346547"
 // }, (err, res) => {
 //     console.log(res.body);
 // })
+
+needle.post('http://localhost:3000/delete-user',{
+    email: "mjwatson@gmail.com"
+}, (err, res) => {
+    console.log(res.body);
+});
 
 
 needle.get('http://localhost:3000/users', (err, res) => {
