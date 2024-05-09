@@ -33,6 +33,57 @@ import needle from 'needle';
 //     console.log(res.body);
 // });
 
+// needle.post('http://localhost:3000/update-productqty',{
+//     pid: "21346547",
+//     pqty: 10
+// }, (err,res) => {
+//     console.log(res.body);
+// });
+
+// needle.post('http://localhost:3000/update-cart',{
+//     cid: "663cbf42b52cf3353eb5dfe1",
+//     itemid: "21346547",
+//     itemqty: 5,
+// }, (err,res) => {
+//     console.log(res.body);
+// });
+
+// needle.post('http://localhost:3000/update-user', {
+//     fname: "Mary Jane",
+//     mname: "",
+//     lname: "Parker",
+//     utype: "User",
+//     email: "mjwatson@gmail.com",
+//     password: "maryjane"  
+// }, (err, res) => {
+//     console.log(res.body);
+// })
+
+// needle.post('http://localhost:3000/update-ordertransaction',{
+//     tid: "09657435",
+//     ostatus: 1
+// }, (err, res) => {
+//     console.log(res.body);
+// });
+
+// needle.post('http://localhost:3000/delete-product',{
+//     pid: "21346547"
+// }, (err, res) => {
+//     console.log(res.body);
+// });
+
+// needle.post('http://localhost:3000/delete-user',{
+//     email: "mjwatson@gmail.com"
+// }, (err, res) => {
+//     console.log(res.body);
+// });
+
+// needle.post('http://localhost:3000/delete-cartproduct', {
+//     cid: "663cbf42b52cf3353eb5dfe1",
+//     itemid: "21346547"
+// }, (err, res) => {
+//     console.log(res.body);
+// })
 
 
 needle.get('http://localhost:3000/users', (err, res) => {

@@ -139,24 +139,22 @@ const updateProductQty = async (req, res) => {
 };
 
 const updateCart = async (req, res) => {
-    if (req.body.cid && req.body.cartProduct) {
-        if (await ShoppingCart.exists({ cid: req.body.cid }) && await Product.exists({ pid: req.body.cartProduct.itemid })){
-            const shoppingCart = await ShoppingCart.findById(req.body.cid)
-            shoppingCart.cart.push(req.body.cartProduct);
-            await shoppingCart.save();
+    if (req.body.cid && req.body.itemid && req.body.itemqty) {
+        if (await ShoppingCart.exists({ cid: req.body.cid })){
+            await ShoppingCart.findOneAndUpdate({ cid: req.body.cid }, {$push: {cart: {itemid: req.body.itemid, itemqty: req.body.itemqty} }});
             res.json({ udCartSuccess: true });
         } else {
             res.json({ udCartSuccess: false });
         }
     } else {
-        res.json({ udCartSuccess: false });
+        res.json({ udhereCartSuccess: false });
     }
 };
 
 const updateUser = async (req, res) => {
-    if (req.body.id) {
-        if (await User.exists({ id: req.body.id })){
-            await User.updateOne({id: req.body.id}, {$set: req.body})
+    if (req.body.email) {
+        if (await User.exists({ email: req.body.email })){
+            await User.updateOne({email: req.body.email}, {$set: req.body})
             res.json({ udUserSuccess: true });
         } else {
             res.json({ udUserSuccess: false });
@@ -164,7 +162,6 @@ const updateUser = async (req, res) => {
     } else {
         res.json({ udUserSuccess: false });
     }
-    
 };
 
 const updateOrderTransaction = async (req, res) => {
@@ -190,31 +187,28 @@ const deleteProduct = async (req, res) => {
             res.json({ deleteProductSuccess: false }); 
         }
     } else {
-        res.json({ deleteProductSuccess: false }); 
+        res.json({ deletehereProductSuccess: false }); 
     }
 };
 
 const deleteUser = async (req, res) => {
-    if (req.body.id) {
-        if (await User.exists({ id: req.body.id })){
-            await User.deleteOne({ id: req.body.id });
-            await ShoppingCart.deleteOne({ cid: req.body.id });
+    if (req.body.email) {
+        if (await User.exists({ email: req.body.email })){
+            await User.deleteOne({ email: req.body.email });
             res.json({ deleteUserSuccess: true });
         } else {
             res.json({ deleteUserSuccess: false });
         }
     } else {
-        res.json({ deleteUserSuccess: false });
+        res.json({ deletehereUserSuccess: false });
     }
 };
 
 const deleteCartProduct = async (req, res) => {
-    if (req.body.cid, req.body.itemid) {
+    if (req.body.cid && req.body.itemid) {
         if (await ShoppingCart.exists({ cid: req.body.cid })){
-            const shoppingCart = await ShoppingCart.findById(req.body.cid);
-            const filteredCart = shoppingCart.cart.filter(item => item.itemid!=req.body.itemid);
-            await ShoppingCart.updateOne({cid: req.body.cid}, {$set: {cart: filteredCart }});
-            res.json({ deleteCartProductSucess: true });
+            await ShoppingCart.updateOne({cid: req.body.cid}, {$pull: {cart: {"itemid": req.body.itemid}}})
+            res.json({ deleteCartProductSuccess: true })
         } else {
             res.json({ deleteCartProductSucess: false });
         }
@@ -222,6 +216,5 @@ const deleteCartProduct = async (req, res) => {
         res.json({ deleteCartProductSucess: false });
     }
 }
-
 
 export { homepage, users, products, orderTransactions, saveUser, saveProduct, saveOrderTransaction, updateProductQty, updateCart, updateUser, updateOrderTransaction, deleteProduct, deleteUser, deleteCartProduct };
