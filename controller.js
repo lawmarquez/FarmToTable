@@ -5,6 +5,7 @@ await mongoose.connect("mongodb://127.0.0.1:27017/FarmToTable", {
     useUnifiedTopology: true
 });
 
+// Models
 const User = mongoose.model("User", {
     fname: String,
     mname: String,
@@ -32,11 +33,19 @@ const OrderTransaction = mongoose.model("OrderTransaction", {
     time: String
 }, 'orderTransaction');
 
+const ShoppingCart = mongoose.model("ShoppingCart", {
+    cid: String,
+    // cart: Array
+    // fields
+}, 'shoppingCart');
+
+
 const homepage = (req, res) => {
     res.send("Welcome to Homepage!");
 };
 
 
+// Retrieve all
 const users = async (req, res) => {
     const mem = await User.find();
     if (mem.length > 0) {
@@ -46,22 +55,45 @@ const users = async (req, res) => {
     }
 };
 
-const saveUser = async (req, res) => {
-    if (req.body.fname && req.body.lname && req.body.utype && req.body.email && req.body.password) {
-        const newStudent = new User(req.body);
-        await newStudent.save();
-        res.json({ inserted: true });
-    } else {
-        res.json({ inserted: false });
-    }
-};
-
 const products = async (req, res) => {
     const mem = await Product.find();
     if (mem.length > 0) {
         res.send(mem);
     } else {
         res.send([]);
+    }
+};
+
+const orderTransactions = async (req, res) => {
+    const mem = await OrderTransaction.find();
+    if (mem.length > 0) {
+        res.send(mem);
+    } else {
+        res.send([]);
+    }
+};
+
+    // Retrieve specific cart for Shopping cart
+const userCart = async (req, res) => {
+    const mem = await ShoppingCart.findById(req.id);
+    res.send(mem);
+};
+
+
+// Saves
+const saveUser = async (req, res) => {
+    if (req.body.fname && req.body.lname && req.body.utype && req.body.email && req.body.password) {
+        const newStudent = new User(req.body);
+        await newStudent.save();
+
+        // save a new cart 
+        const id = newStudent._id
+        const newCart = new ShoppingCart(id);
+        await newCart.save();
+
+        res.json({ inserted: true });
+    } else {
+        res.json({ inserted: false });
     }
 };
 
@@ -75,15 +107,6 @@ const saveProduct = async (req, res) => {
     }
 };
 
-const orderTransactions = async (req, res) => {
-    const mem = await OrderTransaction.find();
-    if (mem.length > 0) {
-        res.send(mem);
-    } else {
-        res.send([]);
-    }
-};
-
 const saveOrderTransaction = async (req, res) => {
     if (req.body.tid && req.body.pid && req.body.oqty && req.body.ostatus && req.body.email && req.body.date && req.body.time) {
         const newStudent = new OrderTransaction(req.body);
@@ -93,5 +116,22 @@ const saveOrderTransaction = async (req, res) => {
         res.json({ inserted: false });
     }
 };
+
+
+// Updates
+
+
+
+
+
+
+// Deletes
+
+
+
+
+
+
+
 
 export { homepage, users, products, orderTransactions, saveUser, saveProduct, saveOrderTransaction };
