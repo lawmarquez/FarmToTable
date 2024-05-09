@@ -81,7 +81,8 @@ const orderTransactions = async (req, res) => {
 
     // Retrieve specific cart for Shopping cart
 const userCart = async (req, res) => {
-    const mem = await ShoppingCart.findById(req.query.id);
+    const mem = await ShoppingCart.findOne({cid: req.query.id});
+    console.log(mem);
     res.send(mem);
 };
 
@@ -125,9 +126,9 @@ const saveOrderTransaction = async (req, res) => {
 
 
 // Updates
-const addToCart = async (req, res) => {
+// const addToCart = async (req, res) => {
 
-};
+// };
 
 
 
@@ -143,4 +144,4 @@ const addToCart = async (req, res) => {
 
 
 
-export { homepage, users, products, orderTransactions, saveUser, saveProduct, saveOrderTransaction };
+export { homepage, users, products, orderTransactions, userCart, saveUser, saveProduct, saveOrderTransaction };
