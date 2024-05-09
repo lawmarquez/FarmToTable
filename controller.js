@@ -146,7 +146,7 @@ const updateCart = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-    if (req.body.id){
+    if (req.body.id) {
         await User.updateOne({id: req.body.id}, {$set: req.body})
         res.json({ udUserSuccess: true });
     } else {
@@ -156,8 +156,8 @@ const updateUser = async (req, res) => {
 };
 
 const updateOrderTransaction = async (req, res) => {
-    if (req.body.tid, req.body.ostatus){
-        await OrderTransaction.updateOne({tid: req.body.tid}, {$set: {ostatus: req.body.ostatus}})
+    if (req.body.tid, req.body.ostatus) {
+        await OrderTransaction.updateOne({tid: req.body.tid}, {$set: {ostatus: req.body.ostatus}});
         res.json({ udOrderTransaction: true });
     } else {
         res.json({ udOrderTransaction: false });
@@ -165,12 +165,35 @@ const updateOrderTransaction = async (req, res) => {
 };
 
 // Deletes
+const deleteProduct = async (req, res) => {
+    if (req.body.pid) {
+        await Product.deleteOne({ pid: req.body.pid });
+        res.json({ deleteProductSuccess: true });
+    } else {
+        res.json({ deleteProductSuccess: false }); 
+    }
+};
+
+const deleteUser = async (req, res) => {
+    if (req.body.id) {
+        await User.deleteOne({ id: req.body.id });
+        await ShoppingCart.deleteOne({ cid: req.body.id });
+        res.json({ deleteUserSuccess: true });
+    } else {
+        res.json({ deleteUserSuccess: false });
+    }
+};
+
+const deleteCartProduct = async (req, res) => {
+    if (req.body.cid, req.body.itemid) {
+        const shoppingCart = await ShoppingCart.findById(req.body.cid);
+        const filteredCart = shoppingCart.cart.filter(item => item.itemid!=req.body.itemid);
+        await ShoppingCart.updateOne({cid: req.body.cid}, {$set: {cart: filteredCart }});
+        res.json({ deleteCartProductSucess: true });
+    } else {
+        res.json({ deleteCartProductSucess: false });
+    }
+}
 
 
-
-
-
-
-
-
-export { homepage, users, products, orderTransactions, saveUser, saveProduct, saveOrderTransaction, updateProductQty, updateCart, updateUser, updateOrderTransaction };
+export { homepage, users, products, orderTransactions, saveUser, saveProduct, saveOrderTransaction, updateProductQty, updateCart, updateUser, updateOrderTransaction, deleteProduct, deleteUser, deleteCartProduct };
