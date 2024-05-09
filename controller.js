@@ -35,9 +35,15 @@ const OrderTransaction = mongoose.model("OrderTransaction", {
 
 const ShoppingCart = mongoose.model("ShoppingCart", {
     cid: String,
-    // cart: Array
-    // fields
+    cart: [CartProduct]
 }, 'shoppingCart');
+
+// CartProduct schema?
+const CartProduct = new Schema({
+    itemid: String,                   // reference to product
+    itemqty: Number
+});
+
 
 
 const homepage = (req, res) => {
@@ -88,7 +94,7 @@ const saveUser = async (req, res) => {
 
         // save a new cart 
         const id = newStudent._id
-        const newCart = new ShoppingCart(id);
+        const newCart = new ShoppingCart({cid: id});
         await newCart.save();
 
         res.json({ inserted: true });
