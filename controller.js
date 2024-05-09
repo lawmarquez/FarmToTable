@@ -19,7 +19,7 @@ const User = mongoose.model("User", {
     utype: String,
     email: String,
     password: String
-}, 'user');
+}, 'users');
 
 const Product = mongoose.model("Product", {
     pid: String,
@@ -82,7 +82,6 @@ const orderTransactions = async (req, res) => {
     // Retrieve specific cart for Shopping cart
 const userCart = async (req, res) => {
     const mem = await ShoppingCart.findOne({cid: req.query.id});
-    console.log(mem);
     res.send(mem);
 };
 
@@ -126,22 +125,103 @@ const saveOrderTransaction = async (req, res) => {
 
 
 // Updates
-// const addToCart = async (req, res) => {
+const updateProductQty = async (req, res) => {
+    if (req.body.pid && req.body.pqty) {
+        if (await Product.exists({ pid: req.body.pid })) {
+            await Product.updateOne({pid: req.body.pid}, {$set: {pqty: req.body.pqty}})
+            res.json({ udProdQtySuccess: true });
+        } else {
+            res.json({ udProdQtySuccess: false });
+        }
+    } else {
+        res.json({ udProdQtySuccess: false });
+    }
+};
 
-// };
+const updateCart = async (req, res) => {
+    if (req.body.cid && req.body.cartProduct) {
+        if (await ShoppingCart.exists({ cid: req.body.cid }) && await Product.exists({ pid: req.body.cartProduct.itemid })){
+            const shoppingCart = await ShoppingCart.findById(req.body.cid)
+            shoppingCart.cart.push(req.body.cartProduct);
+            await shoppingCart.save();
+            res.json({ udCartSuccess: true });
+        } else {
+            res.json({ udCartSuccess: false });
+        }
+    } else {
+        res.json({ udCartSuccess: false });
+    }
+};
 
+const updateUser = async (req, res) => {
+    if (req.body.id) {
+        if (await User.exists({ id: req.body.id })){
+            await User.updateOne({id: req.body.id}, {$set: req.body})
+            res.json({ udUserSuccess: true });
+        } else {
+            res.json({ udUserSuccess: false });
+        }
+    } else {
+        res.json({ udUserSuccess: false });
+    }
+    
+};
 
-
-
-
+const updateOrderTransaction = async (req, res) => {
+    if (req.body.tid, req.body.ostatus) {
+        if (await OrderTransaction.exists({ tid: req.body.tid })){
+            await OrderTransaction.updateOne({tid: req.body.tid}, {$set: {ostatus: req.body.ostatus}});
+            res.json({ udOrderTransactionSuccess: true });
+        } else {
+            res.json({ udOrderTransactionSuccess: false });
+        }
+    } else {
+        res.json({ udOrderTransactionSuccess: false });
+    }
+};
 
 // Deletes
+const deleteProduct = async (req, res) => {
+    if (req.body.pid) {
+        if (await Product.exists({ pid: req.body.pid })){
+            await Product.deleteOne({ pid: req.body.pid });
+            res.json({ deleteProductSuccess: true });
+        } else {
+            res.json({ deleteProductSuccess: false }); 
+        }
+    } else {
+        res.json({ deleteProductSuccess: false }); 
+    }
+};
+
+const deleteUser = async (req, res) => {
+    if (req.body.id) {
+        if (await User.exists({ id: req.body.id })){
+            await User.deleteOne({ id: req.body.id });
+            await ShoppingCart.deleteOne({ cid: req.body.id });
+            res.json({ deleteUserSuccess: true });
+        } else {
+            res.json({ deleteUserSuccess: false });
+        }
+    } else {
+        res.json({ deleteUserSuccess: false });
+    }
+};
+
+const deleteCartProduct = async (req, res) => {
+    if (req.body.cid, req.body.itemid) {
+        if (await ShoppingCart.exists({ cid: req.body.cid })){
+            const shoppingCart = await ShoppingCart.findById(req.body.cid);
+            const filteredCart = shoppingCart.cart.filter(item => item.itemid!=req.body.itemid);
+            await ShoppingCart.updateOne({cid: req.body.cid}, {$set: {cart: filteredCart }});
+            res.json({ deleteCartProductSucess: true });
+        } else {
+            res.json({ deleteCartProductSucess: false });
+        }
+    } else {
+        res.json({ deleteCartProductSucess: false });
+    }
+}
 
 
-
-
-
-
-
-
-export { homepage, users, products, orderTransactions, userCart, saveUser, saveProduct, saveOrderTransaction };
+export { homepage, users, products, orderTransactions, saveUser, saveProduct, saveOrderTransaction, updateProductQty, updateCart, updateUser, updateOrderTransaction, deleteProduct, deleteUser, deleteCartProduct };

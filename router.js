@@ -11,7 +11,14 @@ const router = (app) =>{
     app.post('/save-user', saveUser);
     app.post('/save-product', saveProduct);
     app.post('/save-order-transaction', saveOrderTransaction);
-    app.post('/add-to-cart', addToCart );
 
+    app.post('/update-productqty', updateProductQty);
+    app.post('/update-cart', updateCart);
+    app.post('/update-user', updateUser);
+    app.post('/update-ordertransaction', updateOrderTransaction);
+
+    app.post('/delete-product', deleteProduct);
+    app.post('/delete-user', deleteUser);
+    app.post('/delete-cartproduct', deleteCartProduct);
 }
 export default router;
