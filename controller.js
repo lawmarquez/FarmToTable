@@ -5,6 +5,12 @@ await mongoose.connect("mongodb://127.0.0.1:27017/FarmToTable", {
     useUnifiedTopology: true
 });
 
+// CartProduct schema?
+const CartProduct = new mongoose.Schema({
+    itemid: String,                   // reference to product
+    itemqty: Number
+});
+
 // Models
 const User = mongoose.model("User", {
     fname: String,
@@ -13,7 +19,7 @@ const User = mongoose.model("User", {
     utype: String,
     email: String,
     password: String
-}, 'user');
+}, 'users');
 
 const Product = mongoose.model("Product", {
     pid: String,
@@ -21,7 +27,7 @@ const Product = mongoose.model("Product", {
     pdesc: String,
     ptype: Number,
     pqty: Number
-}, 'product');
+}, 'products');
 
 const OrderTransaction = mongoose.model("OrderTransaction", {
     tid: String,
@@ -31,18 +37,12 @@ const OrderTransaction = mongoose.model("OrderTransaction", {
     email: String,
     date: Date,
     time: String
-}, 'orderTransaction');
+}, 'orderTransactions');
 
 const ShoppingCart = mongoose.model("ShoppingCart", {
     cid: String,
     cart: [CartProduct]
-}, 'shoppingCart');
-
-// CartProduct schema?
-const CartProduct = new Schema({
-    itemid: String,                   // reference to product
-    itemqty: Number
-});
+}, 'shoppingCarts');
 
 
 
@@ -81,7 +81,7 @@ const orderTransactions = async (req, res) => {
 
     // Retrieve specific cart for Shopping cart
 const userCart = async (req, res) => {
-    const mem = await ShoppingCart.findById(req.id);
+    const mem = await ShoppingCart.findOne({cid: req.query.id});
     res.send(mem);
 };
 
