@@ -39,10 +39,13 @@ app.use(cors());
 //POST Registration (sending requestto register)
 app.post("/register", async(req, res)=>{
     try{
-        const {email, username, password} = req.body;
+        const {fname, mname, lname, email, username, password} = req.body;
         //Password hashing for added security (10 as key rotation, normally 12 or 13)
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({
+            fname,
+            mname,
+            lname,
             email,
             username,
             password: hashedPassword
@@ -85,8 +88,10 @@ app.post("/login", async(req, res)=>{
         if(!isPasswordValid){
             return res.status(401).json({error: 'Invalid Username or Password'});
         }
+        
 
         const token = jwt.sign({userId: user._id}, SECRET_KEY, {expiresIn : '1h'});
+        const user_info = {userFName: user.fname, userLName: user.lname, userEmail: user.email};
         res.json({message: 'Login Successful'});
     }catch(err){
         res.status(500).json({error: 'Login error'});
