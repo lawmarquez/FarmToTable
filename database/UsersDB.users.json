@@ -1,36 +1,24 @@
 [{
   "_id": {
-    "$oid": "663a1694921de32a47f1e725"
+    "$oid": "6640bf4afc21b4f5351a58b2"
   },
-  "email": "test@email.com",
-  "username": "email",
-  "password": "$2a$10$prXMY27s7jp3zRVyfvVjkO/esRnAqX5r7mHNoB1J/Z6gyrkLdEHcG",
+  "fname": "admin",
+  "mname": "admin",
+  "lname": "admin",
+  "email": "admin1@admin.com",
+  "username": "admin",
+  "password": "$2b$10$DDemb0QZJWqTMqBH1fCEmOWynkTnN6ZT6XuoULd2HNqTUN05Wvn/O",
   "__v": 0
 },
 {
   "_id": {
-    "$oid": "663b4c3961067786b980ded9"
+    "$oid": "6640bf66fc21b4f5351a58b9"
   },
-  "email": "test@email.com",
-  "username": "test",
-  "password": "$2b$10$Y8GXNJCrD9D2244t5GCjB.mYbtS603qUdzZ9sI206XJgyvfHMHCXy",
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "663b4c8161067786b980dedc"
-  },
-  "email": "test@email.com",
+  "fname": "user",
+  "mname": "user",
+  "lname": "user",
+  "email": "user@user.com",
   "username": "user",
-  "password": "$2b$10$E4/lM.PGDANKlK2a2ucOoOW0SNY8WyMu.CYm1MB50cFwUeuHqJ8Uy",
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "663b621c0dff937ca0c049d3"
-  },
-  "email": "fan@fan.com",
-  "username": "fan",
-  "password": "$2b$10$mkBqqJtUHgPHzvVnwb8oHOGAuKbfmkX3/VZ0Ei1//IWk5OUonLXlm",
+  "password": "$2b$10$uYs4XcoTZeanWkN191MiG.QeFTkrW.WoQnKSzCgemMyBLD0xSTSXa",
   "__v": 0
 }]
