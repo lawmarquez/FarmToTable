@@ -18,3 +18,4 @@ root.render(
 //2. Run the command "npm start" in the terminal with the BACKEND running, else it would result to an error
 
 //NOTE: It will automatically open the browser and link to the localhost:3000
+//NOTE: To check for open ports, for Windows use: netstat -aon | findstr :3000
