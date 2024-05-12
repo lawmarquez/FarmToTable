@@ -4,7 +4,7 @@ import {Navigate, useNavigate, userNavigate} from 'react-router-dom'
 
 import './pages_css/Login.css'
 
-function Login() {
+function Login({ onLoginSuccess }) {
     //creating useState hooks to store the user input
     const [username, setUsername] = useState([])
     const [email, setEmail] = useState('')
@@ -31,13 +31,27 @@ function Login() {
         try{
             const response = await axios.post('http://localhost:3001/login', {username, password})
             const token = response.data.token
-            alert('User Logged In')
-            setUsername('')
-            setPassword('')
-            fetchUsers()
-            navigate('/account')
-            window.location.reload()
-            localStorage.setItem('token', token)
+
+            //contains User FULL name
+            const user_info = response.data.user_info
+
+            let isAdmin = false;
+            if (username === 'admin') {
+                isAdmin = true;
+            }
+
+            if (isAdmin) {
+                onLoginSuccess(true);
+                navigate('/admin-account');
+            } else {
+                onLoginSuccess(false);
+                navigate('/account');
+            }
+
+            setUsername('');
+            setPassword('');
+            fetchUsers();
+            localStorage.setItem('token', token);
         }catch(err){
             console.log('Unable to login user')
         }
