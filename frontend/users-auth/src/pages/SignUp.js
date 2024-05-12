@@ -9,6 +9,9 @@ import './pages_css/SignUp.css'
 function SignUp() {
     //creating useState hooks to store the user input
     const [users, setUsers] = useState([])
+    const [fname, setFname] = useState('')
+    const [mname, setMname] = useState('')
+    const [lname, setLname] = useState('')
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -34,9 +37,12 @@ function SignUp() {
         event.preventDefault();
 
          //making HTTP post request to the server(from backend)
-        axios.post('http://localhost:3001/register', { email, username, password })
+        axios.post('http://localhost:3001/register', {fname, mname, lname, email, username, password })
         .then(() => {
             alert('Registration Successful')
+            setFname('')
+            setMname('')
+            setLname('')
             setEmail('')
             setUsername('')
             setPassword('')
@@ -54,6 +60,24 @@ function SignUp() {
         <div className='form_content'>
             <form className='form_main'
             onSubmit={handleSubmit}>
+                {/* First Name Input */}
+                <label>First Name</label>
+                <br />
+                <input className='input_container' type='text' placeholder='First Name' value={fname} onChange={(e) => setFname(e.target.value)} />
+                <br />
+                <br />
+                {/* Middle Name Input */}
+                <label>Middle Name</label>
+                <br />
+                <input className='input_container' type='text' placeholder='Middle Name' value={mname} onChange={(e) => setMname(e.target.value)} />
+                <br />
+                <br />
+                {/* Last Name Input */}
+                <label>Last Name</label>
+                <br />
+                <input className='input_container' type='text' placeholder='Last Name' value={lname} onChange={(e) => setLname(e.target.value)} />
+                <br />
+                <br />
                 {/* Email Input */}
                 <label>Email</label>
                 <br />
