@@ -2,9 +2,24 @@ const mongoose = require('mongoose');
 
 //Creating user schema to be used in MongoDB
 const UserSchema = new mongoose.Schema({
-    email: {
+    fname: {
         type: String,
         required: true
+    },
+    
+    mname: {
+        type: String,
+    },
+
+    lname: {
+        type: String,
+        required: true
+    },
+
+    email: {
+        type: String,
+        required: true,
+        unique: true
     },
     username: {
         type: String,
