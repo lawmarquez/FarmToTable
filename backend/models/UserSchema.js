@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+import { Schema, model } from 'mongoose';
 
 //Creating user schema to be used in MongoDB
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
     fname: {
         type: String,
         required: true
@@ -32,6 +32,6 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-const User = mongoose.model('User', UserSchema);
+const User = model('User', UserSchema);
 
-module.exports = User;
+export default User;

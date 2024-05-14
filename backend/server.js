@@ -1,12 +1,16 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import { hash, compare } from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
 
 //SCHEMA
-const User = require('./models/UserSchema');
+import User from './models/UserSchema.js';
+
+const { sign } = jwt;
+
 const SECRET_KEY = 'authentication'
 
 //App using Express
@@ -41,7 +45,7 @@ app.post("/register", async(req, res)=>{
     try{
         const {fname, mname, lname, email, username, password} = req.body;
         //Password hashing for added security (10 as key rotation, normally 12 or 13)
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await hash(password, 10);
         const newUser = new User({
             fname,
             mname,
@@ -84,13 +88,13 @@ app.post("/login", async(req, res)=>{
         }
 
         //password comparison (since encrypted, use bcrypt to compare passwords)
-        const isPasswordValid = await bcrypt.compare(password, user.password);
+        const isPasswordValid = await compare(password, user.password);
         if(!isPasswordValid){
             return res.status(401).json({error: 'Invalid Username or Password'});
         }
         
 
-        const token = jwt.sign({userId: user._id}, SECRET_KEY, {expiresIn : '1h'});
+        const token = sign({userId: user._id}, SECRET_KEY, {expiresIn : '1h'});
         const user_info = {userFName: user.fname, userLName: user.lname, userEmail: user.email};
         res.json({message: 'Login Successful'});
     }catch(err){

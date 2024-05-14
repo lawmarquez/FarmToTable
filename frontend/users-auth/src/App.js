@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-import Account from './pages/Account';
-import AdminAccount from './pages/AdminAccount';
+import Navbar from './components/Navbar.js';
+import Home from './pages/Home.js';
+import Login from './pages/Login.js';
+import SignUp from './pages/SignUp.js';
+import Account from './pages/Account.js';
+import AdminAccount from './pages/AdminAccount.js';
 
 function App() {
   // Checking if user is signed in or not by checking session token
