@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar.js';
 import Home from './pages/Home.js';
@@ -7,6 +7,8 @@ import Login from './pages/Login.js';
 import SignUp from './pages/SignUp.js';
 import Account from './pages/Account.js';
 import AdminAccount from './pages/AdminAccount.js';
+import Shop from './pages/shop_pages/Shop.js';
+import Cart from './pages/shop_pages/Cart.js';
 
 function App() {
   // Checking if user is signed in or not by checking session token
@@ -39,7 +41,12 @@ function App() {
             {isAdmin ? (
               <Route path='/admin-account' element={<AdminAccount />} />
             ) : (
-              <Route path='/account' element={<Account />} />
+              // May 15 - Modified routes here to display pages for testing.
+              <Route path='/account' element={<Account />}>
+                <Route path='shop' element={<Shop />} />
+                <Route path='cart' element={<Cart />} />
+              </Route>
+              // <Route path='/account' element={<Account />} />
             )}
           </>
         ) : (

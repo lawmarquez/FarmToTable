@@ -25,6 +25,7 @@ function Navbar({ isAdmin }) {
                             <li>Admin Account</li>
                         ) : (
                             <li>
+                                {/* display of user navbar */}
                                 <Link to='/account'>Account</Link>
                             </li>
                         )}
