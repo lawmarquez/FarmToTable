@@ -8,13 +8,13 @@ import SalesReports from './SalesReports.js'
 function AdminAccount() {
   return (
     <>
-      <UsersManagement />
-      <br/>
-      <ProductListings />
-      <br/>
-      <OrderFulfillment />
-      <br/>
-      <SalesReports />
+      <div className='dashboard'>
+        <UsersManagement />
+        <ProductListings />
+        <OrderFulfillment />
+        <SalesReports />
+      </div>
+      
     </>
   )
 }
