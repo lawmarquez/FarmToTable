@@ -6,7 +6,11 @@ import Home from './pages/Home.js';
 import Login from './pages/Login.js';
 import SignUp from './pages/SignUp.js';
 import Account from './pages/Account.js';
-import AdminAccount from './pages/AdminAccount.js';
+import AdminAccount from './pages/admin_pages/AdminAccount.js';
+import UsersManagement from './pages/admin_pages/UsersManagement.js';
+import ProductListings from './pages/admin_pages/ProductListings.js';
+import OrderFulfillment from './pages/admin_pages/OrderFulfillment.js';
+import SalesReports from './pages/admin_pages/SalesReports.js';
 
 function App() {
   // Checking if user is signed in or not by checking session token
@@ -37,7 +41,13 @@ function App() {
         {isUserSignedIn ? (
           <>
             {isAdmin ? (
-              <Route path='/admin-account' element={<AdminAccount />} />
+              <Route path='/admin-account' element={<AdminAccount />}>
+                <Route path='users-management' element={<UsersManagement />} />
+                <Route path='product-listings' element={<ProductListings />} />
+                <Route path='order-fullfillment' element={<OrderFulfillment />} />
+                <Route path='sales-reports' element={<SalesReports />} />
+              </Route>
+                
             ) : (
               <Route path='/account' element={<Account />} />
             )}
