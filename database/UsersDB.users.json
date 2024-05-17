@@ -8,7 +8,8 @@
   "email": "admin1@admin.com",
   "username": "admin",
   "password": "$2b$10$DDemb0QZJWqTMqBH1fCEmOWynkTnN6ZT6XuoULd2HNqTUN05Wvn/O",
-  "__v": 0
+  "__v": 0,
+  "type": "admin"
 },
 {
   "_id": {
@@ -20,5 +21,6 @@
   "email": "user@user.com",
   "username": "user",
   "password": "$2b$10$uYs4XcoTZeanWkN191MiG.QeFTkrW.WoQnKSzCgemMyBLD0xSTSXa",
-  "__v": 0
+  "__v": 0,
+  "type": "user"
 }]
