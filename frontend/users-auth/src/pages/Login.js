@@ -66,16 +66,19 @@ function Login({ onLoginSuccess }) {
     return (
         <div className='form_container'>
             <div className='form_content'>
+                <div className="loginText">
+                    <h1>Welcome back!</h1>
+                    <h4>We're glad you are here.</h4>
+                    <br/>
+                    <br/>
+                </div>
                 <form className='form_main' onSubmit={handleLogin}>
-                    <label> Username </label>
-                    <br/>
-                    <input className='input_container' type='text' placeholder='Username' value={username} onChange={e => setUsername(e.target.value)}/>
                     <br/>
                     <br/>
-
-                    <label> Password </label>
+                    <input className='input_container' type='text' placeholder=' Username' value={username} onChange={e => setUsername(e.target.value)}/>
                     <br/>
-                    <input className='input_container' type='password' placeholder='Password' value={password} onChange={e => setPassword(e.target.value)}/>
+                    <br/>
+                    <input className='input_container' type='password' placeholder=' Password' value={password} onChange={e => setPassword(e.target.value)}/>
                     <br/>
                     <br/>
                     {message && <p className="error-message">{message}</p>}
@@ -83,9 +86,9 @@ function Login({ onLoginSuccess }) {
                 </form>
             </div>
 
-            <div className='filler'>
+            {/* <div className='filler'>
                 <h2>LOGIN</h2>
-            </div>
+            </div> */}
         </div>
     );
 }

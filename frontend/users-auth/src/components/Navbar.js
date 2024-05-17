@@ -16,6 +16,7 @@ function Navbar({ isAdmin }) {
 
     return (
         <nav className="NavigationBar">
+            <h1 className="headerTitle">Farm To Table</h1>
             <Link to="/">Home</Link>
             <ul>
                 {/* renderint only the "Account" link if the user is signed in */}

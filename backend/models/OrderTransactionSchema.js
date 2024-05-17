@@ -1,6 +1,5 @@
 import { Schema, model } from 'mongoose';
 
-//Creating OrderTransaction schema to be used in MongoDB
 const OrderTransactionSchema = new Schema({
     tid: {
         type: String,

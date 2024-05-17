@@ -101,54 +101,35 @@ function SignUp() {
     return (
         <div className='signup_container'>
             <div className='form_content'>
+                <div className="signupText">
+                    <h1>Let's create an account</h1>
+                    <h4>And start your freshness shopping with us!</h4>
+                    <br/>
+                    <br/>
+                </div>
                 <form className='form_main' onSubmit={handleSubmit}>
-                    <label>First Name</label>
                     <br />
-                    <input className='input_container' type='text' placeholder='First Name' value={fname} onChange={(e) => setFname(e.target.value)} />
+                    <br />
+                    <input className='input_container' type='text' placeholder=' First Name' value={fname} onChange={(e) => setFname(e.target.value)} />
                     {fnameError && <p className="error-message">{fnameError}</p>}
                     <br />
-                    <br />
-
-                    <label>Last Name</label>
-                    <br />
-                    <input className='input_container' type='text' placeholder='Last Name' value={lname} onChange={(e) => setLname(e.target.value)} />
+                    <input className='input_container' type='text' placeholder=' Last Name' value={lname} onChange={(e) => setLname(e.target.value)} />
                     {lnameError && <p className="error-message">{lnameError}</p>}
                     <br />
-                    <br />
-
-                    <label>Middle Name (Optional)</label>
-                    <br />
-                    <input className='input_container' type='text' placeholder='Middle Name' value={mname} onChange={(e) => setMname(e.target.value)} />
+                    <input className='input_container' type='text' placeholder=' Middle Name' value={mname} onChange={(e) => setMname(e.target.value)} />
                     {mnameError && <p className="error-message">{mnameError}</p>}
                     <br />
-                    <br />
-
-                    <label>Email</label>
-                    <br />
-                    <input className='input_container' type='text' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input className='input_container' type='text' placeholder=' Email' value={email} onChange={(e) => setEmail(e.target.value)} />
                     {emailError && <p className="error-message">{emailError}</p>}
                     <br />
-                    <br />
-
-                    <label>Username</label>
-                    <br />
-                    <input className='input_container' type='text' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <input className='input_container' type='text' placeholder=' Username' value={username} onChange={(e) => setUsername(e.target.value)} />
                     {usernameError && <p className="error-message">{usernameError}</p>}
                     <br />
-                    <br />
-
-                    <label>Password</label>
-                    <br />
-                    <input className='input_container' type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input className='input_container' type='password' placeholder=' Password' value={password} onChange={(e) => setPassword(e.target.value)} />
                     {passwordError && <p className="error-message">{passwordError}</p>}
                     <br />
-                    <br />
-
                     <button className='button' type='submit'>Sign Up</button>
                 </form>
-            </div>
-            <div className='filler'>
-                <h2>Sign Up</h2>
             </div>
         </div>
     );
