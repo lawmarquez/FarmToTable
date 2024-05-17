@@ -22,7 +22,7 @@ function Navbar({ isAdmin }) {
                 {isUserSignedIn && (
                     <>
                         {isAdmin ? (
-                            <li>Admin Account</li>
+                            <li><Link to='/admin-account'>Admin Account</Link></li>
                         ) : (
                             <li>
                                 <Link to='/account'>Account</Link>
