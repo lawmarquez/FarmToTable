@@ -1,4 +1,4 @@
-import { homepage, users, products, orderTransactions, userCart, saveUser, saveProduct, saveOrderTransaction, updateProductQty, updateCart, updateUser, updateOrderTransaction, deleteProduct, deleteUser, deleteCartProduct } from './controller.js'
+import { homepage, users, products, orderTransactions, userCart, saveUser, saveProduct, saveOrderTransaction, updateProductQty, saveCart, updateUser, updateOrderTransaction, deleteProduct, deleteUser} from './controller.js'
 
 const router = (app) =>{
     app.get('/', homepage);
@@ -13,12 +13,12 @@ const router = (app) =>{
     app.post('/save-order-transaction', saveOrderTransaction);
 
     app.post('/update-productqty', updateProductQty);
-    app.post('/update-cart', updateCart);
+    app.post('/save-cart', saveCart);
     app.post('/update-user', updateUser);
     app.post('/update-ordertransaction', updateOrderTransaction);
 
     app.post('/delete-product', deleteProduct);
     app.post('/delete-user', deleteUser);
-    app.post('/delete-cartproduct', deleteCartProduct);
+    // app.post('/delete-cartproduct', deleteCartProduct);
 }
 export default router;

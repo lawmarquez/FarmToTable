@@ -138,11 +138,28 @@ const updateProductQty = async (req, res) => {
     }
 };
 
-const updateCart = async (req, res) => {
-    if (req.body.cid && req.body.itemid && req.body.itemqty) {
-        if (await ShoppingCart.exists({ cid: req.body.cid })){
-            await ShoppingCart.findOneAndUpdate({ cid: req.body.cid }, {$push: {cart: {itemid: req.body.itemid, itemqty: req.body.itemqty} }});
-            res.json({ udCartSuccess: true });
+// For deletion - Replace with saveCart  which saves state of the cart to the db
+// const updateCart = async (req, res) => {
+//     if (req.body.cid && req.body.itemid && req.body.itemqty) {
+//         if (await ShoppingCart.exists({ cid: req.body.cid })){
+//             await ShoppingCart.findOneAndUpdate({ cid: req.body.cid }, {$push: {cart: {itemid: req.body.itemid, itemqty: req.body.itemqty} }});
+//             res.json({ udCartSuccess: true });
+//         } else {
+//             res.json({ udCartSuccess: false });
+//         }
+//     } else {
+//         res.json({ udCartSuccess: false });
+//     }
+// };
+
+// For review - new addition
+const saveCart = async (req, res) => {
+    console.log(req.body.cid);
+    console.log(req.body.cart);
+    if (req.body.cid && req.body.cart) {
+        if (await ShoppingCart.exists({cid: req.body.cid})) {
+            //  update cart here
+            res.json({ udCartSuccess: true });   
         } else {
             res.json({ udCartSuccess: false });
         }
@@ -151,6 +168,9 @@ const updateCart = async (req, res) => {
     }
 };
 
+
+
+// For editing - change identifier of User in method calls to use _id
 const updateUser = async (req, res) => {
     if (req.body.email) {
         if (await User.exists({ email: req.body.email })){
@@ -206,17 +226,18 @@ const deleteUser = async (req, res) => {
     }
 };
 
-const deleteCartProduct = async (req, res) => {
-    if (req.body.cid && req.body.itemid) {
-        if (await ShoppingCart.exists({ cid: req.body.cid })){
-            await ShoppingCart.updateOne({cid: req.body.cid}, {$pull: {cart: {"itemid": req.body.itemid}}})
-            res.json({ delCartProductSuccess: true })
-        } else {
-            res.json({ delCartProductSucess: false });
-        }
-    } else {
-        res.json({ delCartProductSucess: false });
-    }
-}
+// For deletion - cart collection is only affected by saveCart
+// const deleteCartProduct = async (req, res) => {
+//     if (req.body.cid && req.body.itemid) {
+//         if (await ShoppingCart.exists({ cid: req.body.cid })){
+//             await ShoppingCart.updateOne({cid: req.body.cid}, {$pull: {cart: {"itemid": req.body.itemid}}})
+//             res.json({ delCartProductSuccess: true })
+//         } else {
+//             res.json({ delCartProductSucess: false });
+//         }
+//     } else {
+//         res.json({ delCartProductSucess: false });
+//     }
+// }
 
-export { homepage, users, products, orderTransactions, userCart, saveUser, saveProduct, saveOrderTransaction, updateProductQty, updateCart, updateUser, updateOrderTransaction, deleteProduct, deleteUser, deleteCartProduct };
+export { homepage, users, products, orderTransactions, userCart, saveUser, saveProduct, saveOrderTransaction, updateProductQty, saveCart, updateUser, updateOrderTransaction, deleteProduct, deleteUser };
