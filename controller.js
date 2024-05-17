@@ -1,3 +1,4 @@
+import { ObjectId } from 'bson';
 import mongoose from 'mongoose';
 
 await mongoose.connect("mongodb://127.0.0.1:27017/FarmToTable", {
@@ -152,9 +153,10 @@ const updateCart = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-    if (req.body.email) {
-        if (await User.exists({ email: req.body.email })){
-            await User.updateOne({email: req.body.email}, {$set: req.body})
+    if (req.body._id) {
+        var _id = ObjectId.createFromHexString(req.body._id)
+        if (await User.exists({ _id: _id })){
+            await User.updateOne({_id: _id}, {$set: req.body})
             res.json({ udUserSuccess: true });
         } else {
             res.json({ udUserSuccess: false });

@@ -1,3 +1,4 @@
+import { ObjectId } from 'bson';
 import needle from 'needle';
 
 // needle.post('http://localhost:3000/save-user', {
@@ -49,6 +50,7 @@ import needle from 'needle';
 // });
 
 // needle.post('http://localhost:3000/update-user', {
+//     _id: '66475b196dfacd5af86e8f7d',
 //     fname: "Mary Jane",
 //     mname: "",
 //     lname: "Parker",
@@ -79,20 +81,19 @@ import needle from 'needle';
 //     console.log(res.body);
 // })
 
-needle.post('http://localhost:3000/delete-user',{
-    email: "mjwatson@gmail.com"
-}, (err, res) => {
-    console.log(res.body);
-});
+// needle.post('http://localhost:3000/delete-user',{
+//     email: "mjwatson@gmail.com"
+// }, (err, res) => {
+//     console.log(res.body);
+// });
 
 
-needle.get('http://localhost:3000/users', (err, res) => {
-    console.log(res.body);
-}); 
+// needle.get('http://localhost:3000/users', (err, res) => {
+//     console.log(res.body);
+// }); 
 
 
 
-needle.get('http://localhost:3000/cart-by-user?id=663c7861bf03ce21c29eadae', (err, res) => {
-    console.log(res.body);
-});
-
+// needle.get('http://localhost:3000/cart-by-user?id=663c7861bf03ce21c29eadae', (err, res) => {
+//     console.log(res.body);
+// });
