@@ -139,13 +139,10 @@ const updateProductQty = async (req, res) => {
     }
 };
 
-// For review - new addition
 const saveCart = async (req, res) => {
-    console.log(req.body.cid);
-    console.log(req.body.cart);
-    if (req.body.cid && req.body.cart) {
+    if (req.body.cid && JSON.parse(req.body.cart)) {
         if (await ShoppingCart.exists({cid: req.body.cid})) {
-            //  update cart here
+            await ShoppingCart.updateOne({cid: req.body.cid}, {$set: {cart: JSON.parse(req.body.cart)}})
             res.json({ udCartSuccess: true });   
         } else {
             res.json({ udCartSuccess: false });
@@ -197,11 +194,10 @@ const deleteProduct = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-    if (req.body.email) {
-        if (await User.exists({ email: req.body.email })){
-            const delUser = await User.findOne({email: req.body.email});
-            await ShoppingCart.deleteOne({cid: delUser.id});
-            await User.deleteOne({ email: req.body.email });
+    if (ObjectId.createFromHexString(req.body._id)) {
+        if (await User.exists({ _id: ObjectId.createFromHexString(req.body._id) })){
+            await ShoppingCart.deleteOne({cid: ObjectId.createFromHexString(req.body._id)});
+            await User.deleteOne({ _id : ObjectId.createFromHexString(req.body._id) });
             res.json({ delUserSuccess: true });
         } else {
             res.json({ delUserSuccess: false });

@@ -82,7 +82,7 @@ import needle from 'needle';
 // })
 
 // needle.post('http://localhost:3000/delete-user',{
-//     email: "mjwatson@gmail.com"
+//     _id: '66475b196dfacd5af86e8f7d'
 // }, (err, res) => {
 //     console.log(res.body);
 // });
@@ -97,5 +97,11 @@ import needle from 'needle';
 //     console.log(res.body);
 // });
 
+// needle.post('http://localhost:3000/save-cart',{
+//     cid: '66475b196dfacd5af86e8f7d',
+//     cart: JSON.stringify([{"itemid": "21346547", "itemqty": 5},{"itemid": "21346547", "itemqty": 10},{"itemid": "21346547", "itemqty": 15}])
+// }, (err, res) => {
+//     console.log(res.body);
+// });
 
 
