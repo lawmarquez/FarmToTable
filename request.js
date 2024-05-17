@@ -94,6 +94,9 @@ import needle from 'needle';
 
 
 
-// needle.get('http://localhost:3000/cart-by-user?id=663c7861bf03ce21c29eadae', (err, res) => {
-//     console.log(res.body);
-// });
+needle.get('http://localhost:3000/cart-by-user?id=663c7861bf03ce21c29eadae', (err, res) => {
+    console.log(res.body);
+});
+
+
+
