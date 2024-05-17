@@ -30,13 +30,15 @@ function Login({ onLoginSuccess }) {
         //making HTTP post request to the server(from backend)
         try{
             const response = await axios.post('http://localhost:3001/login', {username, password})
-            const token = response.data.token
+            console.log('Full response:', response);  // Log the entire response object
 
-            //contains User FULL name
-            const user_info = response.data.user_info
+            const token = response.data.token;
+            console.log('Token:', token);
 
+            const user_info = response.data.user_info;
+            console.log('User Info:', user_info);
             let isAdmin = false;
-            if (username === 'admin') {
+            if (user_info.userType === 'admin') {
                 isAdmin = true;
             }
 
