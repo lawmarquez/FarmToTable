@@ -195,9 +195,10 @@ const deleteProduct = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     if (ObjectId.createFromHexString(req.body._id)) {
-        if (await User.exists({ _id: ObjectId.createFromHexString(req.body._id) })){
-            await ShoppingCart.deleteOne({cid: ObjectId.createFromHexString(req.body._id)});
-            await User.deleteOne({ _id : ObjectId.createFromHexString(req.body._id) });
+        var _id = ObjectId.createFromHexString(req.body._id)
+        if (await User.exists({ _id: _id })){
+            await ShoppingCart.deleteOne({cid: _id});
+            await User.deleteOne({ _id : _id});
             res.json({ delUserSuccess: true });
         } else {
             res.json({ delUserSuccess: false });
