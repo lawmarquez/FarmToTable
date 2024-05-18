@@ -45,7 +45,9 @@ function Login({ onLoginSuccess }) {
                 navigate('/admin-account');
             } else {
                 onLoginSuccess(false);
-                navigate('/account');
+                // navigate('/account');
+                // change navigate route to /shop
+                navigate('/shop');
             }
 
             setUsername('');

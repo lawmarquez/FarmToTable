@@ -17,7 +17,7 @@ export default function Items(props) {
 
   return (
     <>
-      <div>List
+      <div className='productList'>
         {prodsList.map((item) => (
             <div key={item.id} className="listItem"> 
               {/* <img src={item.image} alt={item.name}></img> */}

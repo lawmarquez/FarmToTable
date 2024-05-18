@@ -42,17 +42,27 @@ function App() {
               <Route path='/admin-account' element={<AdminAccount />} />
             ) : (
               // May 15 - Modified routes here to display pages for testing.
-              <Route path='/account' element={<Account />}>
-                <Route path='shop' element={<Shop />} />
-                <Route path='cart' element={<Cart />} />
-              </Route>
-              // <Route path='/account' element={<Account />} />
+              //<Route path='/account' element={<Account />}>
+              <Route path='shop' element={<Shop />} />
             )}
           </>
         ) : (
           // Redirect to the home page if the user is not signed in (maybe insert to error page later on)
           <Route path='/*' element={<Navigate to='/' />} />
         )}
+        
+        {/* Only render the following routes if the user is signed in - to make going to /account accessible */}
+        {/* {isUserSignedIn ? (
+          <>
+            {isAdmin ? (
+              <Route path='/*' element={<Navigate to='/' />} />
+            ) : (
+              <Route path='/account' element={<Account />} />
+            )}
+          </>
+        ) : (
+          <Route path='/*' element={<Navigate to='/' />} />
+        )} */}
       </Routes>
     </div>
   );

@@ -9,10 +9,8 @@ function Account() {
   // stuff to display in the account page
 
   return (
-    <div>Account
-      
-      {/* render shop when url contains /shop maybe through a button? idrk ano pagkakasunod sunod*/}
-      <Outlet/>
+    <div>
+      Account
     </div>
   )
 }
