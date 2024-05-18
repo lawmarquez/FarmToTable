@@ -7,6 +7,8 @@ import Login from './pages/Login.js';
 import SignUp from './pages/SignUp.js';
 import Account from './pages/Account.js';
 import AdminAccount from './pages/AdminAccount.js';
+import Shop from './pages/shop_pages/Shop.js';
+import Cart from './pages/shop_pages/Cart.js';
 
 function App() {
   // Checking if user is signed in or not by checking session token

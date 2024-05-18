@@ -23,7 +23,8 @@ const app = express();
 
 //Connecting to MongoDB
 //Using MongoDB Atlas as initial DB but same code can be used for MongoDB Compass
-const dbURI = 'mongodb://localhost:27017/UsersDB';
+// const dbURI = 'mongodb://localhost:27017/UsersDB';
+const dbURI = 'mongodb://localhost:27017/FarmToTable';
 
 mongoose.connect(dbURI, { 
     useNewUrlParser: true, 
@@ -41,6 +42,7 @@ mongoose.connect(dbURI, {
 
 //Middleware (connecting code to database)
 app.use(bodyParser.json());
+// app.use(express.json());
 app.use(cors());
 
 router(app);

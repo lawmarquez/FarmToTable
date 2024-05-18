@@ -13,6 +13,37 @@ const SECRET_KEY = 'authentication'
 //SCHEMA
 import User from './models/UserSchema.js';
 
+// CartProduct
+const CartProduct = new mongoose.Schema({
+  itemid: String,                   // reference to product
+  itemqty: Number
+});
+
+// Models
+const Product = mongoose.model("Product", {
+  pid: String,
+  pname: String,
+  pdesc: String,
+  ptype: Number,
+  pqty: Number
+}, 'products');
+
+const OrderTransaction = mongoose.model("OrderTransaction", {
+  tid: String,
+  pid: String,
+  oqty: Number,
+  ostatus: Number,
+  email: String,
+  date: Date,
+  time: String
+}, 'orderTransactions');
+
+const ShoppingCart = mongoose.model("ShoppingCart", {
+  cid: String,
+  cart: [CartProduct]
+}, 'shoppingCarts');
+
+
 // From server.js: Authentication
 const getReg = async (req, res) => {
   try{
@@ -38,6 +69,12 @@ const register = async (req, res) => {
         password: hashedPassword
     });
     await newUser.save();
+
+    // NEW: save a new cart 
+    const id = newStudent._id
+    const newCart = new ShoppingCart({cid: id});
+    await newCart.save();
+
     res.status(201).json({message: "User Registered"});
   } catch(err){
       res.status(500).json({error: 'Error registering new user'});
@@ -71,12 +108,172 @@ const login = async(req, res) => {
 
 // Other funcs from dbCart here
 
+// Retrieving -----
+const users = async (req, res) => {
+  const mem = await User.find();
+  if (mem.length > 0) {
+      res.send(mem);
+  } else {
+      res.send([]);
+  }
+};
+
+const products = async (req, res) => {
+  const mem = await Product.find();
+  if (mem.length > 0) {
+      res.send(mem);
+  } else {
+      res.send([]);
+  }
+};
+
+const orderTransactions = async (req, res) => {
+  const mem = await OrderTransaction.find();
+  if (mem.length > 0) {
+      res.send(mem);
+  } else {
+      res.send([]);
+  }
+};
+
+  // Retrieve specific cart for Shopping cart
+const userCart = async (req, res) => {
+  console.log(req.body.cid);
+  const mem = await ShoppingCart.findOne({cid: req.body.cid});
+  console.log(mem);
+  res.send(mem);
+};
+
+
+// Saving -----
+const saveProduct = async (req, res) => {
+  if (req.body.pid && req.body.pname && req.body.pdesc && req.body.ptype && req.body.pqty) {
+      const newStudent = new Product(req.body);
+      await newStudent.save();
+      res.json({ inserted: true });
+  } else {
+      res.json({ inserted: false });
+  }
+};
+
+const saveOrderTransaction = async (req, res) => {
+  if (req.body.tid && req.body.pid && req.body.oqty && req.body.ostatus && req.body.email && req.body.date && req.body.time) {
+      const newStudent = new OrderTransaction(req.body);
+      await newStudent.save();
+      res.json({ inserted: true });
+  } else {
+      res.json({ inserted: false });
+  }
+};
+
+const saveCart = async (req, res) => {
+  console.log(req.body.cid);
+  console.log(req.body.cart);
+  if (req.body.cid && JSON.parse(req.body.cart)) {
+      if (await ShoppingCart.exists({cid: req.body.cid})) {
+          await ShoppingCart.updateOne({cid: req.body.cid}, {$set: {cart: JSON.parse(req.body.cart)}})
+          res.json({ udCartSuccess: true });   
+      } else {
+          console.log("cart non existent");
+          res.json({ udCartSuccess: false });
+      }
+  } else {
+    console.log("incomplete body");
+      res.json({ udCartSuccess: false });
+  }
+};
+
+
+// Updating -----
+const updateProductQty = async (req, res) => {
+  if (req.body.pid && req.body.pqty) {
+      if (await Product.exists({ pid: req.body.pid })) {
+          await Product.updateOne({pid: req.body.pid}, {$set: {pqty: req.body.pqty}})
+          res.json({ udProdQtySuccess: true });
+      } else {
+          res.json({ udProdQtySuccess: false });
+      }
+  } else {
+      res.json({ udProdQtySuccess: false });
+  }
+};
+
+const updateUser = async (req, res) => {
+  if (req.body._id) {
+      var _id = ObjectId.createFromHexString(req.body._id)
+      if (await User.exists({ _id: _id })){
+          await User.updateOne({_id: _id}, {$set: req.body})
+          res.json({ udUserSuccess: true });
+      } else {
+          res.json({ udUserSuccess: false });
+      }
+  } else {
+      res.json({ udUserSuccess: false });
+  }
+};
+
+const updateOrderTransaction = async (req, res) => {
+  if (req.body.tid, req.body.ostatus) {
+      if (await OrderTransaction.exists({ tid: req.body.tid })){
+          await OrderTransaction.updateOne({tid: req.body.tid}, {$set: {ostatus: req.body.ostatus}});
+          res.json({ udOrderTransactionSuccess: true });
+      } else {
+          res.json({ udOrderTransactionSuccess: false });
+      }
+  } else {
+      res.json({ udOrderTransactionSuccess: false });
+  }
+};
+
+
+// Deletes -----
+const deleteProduct = async (req, res) => {
+  if (req.body.pid) {
+      if (await Product.exists({ pid: req.body.pid })){
+          await Product.deleteOne({ pid: req.body.pid });
+          res.json({ delProductSuccess: true });
+      } else {
+          res.json({ delProductSuccess: false }); 
+      }
+  } else {
+      res.json({ delProductSuccess: false }); 
+  }
+};
+
+const deleteUser = async (req, res) => {
+  if (ObjectId.createFromHexString(req.body._id)) {
+      var _id = ObjectId.createFromHexString(req.body._id)
+      if (await User.exists({ _id: _id })){
+          await ShoppingCart.deleteOne({cid: _id});
+          await User.deleteOne({ _id : _id});
+          res.json({ delUserSuccess: true });
+      } else {
+          res.json({ delUserSuccess: false });
+      }
+  } else {
+      res.json({ delUserSuccess: false });
+  }
+};
 
 
 
-
-
-export {getReg, register, login};
+export {
+  getReg, 
+  register, 
+  login,
+  users, 
+  products, 
+  orderTransactions, 
+  userCart, 
+  saveProduct, 
+  saveOrderTransaction, 
+  updateProductQty, 
+  saveCart, 
+  updateUser, 
+  updateOrderTransaction, 
+  deleteProduct, 
+  deleteUser 
+};
 
 
 
