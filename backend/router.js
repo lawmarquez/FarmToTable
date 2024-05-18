@@ -11,6 +11,7 @@ const router = (app) => {
   app.post('/register', register);
   app.post('/login', login);
 
+  // Added routes from dbCart
   app.get('/users', users);
   app.get('/products', products);
   app.get('/orderTransactions', orderTransactions);

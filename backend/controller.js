@@ -108,6 +108,8 @@ const login = async(req, res) => {
 
 // Other funcs from dbCart here
 
+// Added functions from dbCart
+
 // Retrieving -----
 const users = async (req, res) => {
   const mem = await User.find();
