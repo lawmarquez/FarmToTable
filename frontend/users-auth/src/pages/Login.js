@@ -32,9 +32,6 @@ function Login({ onLoginSuccess }) {
             const response = await axios.post('http://localhost:3001/login', {username, password})
             const token = response.data.token
 
-            //contains User FULL name
-            const user_info = response.data.user_info
-
             let isAdmin = false;
             if (username === 'admin') {
                 isAdmin = true;
@@ -48,10 +45,13 @@ function Login({ onLoginSuccess }) {
                 navigate('/account');
             }
 
+            onLoginSuccess(token, isAdmin);
+
             setUsername('');
             setPassword('');
             fetchUsers();
             localStorage.setItem('token', token);
+            localStorage.setItem("isAdmin", isAdmin);
         }catch(err){
             console.log('Unable to login user')
         }
