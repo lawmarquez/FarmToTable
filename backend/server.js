@@ -94,8 +94,7 @@ app.post("/login", async(req, res)=>{
         }
         
 
-        const token = sign({userId: user._id}, SECRET_KEY, {expiresIn : '1h'});
-        const user_info = {userFName: user.fname, userLName: user.lname, userEmail: user.email};
+        const token = sign({userId: user._id}, SECRET_KEY, {expiresIn : '1h'}, {userFName: user.fname},{ userLName: user.lname}, {userEmail: user.email});
         res.json({message: 'Login Successful'});
     }catch(err){
         res.status(500).json({error: 'Login error'});
