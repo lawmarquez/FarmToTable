@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar.js';
@@ -7,21 +7,32 @@ import Login from './pages/Login.js';
 import SignUp from './pages/SignUp.js';
 import Account from './pages/Account.js';
 import AdminAccount from './pages/AdminAccount.js';
+import ProtectedRoute from './components/RouteProtection.js'; // Importing the HOC (explanation in RouteProtection.js)
 
 function App() {
-  // Checking if user is signed in or not by checking session token
-  const [isUserSignedIn, setIsUserSignedIn] = useState(!!localStorage.getItem('token'));
+  {/**Added initial state */}
+  const [isUserSignedIn, setIsUserSignedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  {/**Check for isAdminProp to check is user is signed in for later checks*/}
-  const handleLoginSuccess = (isAdminProp) => {
+  {/**Read values from localStorage (coming from Login.js) */}
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const adminStatus = localStorage.getItem('isAdmin') === 'true'; // Ensure it's a boolean
+    setIsUserSignedIn(!!token);
+    setIsAdmin(adminStatus);
+  }, []); {/**effect should run once after initial render */}
+
+  const handleLoginSuccess = (token, isAdminProp) => { // Receive token as argument from localStorage
+    localStorage.setItem('token', token); // Set token for successful login
+    localStorage.setItem('isAdmin', isAdminProp); //Set whether isAdmin or not
+    setIsUserSignedIn(true); //Changing State if Login is a success
     setIsAdmin(isAdminProp);
-    setIsUserSignedIn(true);
   };
 
-  {/**Handles logging out */}
+  {/**Revoking access by removing/deleting token and changing state to false */}
   const handleSignOut = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('isAdmin');
     setIsUserSignedIn(false);
     setIsAdmin(false);
   };
@@ -33,17 +44,21 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login onLoginSuccess={handleLoginSuccess} />} />
         <Route path='/signup' element={<SignUp />} />
-        {/* Only render the following routes if the user is signed in */}
+
+        {/* Protected routes */}
         {isUserSignedIn ? (
           <>
-            {isAdmin ? (
-              <Route path='/admin-account' element={<AdminAccount />} />
-            ) : (
-              <Route path='/account' element={<Account />} />
-            )}
+            <Route path='/account' element={<Account />} />
+            <Route
+              path='/admin-account'
+              element={
+                <ProtectedRoute isAllowed={isAdmin} redirectPath='/'>
+                  <AdminAccount />
+                </ProtectedRoute>
+              }
+            />
           </>
         ) : (
-          // Redirect to the home page if the user is not signed in (maybe insert to error page later on)
           <Route path='/*' element={<Navigate to='/' />} />
         )}
       </Routes>
