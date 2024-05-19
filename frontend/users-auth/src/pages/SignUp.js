@@ -57,52 +57,52 @@ function SignUp() {
 
   return (
     <div className='signup_container'>
-        <div className='form_content'>
-            <form className='form_main'
-            onSubmit={handleSubmit}>
+        <iframe 
+          class="bg-video"
+          src="https://www.youtube.com/embed/cGNbq0-fdRk?autoplay=1&mute=1&controls=0&loop=1&playlist=cGNbq0-fdRk"
+          allowFullScreen
+          allow="autoplay"
+        />
+
+        <div className='half_filler1'>
+            <h3>Let's create an account</h3>
+            <p2>And start your freshness shopping with us!</p2>
+        </div>
+
+        <div className='form_content1'>
+            <form className='form_main1' onSubmit={handleSubmit}>
                 {/* First Name Input */}
-                <label>First Name</label>
                 <br />
-                <input className='input_container' type='text' placeholder='First Name' value={fname} onChange={(e) => setFname(e.target.value)} />
-                <br />
+                <input className='input_container1' type='text' placeholder='First Name' value={fname} onChange={(e) => setFname(e.target.value)} />
                 <br />
                 {/* Middle Name Input */}
-                <label>Middle Name</label>
                 <br />
-                <input className='input_container' type='text' placeholder='Middle Name' value={mname} onChange={(e) => setMname(e.target.value)} />
-                <br />
+                <input className='input_container1' type='text' placeholder='Middle Name' value={mname} onChange={(e) => setMname(e.target.value)} />
                 <br />
                 {/* Last Name Input */}
-                <label>Last Name</label>
                 <br />
-                <input className='input_container' type='text' placeholder='Last Name' value={lname} onChange={(e) => setLname(e.target.value)} />
-                <br />
+                <input className='input_container1' type='text' placeholder='Last Name' value={lname} onChange={(e) => setLname(e.target.value)} />
                 <br />
                 {/* Email Input */}
-                <label>Email</label>
                 <br />
-                <input className='input_container' type='text' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input className='input_container1' type='text' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
                 <br />
+                {/*Username Input */}
                 <br />
-                 {/*Username Input */}
-                 <label>Username</label>
+                <input className='input_container1' type='text' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} />
                 <br />
-                <input className='input_container' type='text' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} />
+                {/* Password Input */}
                 <br />
-                <br />
-                 {/* Password Input */}
-                 <label>Password</label>
-                <br />
-                <input className='input_container' type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                <br />
+                <input className='input_container1' type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 <br />
                 {/* Button */}
-                <button className='button' type='submit'>Sign Up</button>
+                <button className='submit_button1' type='submit'>Sign Up</button>
+
+                <br />
+                <p>By continuing, you agree to our Terms of Service and Privacy Policy</p>
             </form>
         </div>
-        <div className='filler'>
-            <h2>Sign Up</h2>
-        </div>
+        
     </div>
   )
 }

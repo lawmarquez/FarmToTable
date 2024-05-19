@@ -1,4 +1,4 @@
-import Reac, { useState, useEffect} from 'react'
+import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 import {Navigate, useNavigate, userNavigate} from 'react-router-dom'
 
@@ -59,31 +59,39 @@ function Login({ onLoginSuccess }) {
 
 
   return (
+    
     <div className='form_container'>
+        <iframe 
+          class="bg-video"
+          src="https://www.youtube.com/embed/dkSpKdY2X4k?autoplay=1&mute=1&controls=0&loop=1&playlist=dkSpKdY2X4k"
+          allowFullScreen
+          allow="autoplay"
+        />
+        
+        
+        <div className='half_filler'>
+            <h2>Welcome back!</h2>
+            <p>We're glad you are here.</p>
+        </div>
+
         <div className='form_content'>
             <form className='form_main' onSubmit={handleLogin}>
                 {/** Usernmae Input */}
-                <label> Username </label>
                 <br/>
                 <input className='input_container' type='text' placeholder='Username' value={username} onChange={e => setUsername(e.target.value)}/>
-                <br/>
-                <br/>
 
                 {/** Password Input */}
-                <label> Password </label>
                 <br/>
                 <input className='input_container' type='password' placeholder='Password' value={password} onChange={e => setPassword(e.target.value)}/>
-                <br/>
-                <br/>
 
                 {/**Button */}
-                <button className='button' type='submit'>Login</button>
+                <br/>
+                <button className='submit_button' type='submit'>Log me in!</button>
+                
+                <br/>
+                <br/>
+                <p>By continuing, you agree to our Terms of Service and Privacy Policy</p>
             </form>
-        </div>
-
-        <div className='filler'>
-            <h2>LOGIN</h2>
-
         </div>
     </div>
   )
