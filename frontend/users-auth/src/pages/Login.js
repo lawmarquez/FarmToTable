@@ -1,4 +1,4 @@
-import Reac, { useState, useEffect} from 'react'
+import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 import {Navigate, useNavigate, userNavigate} from 'react-router-dom'
 
@@ -50,10 +50,13 @@ function Login({ onLoginSuccess }) {
                 navigate('/shop');
             }
 
+            onLoginSuccess(token, isAdmin);
+
             setUsername('');
             setPassword('');
             fetchUsers();
             localStorage.setItem('token', token);
+            localStorage.setItem("isAdmin", isAdmin);
         }catch(err){
             console.log('Unable to login user')
         }
