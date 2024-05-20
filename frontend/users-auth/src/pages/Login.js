@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect} from 'react'
+import axios from 'axios'
+import {Navigate, useNavigate, userNavigate} from 'react-router-dom'
+
 
 import './pages_css/Login.css';
 
@@ -50,16 +51,20 @@ function Login({ onLoginSuccess }) {
                 navigate('/account');
             }
 
+            onLoginSuccess(token, isAdmin);
+
             setUsername('');
             setPassword('');
             setMessage(''); // Clear any previous message
             localStorage.setItem('token', token);
+            localStorage.setItem("isAdmin", isAdmin);
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 setMessage('Invalid username or password');
             } else {
                 setMessage('Unable to login user');
             }
+
         }
     };
 
