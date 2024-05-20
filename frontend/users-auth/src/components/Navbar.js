@@ -5,6 +5,8 @@ import "./Navbar.css";
 function Navbar({ isUserSignedIn, isAdmin, handleSignOut }) {
     return (
         <nav className="NavigationBar">
+            <h1 className="headerTitle">Farm To Table</h1>
+            <Link to="/">Home</Link>
             <ul>
                 {/**Check if the user is Signed In using isUserSigned comning from the App.js */}
                 {isUserSignedIn ? (

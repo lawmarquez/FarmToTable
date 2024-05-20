@@ -41,6 +41,36 @@ app.use(cors());
 
 router(app);
 
+app.get('/users', async (req, res) => {
+    try {
+        const users = await User.find();
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ error: 'Error fetching users' });
+    }
+});
+
+app.delete('/users/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        await User.findByIdAndDelete(id);
+        res.status(204).end();
+    } catch (err) {
+        res.status(500).json({ error: 'Error deleting user' });
+    }
+});
+
+app.put('/users/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { type } = req.body;
+        const user = await User.findByIdAndUpdate(id, { type }, { new: true });
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ error: 'Error updating user type' });
+    }
+});
+
 //FOR STARTING BACKEND
 //1. Change to the directory where the server.js file is located (backend)
 //2. Run the command "npx modemon server.js" in the terminal

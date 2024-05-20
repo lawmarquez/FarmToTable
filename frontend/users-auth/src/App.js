@@ -6,8 +6,16 @@ import Home from './pages/Home.js';
 import Login from './pages/Login.js';
 import SignUp from './pages/SignUp.js';
 import Account from './pages/Account.js';
-import AdminAccount from './pages/AdminAccount.js';
+
+
+import AdminAccount from './pages/admin_pages/AdminAccount.js';
+import UsersManagement from './pages/admin_pages/UsersManagement.js';
+import ProductListings from './pages/admin_pages/ProductListings.js';
+import OrderFulfillment from './pages/admin_pages/OrderFulfillment.js';
+import SalesReports from './pages/admin_pages/SalesReports.js';
+
 import ProtectedRoute from './components/RouteProtection.js'; // Importing the HOC (explanation in RouteProtection.js)
+
 
 function App() {
   {/**Added initial state */}
@@ -48,15 +56,18 @@ function App() {
         {/* Protected routes */}
         {isUserSignedIn ? (
           <>
-            <Route path='/account' element={<Account />} />
-            <Route
-              path='/admin-account'
-              element={
-                <ProtectedRoute isAllowed={isAdmin} redirectPath='/'>
-                  <AdminAccount />
-                </ProtectedRoute>
-              }
-            />
+            {isAdmin ? (
+              <Route path='/admin-account' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <AdminAccount /> </ProtectedRoute>} />
+                <Route path='users-management' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <UsersManagement /> </ProtectedRoute>} />
+                <Route path='product-listings' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <ProductListings /> </ProtectedRoute>}/>
+                <Route path='order-fullfillment' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <OrderFulfillment /> </ProtectedRoute>} />
+                <Route path='sales-reports' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <SalesReports /> </ProtectedRoute>} />
+              </Route>
+                
+            ) : (
+              <Route path='/account' element={<Account />} />
+            )}
+
           </>
         ) : (
           // Redirect to the home page if the user is not signed in (maybe insert to error page later on)

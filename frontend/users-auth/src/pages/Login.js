@@ -2,41 +2,44 @@ import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 import {Navigate, useNavigate, userNavigate} from 'react-router-dom'
 
-import './pages_css/Login.css'
+
+import './pages_css/Login.css';
 
 function Login({ onLoginSuccess }) {
-    //creating useState hooks to store the user input
-    const [username, setUsername] = useState([])
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const navigate = useNavigate()
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
-    //useEffect hook to fetch the users from the database
     useEffect(() => {
         fetchUsers();
-    }, [])
+    }, []);
 
-    //responsible for fetching the users from the database
     const fetchUsers = async () => {
-        axios.get('http://localhost:3001/register') //making HTTP get request to the server(from backend)
-        .then((res)=>{
-            console.log(res.data)})
-    }
+        // Fetching users from the database
+        try {
+            const response = await axios.get('http://localhost:3001/register');
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error fetching users:', error);
+        }
+    };
 
-    const handleLogin = async(event)=>{
-        //Stops from sending empty form
+    const handleLogin = async (event) => {
         event.preventDefault();
 
-        //making HTTP post request to the server(from backend)
-        try{
-            const response = await axios.post('http://localhost:3001/login', {username, password})
-            const token = response.data.token
+        try {
+            const response = await axios.post('http://localhost:3001/login', { username, password });
+            console.log('Full response:', response);  
 
-            //contains User FULL name
-            const user_info = response.data.user_info
+            const token = response.data.token;
+            console.log('Token:', token);
+
+            const user_info = response.data.user_info;
+            console.log('User Info:', user_info);
 
             let isAdmin = false;
-            if (username === 'admin') {
+            if (user_info.userType === 'admin') {
                 isAdmin = true;
             }
 
@@ -52,44 +55,47 @@ function Login({ onLoginSuccess }) {
 
             setUsername('');
             setPassword('');
-            fetchUsers();
+            setMessage(''); // Clear any previous message
             localStorage.setItem('token', token);
             localStorage.setItem("isAdmin", isAdmin);
-        }catch(err){
-            console.log('Unable to login user')
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                setMessage('Invalid username or password');
+            } else {
+                setMessage('Unable to login user');
+            }
+
         }
-    }
+    };
 
+    return (
+        <div className='form_container'>
+            <div className='form_content'>
+                <div className="loginText">
+                    <h1>Welcome back!</h1>
+                    <h4>We're glad you are here.</h4>
+                    <br/>
+                    <br/>
+                </div>
+                <form className='form_main' onSubmit={handleLogin}>
+                    <br/>
+                    <br/>
+                    <input className='input_container' type='text' placeholder=' Username' value={username} onChange={e => setUsername(e.target.value)}/>
+                    <br/>
+                    <br/>
+                    <input className='input_container' type='password' placeholder=' Password' value={password} onChange={e => setPassword(e.target.value)}/>
+                    <br/>
+                    <br/>
+                    {message && <p className="error-message">{message}</p>}
+                    <button className='button' type='submit'>Login</button>
+                </form>
+            </div>
 
-  return (
-    <div className='form_container'>
-        <div className='form_content'>
-            <form className='form_main' onSubmit={handleLogin}>
-                {/** Usernmae Input */}
-                <label> Username </label>
-                <br/>
-                <input className='input_container' type='text' placeholder='Username' value={username} onChange={e => setUsername(e.target.value)}/>
-                <br/>
-                <br/>
-
-                {/** Password Input */}
-                <label> Password </label>
-                <br/>
-                <input className='input_container' type='password' placeholder='Password' value={password} onChange={e => setPassword(e.target.value)}/>
-                <br/>
-                <br/>
-
-                {/**Button */}
-                <button className='button' type='submit'>Login</button>
-            </form>
+            {/* <div className='filler'>
+                <h2>LOGIN</h2>
+            </div> */}
         </div>
-
-        <div className='filler'>
-            <h2>LOGIN</h2>
-
-        </div>
-    </div>
-  )
+    );
 }
 
-export default Login
+export default Login;

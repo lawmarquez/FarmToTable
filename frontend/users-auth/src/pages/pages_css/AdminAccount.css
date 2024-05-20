@@ -7,3 +7,22 @@
     justify-content: center;
     align-items: center;
 }
+
+.title{
+    font-size: larger;
+}
+
+.dashboard{
+    display: grid;
+    padding: 8%;
+    grid-auto-columns: 50%;
+    row-gap:110%;
+}
+
+/* USERS MANAGEMENT */
+
+/* PRODUCT LISTINGS */
+
+/* ORDER FULFILLMENT */
+
+/* SALES REPORTS */
