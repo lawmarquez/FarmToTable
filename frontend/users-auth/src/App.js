@@ -7,6 +7,8 @@ import Login from './pages/Login.js';
 import SignUp from './pages/SignUp.js';
 import Account from './pages/Account.js';
 
+import Shop from './pages/shop_pages/Shop.js';
+
 
 import AdminAccount from './pages/admin_pages/AdminAccount.js';
 import UsersManagement from './pages/admin_pages/UsersManagement.js';
@@ -42,6 +44,7 @@ function App() {
   const handleSignOut = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('isAdmin');
+    localStorage.removeItem('isAdmin');
     setIsUserSignedIn(false);
     setIsAdmin(false);
   };
@@ -57,15 +60,19 @@ function App() {
         {isUserSignedIn ? (
           <>
             {isAdmin ? (
+              <>
               <Route path='/admin-account' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <AdminAccount /> </ProtectedRoute>} />
                 <Route path='users-management' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <UsersManagement /> </ProtectedRoute>} />
                 <Route path='product-listings' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <ProductListings /> </ProtectedRoute>}/>
                 <Route path='order-fullfillment' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <OrderFulfillment /> </ProtectedRoute>} />
                 <Route path='sales-reports' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <SalesReports /> </ProtectedRoute>} />
-              </Route>
-                
+              
+              </>
             ) : (
+              <>
               <Route path='/account' element={<Account />} />
+              <Route path='/shop' element={<ProtectedRoute isAllowed={!isAdmin} redirectPath='/'> <Shop /> </ProtectedRoute>} />
+              </>
             )}
 
           </>
