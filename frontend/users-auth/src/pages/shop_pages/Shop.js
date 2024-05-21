@@ -15,6 +15,7 @@ const sampleProducts =
 ]
 
 
+
 function Shop() {
     // May 15 - A little lost on the routing used (di tulad ng sa Week10 sample), di ko na muna pinakialaman
     // Suggestion: display shop on user log in

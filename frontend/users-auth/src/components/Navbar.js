@@ -11,7 +11,7 @@ function Navbar({ isUserSignedIn, isAdmin, handleSignOut }) {
                 {/**Check if the user is Signed In using isUserSigned comning from the App.js */}
                 {isUserSignedIn ? (
                     <>
-                    {/** Check if the user logging in is an "admin" to change NavBar accordingly*/}
+                        {/** Check if the user logging in is an "admin" to change NavBar accordingly*/}
                         {isAdmin ? (
                             <li>
                                 <Link to="/admin-account">Admin Account</Link>
@@ -19,10 +19,11 @@ function Navbar({ isUserSignedIn, isAdmin, handleSignOut }) {
                         ) : (
                             <>
                                 <li>
-                                    <Link to='/'>Home</Link>
+                                    <Link to='/account'>Account</Link>
+
                                 </li>
                                 <li>
-                                    <Link to='/account'>Account</Link>
+                                    <Link to='/shop'>Shop</Link>
                                 </li>
                             </>
                         )}
