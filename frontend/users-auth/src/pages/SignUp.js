@@ -14,7 +14,7 @@ function SignUp() {
     const [password, setPassword] = useState('');
     const [fnameError, setFnameError] = useState('');
     const [lnameError, setLnameError] = useState('');
-    const [mnameError, setMnameError] = useState('');
+    // const [mnameError, setMnameError] = useState('');
     const [emailError, setEmailError] = useState('');
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
@@ -40,7 +40,7 @@ function SignUp() {
         validateForm();
 
         // If any error exists, return without submitting
-        if (fnameError || lnameError || mnameError || emailError || usernameError || passwordError) {
+        if (fnameError || lnameError || emailError || usernameError || passwordError) {
             return;
         }
 
@@ -66,7 +66,7 @@ function SignUp() {
     const validateForm = () => {
         setFnameError(validateField(fname, 'First Name'));
         setLnameError(validateField(lname, 'Last Name'));
-        setMnameError(validateField(mname, 'Middle Name'));
+        // setMnameError(validateField(mname, 'Middle Name'));
         setEmailError(validateEmail(email));
         setUsernameError(validateField(username, 'Username'));
         setPasswordError(validateField(password, 'Password'));
@@ -92,7 +92,7 @@ function SignUp() {
     const clearErrors = () => {
         setFnameError('');
         setLnameError('');
-        setMnameError('');
+        // setMnameError('');
         setEmailError('');
         setUsernameError('');
         setPasswordError('');
@@ -117,7 +117,7 @@ function SignUp() {
                     {lnameError && <p className="error-message">{lnameError}</p>}
                     <br />
                     <input className='input_container' type='text' placeholder=' Middle Name' value={mname} onChange={(e) => setMname(e.target.value)} />
-                    {mnameError && <p className="error-message">{mnameError}</p>}
+                    {/* {mnameError && <p className="error-message">{mnameError}</p>} */}
                     <br />
                     <input className='input_container' type='text' placeholder=' Email' value={email} onChange={(e) => setEmail(e.target.value)} />
                     {emailError && <p className="error-message">{emailError}</p>}

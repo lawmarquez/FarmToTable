@@ -10,13 +10,13 @@ const UserManagement = () => {
     }, []);
 
     useEffect(() => {
-        console.log('Users changed:', users);
     }, [users]);
 
     const fetchUsers = async () => {
         try {
-            const response = await axios.get('http://localhost:3001/users');
-            setUsers(response.data);
+            const response = await fetch('http://localhost:3001/users');
+            const data = await response.json();
+            setUsers(data);
         } catch (err) {
             console.error('Error fetching users:', err);
         }
@@ -31,12 +31,19 @@ const UserManagement = () => {
 
     const deleteUser = async (userId) => {
         try {
-            await axios.delete(`http://localhost:3001/users/${userId}`);
-            setUsers(users.filter(user => user._id !== userId));
+            const response = await fetch(`http://localhost:3001/delete-user/${userId}`, {
+                method: 'DELETE',
+            });
+            if (response.ok) {
+                setUsers(users.filter(user => user._id !== userId));
+            } else {
+                console.error('Error deleting user:', response.statusText);
+            }
         } catch (err) {
             console.error('Error deleting user:', err);
         }
     };
+
 
     const confirmChangeUserType = async (userId, newType) => {
         const confirmed = window.confirm(`Are you sure you want to change this user's type to ${newType}?`);
@@ -47,8 +54,18 @@ const UserManagement = () => {
 
     const changeUserType = async (userId, newType) => {
         try {
-            await axios.put(`http://localhost:3001/users/${userId}`, { type: newType });
-            setUsers(users.map(user => (user._id === userId ? { ...user, type: newType } : user)));
+            const response = await fetch(`http://localhost:3001/users/${userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ type: newType }),
+            });
+            if (response.ok) {
+                setUsers(users.map(user => (user._id === userId ? { ...user, type: newType } : user)));
+            } else {
+                console.error('Error changing user type:', response.statusText);
+            }
         } catch (err) {
             console.error('Error changing user type:', err);
         }
