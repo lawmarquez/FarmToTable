@@ -22,3 +22,7 @@ li{
 Link{
     color: white;
 }
+
+button {
+    cursor: pointer;
+}
