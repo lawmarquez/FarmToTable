@@ -27,7 +27,12 @@ function Shop() {
     // shopping cart link somewhere
 
     const [products, setProducts] = useState([]);
-
+    const [userId, setUserId] = useState("");
+    const [cart, setCart] = useState([]);
+    useEffect(() => {
+        const user_id = localStorage.getItem('userId');
+        setUserId(user_id);
+      }, []);
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -43,6 +48,26 @@ function Shop() {
         fetchProducts();
     }, []);
 
+    useEffect(() => {
+        const fetchCart = async () => {
+          try {
+            const response = await fetch(`http://localhost:3001/cart-by-user/${userId}`);
+            if (response.ok) {
+              const cartData = await response.json();
+              setCart(cartData.cart); // Assuming the cart array is in cartData.cart
+              console.log(cartData.cart);
+              console.log(cart);
+            } else {
+              console.error('Failed to fetch cart:', response.statusText);
+            }
+          } catch (error) {
+            console.error('Error fetching cart:', error);
+          }
+        };
+    
+        fetchCart();
+      }, [userId]);
+
     return (
         <>
             <div className='wrapper'>
@@ -54,7 +79,7 @@ function Shop() {
 
 
 
-                    <Cart list={products} />
+                    <Cart list ={cart} products = {products}/>
                 </div>
             </div>
 

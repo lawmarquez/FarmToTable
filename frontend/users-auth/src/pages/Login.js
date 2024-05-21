@@ -59,6 +59,8 @@ function Login({ onLoginSuccess }) {
             setMessage(''); // Clear any previous message
             localStorage.setItem('token', token);
             localStorage.setItem("isAdmin", isAdmin);
+            localStorage.setItem("userId", user_info.userId);
+            // console.log(user_info.userId);
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 setMessage('Invalid username or password');

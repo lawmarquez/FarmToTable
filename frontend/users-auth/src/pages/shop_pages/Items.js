@@ -6,13 +6,12 @@ export default function Items(props) {
   // Shopping Cart: accessed through the user home page
 
   const products = props.list;
-  console.log(products)
   const [prodsList, setProducts] = useState(products);
-  console.log(prodsList)
-  console.log(products)
   const [sortOption, setSortOption] = useState('name');
   const [sortOrder, setSortOrder] = useState('asc');
 
+
+  
   // useStates
 
   // useEffect
@@ -76,10 +75,10 @@ export default function Items(props) {
           <div key={item.pid} className="listItem">
             {/* <img src={item.image} alt={item.name}></img> */}
             <h3>{item.pname}</h3>
-            <p className="prodPrice">${item.price}</p>
+            <p className="prodPrice">${item.price.toFixed(2)}</p>
             <p className="prodType">Type:{item.ptype}</p>
             <p className="prodQty">QTY:{item.pqty}</p>
-            {/* <button onClick={() => addToCart(item)}>Add to Cart</button> */}
+            <button onClick={null}>Add to Cart</button>
           </div>
         ))}
       </div>

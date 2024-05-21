@@ -15,7 +15,7 @@ const router = (app) => {
   app.get('/users', users);
   app.get('/products', products);
   app.get('/orderTransactions', orderTransactions);
-  app.get('/cart-by-user', userCart);
+  app.get('/cart-by-user/:id', userCart);
 
   // app.post('/save-user', saveUser);
   app.post('/save-product', saveProduct);

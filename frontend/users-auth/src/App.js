@@ -45,6 +45,7 @@ function App() {
     localStorage.removeItem('token');
     localStorage.removeItem('isAdmin');
     localStorage.removeItem('isAdmin');
+    localStorage.removeItem('userId');
     setIsUserSignedIn(false);
     setIsAdmin(false);
   };

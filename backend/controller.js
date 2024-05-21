@@ -100,7 +100,7 @@ const login = async (req, res) => {
     }
 
     const token = sign({ userId: user._id }, SECRET_KEY, { expiresIn: '1h' });
-    const user_info = { userFName: user.fname, userLName: user.lname, userEmail: user.email, userType: user.type };
+    const user_info = { userFName: user.fname, userLName: user.lname, userEmail: user.email, userType: user.type, userId: user._id };
     res.json({ message: 'Login Successful', token: token, user_info: user_info });
   } catch (err) {
     res.status(500).json({ error: 'Login error' });
@@ -151,10 +151,14 @@ const orderTransactions = async (req, res) => {
 
 // Retrieve specific cart for Shopping cart
 const userCart = async (req, res) => {
-  console.log(req.body.cid);
-  const mem = await ShoppingCart.findOne({ cid: req.body.cid });
-  console.log(mem);
-  res.send(mem);
+  try {
+    const { id } = req.params;
+    const cart = await ShoppingCart.findOne({ cid: id });
+    res.json(cart);
+  } catch (err) {
+    res.status(500).json({ error: 'Error finding shopping cart' });
+  }
+
 };
 
 
@@ -222,6 +226,17 @@ const updateUser = async (req, res) => {
     }
   } else {
     res.json({ udUserSuccess: false });
+  }
+};
+
+const updateUserType = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { type } = req.body;
+    const user = await User.findByIdAndUpdate(id, { type }, { new: true });
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: 'Error updating user type' });
   }
 };
 
@@ -299,23 +314,14 @@ const deleteUser = async (req, res) => {
 
     await ShoppingCart.deleteOne({ cid: _id });
     await User.deleteOne({ _id });
-    
+
     res.status(204).end();
   } catch (err) {
     res.status(500).json({ error: 'Error deleting user' });
   }
 };
 
-const updateUserType = async (req, res) => {
-  try {
-      const { id } = req.params;
-      const { type } = req.body;
-      const user = await User.findByIdAndUpdate(id, { type }, { new: true });
-      res.json(user);
-  } catch (err) {
-      res.status(500).json({ error: 'Error updating user type' });
-  }
-};
+
 
 
 export {
