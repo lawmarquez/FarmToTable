@@ -30,19 +30,18 @@ function Login({ onLoginSuccess }) {
 
         try {
             const response = await axios.post('http://localhost:3001/login', { username, password });
-            console.log('Full response:', response);  
+            // console.log('Full response:', response);  
 
             const token = response.data.token;
-            console.log('Token:', token);
+            // console.log('Token:', token);
 
             const user_info = response.data.user_info;
-            console.log('User Info:', user_info);
+            // console.log('User Info:', user_info);
 
             let isAdmin = false;
             if (user_info.userType === 'admin') {
                 isAdmin = true;
             }
-
             if (isAdmin) {
                 onLoginSuccess(true);
                 navigate('/admin-account');

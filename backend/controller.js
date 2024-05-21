@@ -66,7 +66,8 @@ const register = async (req, res) => {
         lname,
         email,
         username,
-        password: hashedPassword
+        password: hashedPassword,
+        type:"user"
     });
     await newUser.save();
 
@@ -98,8 +99,8 @@ const login = async(req, res) => {
     }
     
     const token = sign({userId: user._id}, SECRET_KEY, {expiresIn : '1h'});
-    const user_info = {userFName: user.fname, userLName: user.lname, userEmail: user.email};
-    res.json({message: 'Login Successful'});
+    const user_info = {userFName: user.fname, userLName: user.lname, userEmail: user.email, userType:user.type};
+    res.json({message: 'Login Successful', token: token, user_info:user_info});
   }catch(err){
     res.status(500).json({error: 'Login error'});
   }
