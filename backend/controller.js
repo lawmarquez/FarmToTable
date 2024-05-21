@@ -73,7 +73,7 @@ const register = async (req, res) => {
     await newUser.save();
 
     // NEW: save a new cart 
-    const id = newStudent._id
+    const id = newUser._id
     const newCart = new ShoppingCart({ cid: id });
     await newCart.save();
 
