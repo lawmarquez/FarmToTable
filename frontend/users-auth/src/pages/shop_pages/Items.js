@@ -53,6 +53,25 @@ export default function Items(props) {
     setProducts(sortedProducts);
   };
 
+
+  
+  const getTypeName = (type) => {
+    switch (type) {
+      case 1:
+        return 'Staple';
+      case 2:
+        return 'Fruits and Vegetables';
+      case 3:
+        return 'Livestock';
+      case 4:
+        return 'Seafood';
+      case 5:
+        return 'Others';
+      default:
+        return 'Unknown';
+    }
+  };
+
   return (
     <>
       <div className='sorting'>
@@ -76,7 +95,7 @@ export default function Items(props) {
             {/* <img src={item.image} alt={item.name}></img> */}
             <h3>{item.pname}</h3>
             <p className="prodPrice">${item.price.toFixed(2)}</p>
-            <p className="prodType">Type:{item.ptype}</p>
+            <p className="prodType">{getTypeName(item.ptype)}</p>
             <p className="prodQty">QTY:{item.pqty}</p>
             <button onClick={null}>Add to Cart</button>
           </div>
