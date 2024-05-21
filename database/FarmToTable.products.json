@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "6637c9b710c1f1a647f5710b"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxNwP",
+  "pname": "chicken 1 kilos",
+  "pdesc": "fresh chicken",
+  "ptype": 3,
+  "pqty": 10,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6637d58b2f553f92e850cacb"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMlK",
+  "pname": "shrimp 1 kl",
+  "pdesc": "fresh",
+  "ptype": 4,
+  "pqty": 15,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66474417b2344f6cf882fd70"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMwH",
+  "pname": "aa",
+  "pdesc": "a",
+  "ptype": 12,
+  "pqty": 2,
+  "__v": 0
+}]

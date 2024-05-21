@@ -13,9 +13,9 @@ function Cart(props) {
       <div id='cart'>Shopping Cart
         <div id='cartList'>
           {list.map((item) => (
-            <div key={item.id} className="cartItem">
-                <p className="itemName">{item.name} - ${item.price}</p>
-                <p className="itemPrice">QTY: {item.qty}</p>
+            <div key={item.pid} className="cartItem">
+                <p className="itemName">{item.pname} - ${item.price}</p>
+                <p className="itemPrice">QTY: {item.pqty}</p>
 
                 {/* <button className="removeBtn" onClick={() => props.func(item.item.id)}>X</button> */}
             </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 
 import Items from './Items.js'
 import Cart from './Cart.js'
@@ -6,13 +6,16 @@ import Cart from './Cart.js'
 import '../pages_css/shop_css/Shop.css'
 
 
-const sampleProducts =
-[   {"id":1, "name": "Carrots", "price": 123},
-    {"id":2, "name": "Eggs", "price": 15},
-    {"id":3, "name": "Banana", "price": 34},
-    {"id":4, "name": "Pumpkin", "price": 204},
-    {"id":5, "name": "Potato", "price": 64},
-]
+// const products =
+// [   {"id":1, "name": "Carrots", "price": 123},
+//     {"id":2, "name": "Eggs", "price": 15},
+//     {"id":3, "name": "Banana", "price": 34},
+//     {"id":4, "name": "Pumpkin", "price": 204},
+//     {"id":5, "name": "Potato", "price": 64},
+// ]
+
+
+
 
 
 
@@ -23,25 +26,42 @@ function Shop() {
     // stuff to display in the account page
     // shopping cart link somewhere
 
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch(`http://localhost:3001/products`); // Adjust the endpoint if necessary
+                console.log('Response:', response);
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
     return (
         <>
             <div className='wrapper'>
                 <h2 className='shop-message'>Shop Message</h2>
 
                 <div className='shop-content'>
-                    
-                    <Items list = {sampleProducts}/>
-                
-                    
-                
-                    <Cart list = {sampleProducts} /> 
+
+                    <Items list={products} />
+
+
+
+                    <Cart list={products} />
                 </div>
             </div>
-            
+
         </>
-        
-       
-    ) 
+
+
+    )
 }
 
 export default Shop

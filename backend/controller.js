@@ -14,12 +14,6 @@ const SECRET_KEY = 'authentication'
 //SCHEMA
 import User from './models/UserSchema.js';
 
-// CartProduct
-const CartProduct = new mongoose.Schema({
-  itemid: String,                   // reference to product
-  itemqty: Number
-});
-
 // Models
 const Product = mongoose.model("Product", {
   pid: String,
@@ -38,6 +32,12 @@ const OrderTransaction = mongoose.model("OrderTransaction", {
   date: Date,
   time: String
 }, 'orderTransactions');
+
+// CartProduct
+const CartProduct = new mongoose.Schema({
+  itemid: String,                   // reference to product
+  itemqty: Number
+});
 
 const ShoppingCart = mongoose.model("ShoppingCart", {
   cid: String,
@@ -132,11 +132,11 @@ const users = async (req, res) => {
 }
 
 const products = async (req, res) => {
-  const mem = await Product.find();
-  if (mem.length > 0) {
-    res.send(mem);
-  } else {
-    res.send([]);
+  try {
+    const products = await Product.find();
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ error: 'Error fetching products' });
   }
 };
 
