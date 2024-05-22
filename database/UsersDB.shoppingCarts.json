@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "664cec15c853ca58d5fe18e0"
+  },
+  "cid": "664cec15c853ca58d5fe18de",
+  "cart": [
+    {
+      "itemid": "Ey44hMZBd_fr8QzzXxNwP",
+      "itemqty": 5
+    },
+    {
+      "itemid": "Ey44hMZBd_fr8QzzXxMlK",
+      "itemqty": 2
+    }
+  ],
+  "__v": 0
+}, {
+  "_id": {
+    "$oid": "664cec15c853ca58d5fe18f3"
+  },
+  "cid": "6640bf66fc21b4f5351a58b9",
+  "cart": [
+    {
+      "itemid": "Ey44hMZBd_fr8QzzXxNwP",
+      "itemqty": 3
+    },
+    {
+      "itemid": "Ey44hMZBd_fr8QzzXxMwH",
+      "itemqty": 1
+    }
+  ],
+  "__v": 0
+}]
