@@ -20,73 +20,74 @@ import '../pages_css/shop_css/Shop.css'
 
 
 function Shop() {
-    // May 15 - A little lost on the routing used (di tulad ng sa Week10 sample), di ko na muna pinakialaman
-    // Suggestion: display shop on user log in
-    // OR: change destination of on user log in. Navigate to user home on successful log in.
-    // stuff to display in the account page
-    // shopping cart link somewhere
+  // May 15 - A little lost on the routing used (di tulad ng sa Week10 sample), di ko na muna pinakialaman
+  // Suggestion: display shop on user log in
+  // OR: change destination of on user log in. Navigate to user home on successful log in.
+  // stuff to display in the account page
+  // shopping cart link somewhere
 
-    const [products, setProducts] = useState([]);
-    const [userId, setUserId] = useState("");
-    const [cart, setCart] = useState([]);
-    useEffect(() => {
-        const user_id = localStorage.getItem('userId');
-        setUserId(user_id);
-      }, []);
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await fetch(`http://localhost:3001/products`); // Adjust the endpoint if necessary
-                console.log('Response:', response);
-                const data = await response.json();
-                setProducts(data);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            }
-        };
+  const [products, setProducts] = useState([]);
+  const [userId, setUserId] = useState("");
+  const [cart, setCart] = useState([]);
+  useEffect(() => {
+    const user_id = localStorage.getItem('userId');
+    setUserId(user_id);
+  }, []);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/products`); // Adjust the endpoint if necessary
+        console.log('Response:', response);
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
 
-        fetchProducts();
-    }, []);
+    fetchProducts();
+  }, []);
 
-    useEffect(() => {
-        const fetchCart = async () => {
-          try {
-            const response = await fetch(`http://localhost:3001/cart-by-user/${userId}`);
-            if (response.ok) {
-              const cartData = await response.json();
-              setCart(cartData.cart); // Assuming the cart array is in cartData.cart
-              console.log(cartData.cart);
-              console.log(cart);
-            } else {
-              console.error('Failed to fetch cart:', response.statusText);
-            }
-          } catch (error) {
-            console.error('Error fetching cart:', error);
-          }
-        };
-    
-        fetchCart();
-      }, [userId]);
+  useEffect(() => {
+    if (!userId) return; // Only fetch cart if userId is available
+    const fetchCart = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/cart-by-user/${userId}`);
+        if (response.ok) {
+          const cartData = await response.json();
+          setCart(cartData.cart); // Assuming the cart array is in cartData.cart
+          console.log(cartData.cart);
+          console.log(cart);
+        } else {
+          console.error('Failed to fetch cart:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching cart:', error);
+      }
+    };
 
-    return (
-        <>
-            <div className='wrapper'>
-                <h2 className='shop-message'>Shop Message</h2>
+    fetchCart();
+  }, [userId]);
 
-                <div className='shop-content'>
+  return (
+    <>
+      <div className='wrapper'>
+        <h2 className='shop-message'>Shop Message</h2>
 
-                    <Items list={products} />
+        <div className='shop-content'>
 
-
-
-                    <Cart list ={cart} products = {products}/>
-                </div>
-            </div>
-
-        </>
+          <Items list={products} />
 
 
-    )
+
+          <Cart list={cart} products={products} />
+        </div>
+      </div>
+
+    </>
+
+
+  )
 }
 
 export default Shop

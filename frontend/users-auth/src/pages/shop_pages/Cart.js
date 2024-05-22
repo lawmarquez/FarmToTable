@@ -31,7 +31,7 @@ function Cart(props) {
             // Find the product details using the item's pid
             const product = products.find(product => product.pid === item.itemid);
             return (
-              <div key={item.pid} className="cartItem">
+              <div key={item.itemid} className="cartItem">
                 <p className="itemName">{product.pname} - ${product.price.toFixed(2)}</p>
                 <p className="itemPrice">QTY: {item.itemqty}</p>
               </div>
