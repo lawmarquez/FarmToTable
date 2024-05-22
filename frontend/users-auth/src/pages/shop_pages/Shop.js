@@ -68,6 +68,70 @@ function Shop() {
         fetchCart();
       }, [userId]);
 
+      //Adding to cart
+      const addToCart = (product) => {
+        setCart(prevCart => {
+          const existingItem = prevCart.find(item => item.itemid === product.pid);
+          if (existingItem) {
+            if (existingItem.itemqty + 1 <= product.pqty) {
+              return prevCart.map(item =>
+                item.itemid === product.pid ? { ...item, itemqty: item.itemqty + 1 }: item);
+            } else {
+              return prevCart;
+            }
+          } else {
+            if (product.pqty >= 1) {
+              return [...prevCart, { itemid: product.pid, itemqty: 1 }];
+            } else {
+              return prevCart; 
+            }
+          }
+        });
+      };
+      
+
+    //RemovingOne
+    const removeOneFromCart = (product) => {
+      setCart(prevCart => {
+          const existingItem = prevCart.find(item => item.itemid === product.pid);
+          if (existingItem) {
+              if (existingItem.itemqty > 1) {
+                  return prevCart.map(item =>
+                      item.itemid === product.pid
+                          ? { ...item, itemqty: item.itemqty - 1 }
+                          : item
+                  );
+              } else {
+                  return prevCart.filter(item => item.itemid !== product.pid);
+              }
+          }
+          return prevCart;
+      });
+  };
+    //AddingOne
+    const addOneToCart = (product) => {
+      setCart(prevCart => {
+        const existingItem = prevCart.find(item => item.itemid === product.pid);
+        if (existingItem) {
+          if (existingItem.itemqty + 1 <= product.pqty) {
+            return prevCart.map(item =>
+              item.itemid === product.pid
+                ? { ...item, itemqty: item.itemqty + 1 } 
+                : item
+            );
+          } else {
+            return prevCart;
+          }
+        }
+        return prevCart;
+      });
+    };
+    
+  //Removing an item from cart
+  const removeFromCart = (product) => {
+    setCart(prevCart => prevCart.filter(item => item.itemid !== product.pid));
+};
+
     return (
         <>
             <div className='wrapper'>
@@ -75,11 +139,9 @@ function Shop() {
 
                 <div className='shop-content'>
 
-                    <Items list={products} />
+                    <Items list={products} addToCart={addToCart} />
 
-
-
-                    <Cart list ={cart} products = {products}/>
+                    <Cart list ={cart} products = {products} removeOneFromCart={removeOneFromCart} addOneToCart={addOneToCart} removeFromCart={removeFromCart} />
                 </div>
             </div>
 
