@@ -3,22 +3,24 @@
     "$oid": "6637c9b710c1f1a647f5710b"
   },
   "pid": "Ey44hMZBd_fr8QzzXxNwP",
-  "pname": "chicken 1 kilos",
+  "pname": "chicken",
   "pdesc": "fresh chicken",
   "ptype": 3,
-  "pqty": 10,
-  "__v": 0
+  "pqty": 6,
+  "__v": 0,
+  "price": 50.5
 },
 {
   "_id": {
     "$oid": "6637d58b2f553f92e850cacb"
   },
   "pid": "Ey44hMZBd_fr8QzzXxMlK",
-  "pname": "shrimp 1 kl",
+  "pname": "shrimp",
   "pdesc": "fresh",
   "ptype": 4,
   "pqty": 15,
-  "__v": 0
+  "__v": 0,
+  "price": 100.99
 },
 {
   "_id": {
@@ -29,5 +31,6 @@
   "pdesc": "a",
   "ptype": 4,
   "pqty": 2,
-  "__v": 0
+  "__v": 0,
+  "price": 75.5
 }]
