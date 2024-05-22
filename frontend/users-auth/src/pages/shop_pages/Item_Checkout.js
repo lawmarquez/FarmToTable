@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
+/*
+  Items to checkout component
+    - displays all the items to chekout
+*/
+
 export default function CheckoutItems(props) {
 
   const checkoutList = props.list;
   const prodList = props.prods;
 
-  console.log(checkoutList);
-  console.log(prodList);
-
-  
   return (
     <>
       <div>

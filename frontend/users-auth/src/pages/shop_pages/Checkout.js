@@ -7,14 +7,13 @@ import CheckoutItems from "./Item_Checkout.js";
     - receive cart info from Cart by navigate params and useLocation.
     - pass cart items to item_checkout component to display list
 */
+
 function Checkout() {
   const state = useLocation();
   const cart = state.state.cartList;
   const products = state.state.products;
   const qty = state.state.totalQuantity;
   const amt = state.state.totalPrice;
-  console.log(state);
-  console.log (state.state.cartList);
  
   return (
     <>

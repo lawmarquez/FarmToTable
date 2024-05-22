@@ -41,8 +41,7 @@ const CartProduct = new mongoose.Schema({
 
 const ShoppingCart = mongoose.model("ShoppingCart", {
   cid: String,
-  cart: [CartProduct],
-  total: Number                                         // Suggestion: New field for cart for easier access
+  cart: [CartProduct]
 }, 'shoppingCarts');
 
 

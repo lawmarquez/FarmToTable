@@ -48,6 +48,7 @@ function Cart(props) {
         <p id="totalPrice">Total price: ${totalPrice.toFixed(2)}</p>
 
         {/* Buttons for checkout navigation testing */}
+        {/* Pass products list and necessary info to checkout page */}
         <button onClick={() => navigate('/checkout', {state: {cartList, products, totalQuantity, totalPrice}})}>Checkout</button>
         <button>Save Cart</button>
       </div>
