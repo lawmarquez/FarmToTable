@@ -6,55 +6,44 @@ export default function Items(props) {
   // Shopping Cart: accessed through the user home page
 
   const products = props.list;
-  const [prodsList, setProducts] = useState(products);
+  const [prodsList, setProducts] = useState([]);
   const [sortOption, setSortOption] = useState('name');
   const [sortOrder, setSortOrder] = useState('asc');
 
-
-  
-  // useStates
-
-  // useEffect
-
-  // addToCart func
-  // Update prodsList when products props change
+  // useEffect to initialize products and sort them
   useEffect(() => {
-    setProducts(products);
-  }, [products]);
-  // Function to handle sorting
+    sortProducts(products, sortOption, sortOrder);
+  }, [products, sortOption, sortOrder]);
+
+  // Function to handle sorting option change
   const handleSortOptionChange = (event) => {
-    const option = event.target.value;
-    setSortOption(option);
-    sortProducts(option, sortOrder);
+    setSortOption(event.target.value);
   };
 
+  // Function to handle sorting order change
   const handleSortOrderChange = (event) => {
-    const order = event.target.value;
-    setSortOrder(order);
-    sortProducts(sortOption, order);
+    setSortOrder(event.target.value);
   };
-
 
   // Function to sort products
-  const sortProducts = (option, order) => {
+  const sortProducts = (productsToSort, option, order) => {
     let sortedProducts = [];
     if (option === 'name') {
-      sortedProducts = [...prodsList].sort((a, b) => a.pname.localeCompare(b.pname));
+      sortedProducts = [...productsToSort].sort((a, b) => a.pname.localeCompare(b.pname));
     } else if (option === 'price') {
-      sortedProducts = [...prodsList].sort((a, b) => a.price - b.price);
+      sortedProducts = [...productsToSort].sort((a, b) => a.price - b.price);
     } else if (option === 'type') {
-      sortedProducts = [...prodsList].sort((a, b) => a.ptype - b.ptype);
+      sortedProducts = [...productsToSort].sort((a, b) => a.ptype - b.ptype);
     } else if (option === 'quantity') {
-      sortedProducts = [...prodsList].sort((a, b) => a.pqty - b.pqty);
-    };
+      sortedProducts = [...productsToSort].sort((a, b) => a.pqty - b.pqty);
+    }
+
     if (order === 'desc') {
       sortedProducts.reverse();
     }
     setProducts(sortedProducts);
   };
 
-
-  
   const getTypeName = (type) => {
     switch (type) {
       case 1:
