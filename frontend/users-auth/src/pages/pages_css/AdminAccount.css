@@ -21,6 +21,10 @@
 
 /* USERS MANAGEMENT */
 
+button{
+    cursor: pointer;
+}
+
 /* PRODUCT LISTINGS */
 
 /* ORDER FULFILLMENT */

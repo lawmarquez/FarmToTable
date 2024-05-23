@@ -24,11 +24,12 @@ const router = (app) => {
   app.post('/update-productqty', updateProductQty);
   app.put('/save-cart/:userId', saveCart);
   app.post('/update-user', updateUser);
+  app.put('/users/:id', updateUserType);
   app.post('/update-ordertransaction', updateOrderTransaction);
 
   app.post('/delete-product', deleteProduct);
   app.delete('/delete-user/:id', deleteUser);
-  app.put('/users/:id', updateUserType);
+  
 
 }
 

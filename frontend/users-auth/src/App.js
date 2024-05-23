@@ -63,11 +63,11 @@ function App() {
           <>
             {isAdmin ? (
               <>
-              <Route path='/admin-account' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <AdminAccount /> </ProtectedRoute>} />
-                <Route path='users-management' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <UsersManagement /> </ProtectedRoute>} />
-                <Route path='product-listings' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <ProductListings /> </ProtectedRoute>}/>
-                <Route path='order-fullfillment' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <OrderFulfillment /> </ProtectedRoute>} />
-                <Route path='sales-reports' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <SalesReports /> </ProtectedRoute>} />
+              <Route path='/admin/account' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <AdminAccount /> </ProtectedRoute>} />
+                <Route path='/admin/users-management' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <UsersManagement /> </ProtectedRoute>} />
+                <Route path='/admin/product-listings' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <ProductListings /> </ProtectedRoute>}/>
+                <Route path='/admin/order-fulfillment' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <OrderFulfillment /> </ProtectedRoute>} />
+                <Route path='/admin/sales-reports' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <SalesReports /> </ProtectedRoute>} />
               
               </>
             ) : (
