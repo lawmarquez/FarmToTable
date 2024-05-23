@@ -11,7 +11,7 @@ function Cart(props) {
   const navigate = useNavigate();
 
   // const list = props.list;
-  const {list, products} = props;
+  const {list, products, removeOneFromCart, removeFromCart, addOneToCart} = props;
   const [cartList, setCart] = useState(list);
   useEffect(() => {
     setCart(list);
@@ -34,12 +34,14 @@ function Cart(props) {
       <div id='cart'>Shopping Cart
         <div id='cartList'>
         {cartList.map((item) => {
-            // Find the product details using the item's pid
-            const product = products.find(product => product.pid === item.itemid);
+            const product = products.find(product => product.pid === item.itemid); // Define product here
             return (
               <div key={item.itemid} className="cartItem">
                 <p className="itemName">{product.pname} - ${product.price.toFixed(2)}</p>
                 <p className="itemPrice">QTY: {item.itemqty}</p>
+                <button onClick={() => removeOneFromCart(product)}>Remove One</button>
+                <button onClick={() => addOneToCart(product)}>Add One</button>
+                <button onClick={() => removeFromCart(product)}>Remove All</button>
               </div>
             );
           })}

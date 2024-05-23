@@ -5,8 +5,10 @@ import React, { useState, useEffect } from 'react';
 export default function Items(props) {
   // Shopping Cart: accessed through the user home page
 
-  const products = props.list;
-  const [prodsList, setProducts] = useState([]);
+
+  const { list: products, addToCart } = props;
+  const [prodsList, setProducts] = useState(products);
+
   const [sortOption, setSortOption] = useState('name');
   const [sortOrder, setSortOrder] = useState('asc');
 
@@ -86,7 +88,7 @@ export default function Items(props) {
             <p className="prodPrice">${item.price.toFixed(2)}</p>
             <p className="prodType">{getTypeName(item.ptype)}</p>
             <p className="prodQty">QTY:{item.pqty}</p>
-            <button onClick={null}>Add to Cart</button>
+            <button onClick={() => addToCart(item)}>Add to Cart</button>
           </div>
         ))}
       </div>

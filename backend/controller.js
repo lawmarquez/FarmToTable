@@ -40,7 +40,7 @@ const CartProduct = new mongoose.Schema({
 });
 
 const ShoppingCart = mongoose.model("ShoppingCart", {
-  cid: String,
+  cid: String,                      // reference to user cart with or without items
   cart: [CartProduct]
 }, 'shoppingCarts');
 
@@ -184,20 +184,46 @@ const saveOrderTransaction = async (req, res) => {
 };
 
 const saveCart = async (req, res) => {
-  console.log(req.body.cid);
-  console.log(req.body.cart);
-  if (req.body.cid && JSON.parse(req.body.cart)) {
-    if (await ShoppingCart.exists({ cid: req.body.cid })) {
-      await ShoppingCart.updateOne({ cid: req.body.cid }, { $set: { cart: JSON.parse(req.body.cart) } })
-      res.json({ udCartSuccess: true });
-    } else {
-      console.log("cart non existent");
-      res.json({ udCartSuccess: false });
+  //console.log(req.body.cid);
+  //console.log(req.body.cart);  
+  //if (req.body.cid && JSON.parse(req.body.cart)) {
+  //   if (await ShoppingCart.exists({ cid: req.body.cid })) {
+  //     await ShoppingCart.updateOne({ cid: req.body.cid }, { $set: { cart: JSON.parse(req.body.cart) } })
+  //     res.json({ udCartSuccess: true });
+  //   } else {
+  //     console.log("cart non existent");
+  //     res.json({ udCartSuccess: false });
+  //   }
+  // } else {
+  //   console.log("incomplete body");
+  //   res.json({ udCartSuccess: false });
+  // }
+
+  if (req.params.userId && req.body.cart) {
+    try {
+      // check if the cart exists using ID
+      const existingCart = await ShoppingCart.findOne({ cid: req.params.userId });
+      
+      if (existingCart) {
+        // updateexisting cart
+        existingCart.cart = req.body.cart;
+        await existingCart.save();
+        res.json({ success: true, message: 'cart updated' });
+      } else {
+        // If not create new
+        const newCart = new ShoppingCart({ cid: req.params.userId, cart });
+        await newCart.save();
+        res.json({ success: true, message: 'cart created' });
+      }
+    } catch (error) {
+      console.error('error saving:', error);
+      res.status(500).json({ success: false, message: 'error' });
     }
   } else {
-    console.log("incomplete body");
-    res.json({ udCartSuccess: false });
+    console.log('Incomplete body');
+    res.status(400).json({ success: false, message: 'incomplete body' });
   }
+  
 };
 
 
