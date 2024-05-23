@@ -72,31 +72,38 @@ function Login({ onLoginSuccess }) {
     };
 
     return (
-        <div className='form_container'>
-            <div className='form_content'>
-                <div className="loginText">
+        <div className='form_container_login'>
+            <iframe 
+              class="bg-video"
+              src="https://www.youtube.com/embed/dkSpKdY2X4k?autoplay=1&mute=1&controls=0&loop=1&playlist=dkSpKdY2X4k"
+              allowFullScreen
+              allow="autoplay"
+            />
+
+            <div className="half_filler_login">
                     <h1>Welcome back!</h1>
                     <h4>We're glad you are here.</h4>
-                    <br/>
-                    <br/>
-                </div>
-                <form className='form_main' onSubmit={handleLogin}>
-                    <br/>
-                    <br/>
-                    <input className='input_container' type='text' placeholder=' Username' value={username} onChange={e => setUsername(e.target.value)}/>
-                    <br/>
-                    <br/>
-                    <input className='input_container' type='password' placeholder=' Password' value={password} onChange={e => setPassword(e.target.value)}/>
-                    <br/>
-                    <br/>
-                    {message && <p className="error-message">{message}</p>}
-                    <button className='button' type='submit'>Login</button>
-                </form>
             </div>
 
-            {/* <div className='filler'>
-                <h2>LOGIN</h2>
-            </div> */}
+            <div className='form_content_login'>
+                <form className='form_main_login' onSubmit={handleLogin}>
+                    {/** Usernmae Input */}
+                    <br/>
+                    <input className="input_container_login" type='text' placeholder=' Username' value={username} onChange={e => setUsername(e.target.value)}/>
+                    
+                    {/** Password Input */}
+                    <br/>
+                    <input className="input_container_login" type='password' placeholder=' Password' value={password} onChange={e => setPassword(e.target.value)}/>
+
+                    {/**Button */}
+                    <br/>
+                    {message && <p2 className="error-message">{message}</p2>}
+
+                    <button className='button_login' type='submit'>Login</button>
+                    <br/>
+                    <p>By continuing, you agree to our Terms of Service and Privacy Policy</p>
+                </form>
+            </div>
         </div>
     );
 }
