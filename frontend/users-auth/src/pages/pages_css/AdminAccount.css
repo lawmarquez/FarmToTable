@@ -27,6 +27,13 @@ button{
 /* PRODUCT LISTINGS */
 
 /* ORDER FULFILLMENT */
+.orderFulfillment{
+    padding: 5%;
+}
+
+.orderTransaction{
+    padding: 20px;
+}
 
 /* SALES REPORTS */
 
