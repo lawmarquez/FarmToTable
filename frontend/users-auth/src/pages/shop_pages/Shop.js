@@ -78,8 +78,6 @@ function Shop() {
 
           <Items list={products} />
 
-
-
           <Cart list={cart} products={products} />
         </div>
       </div>

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 
 // import './pages_css/shop_css/Cart.css'
 
 function Cart(props) {
   // Shopping Cart: accessed through the user home page
+
+  // For navigating to checkout for testing
+  const navigate = useNavigate();
 
   // const list = props.list;
   const {list, products} = props;
@@ -23,6 +27,8 @@ function Cart(props) {
      totalPrice += item.itemqty * product.price;
    });
 
+   console.log(cartList);
+
   return (
     <>
       <div id='cart'>Shopping Cart
@@ -40,6 +46,11 @@ function Cart(props) {
         </div>
         <p id="total">Total items: {totalQuantity}</p>
         <p id="totalPrice">Total price: ${totalPrice.toFixed(2)}</p>
+
+        {/* Buttons for checkout navigation testing */}
+        {/* Pass products list and necessary info to checkout page */}
+        <button onClick={() => navigate('/checkout', {state: {cartList, products, totalQuantity, totalPrice}})}>Checkout</button>
+        <button>Save Cart</button>
       </div>
     </>
   )
