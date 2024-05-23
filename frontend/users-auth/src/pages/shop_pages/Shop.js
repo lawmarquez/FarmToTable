@@ -29,10 +29,12 @@ function Shop() {
     const [products, setProducts] = useState([]);
     const [userId, setUserId] = useState("");
     const [cart, setCart] = useState([]);
+    
     useEffect(() => {
         const user_id = localStorage.getItem('userId');
         setUserId(user_id);
       }, []);
+      
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -49,6 +51,7 @@ function Shop() {
     }, []);
 
     useEffect(() => {
+      if(userId){
         const fetchCart = async () => {
           try {
             const response = await fetch(`http://localhost:3001/cart-by-user/${userId}`);
@@ -66,26 +69,50 @@ function Shop() {
         };
     
         fetchCart();
+      }
       }, [userId]);
+
+        //Updating the cart to DB
+      const updateCartInDatabase = async (updatedCart) => {
+          try {
+              const response = await fetch(`http://localhost:3001/save-cart/${userId}`, {
+                  method: 'PUT',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ cart: updatedCart })
+              });
+      
+              if (!response.ok) {
+                  console.error('Failed to update cart:', response.statusText);
+              }
+          } catch (error) {
+              console.error('Error updating cart:', error);
+          }
+      };
+
 
       //Adding to cart
       const addToCart = (product) => {
         setCart(prevCart => {
           const existingItem = prevCart.find(item => item.itemid === product.pid);
+          let updatedCart;
           if (existingItem) {
             if (existingItem.itemqty + 1 <= product.pqty) {
-              return prevCart.map(item =>
+              updatedCart = prevCart.map(item =>
                 item.itemid === product.pid ? { ...item, itemqty: item.itemqty + 1 }: item);
             } else {
               return prevCart;
             }
           } else {
             if (product.pqty >= 1) {
-              return [...prevCart, { itemid: product.pid, itemqty: 1 }];
+              updatedCart = [...prevCart, { itemid: product.pid, itemqty: 1 }];
             } else {
               return prevCart; 
             }
           }
+          updateCartInDatabase(updatedCart);
+          return updatedCart;
         });
       };
       
@@ -94,27 +121,32 @@ function Shop() {
     const removeOneFromCart = (product) => {
       setCart(prevCart => {
           const existingItem = prevCart.find(item => item.itemid === product.pid);
+          let updatedCart;
           if (existingItem) {
               if (existingItem.itemqty > 1) {
-                  return prevCart.map(item =>
+                  updatedCart = prevCart.map(item =>
                       item.itemid === product.pid
                           ? { ...item, itemqty: item.itemqty - 1 }
                           : item
                   );
               } else {
-                  return prevCart.filter(item => item.itemid !== product.pid);
+                  updatedCart = prevCart.filter(item => item.itemid !== product.pid);
               }
+          }else{
+            return prevCart;
           }
-          return prevCart;
+          updateCartInDatabase(updatedCart);
+            return updatedCart;
       });
   };
     //AddingOne
     const addOneToCart = (product) => {
       setCart(prevCart => {
         const existingItem = prevCart.find(item => item.itemid === product.pid);
+        let updatedCart;
         if (existingItem) {
           if (existingItem.itemqty + 1 <= product.pqty) {
-            return prevCart.map(item =>
+            updatedCart = prevCart.map(item =>
               item.itemid === product.pid
                 ? { ...item, itemqty: item.itemqty + 1 } 
                 : item
@@ -122,15 +154,23 @@ function Shop() {
           } else {
             return prevCart;
           }
-        }
+        }else{
         return prevCart;
+        }
+        updateCartInDatabase(updatedCart);
+        return updatedCart;
       });
     };
     
   //Removing an item from cart
   const removeFromCart = (product) => {
-    setCart(prevCart => prevCart.filter(item => item.itemid !== product.pid));
+    setCart(prevCart => {
+        const updatedCart = prevCart.filter(item => item.itemid !== product.pid);
+        updateCartInDatabase(updatedCart);
+        return updatedCart;
+    });
 };
+
 
     return (
         <>
