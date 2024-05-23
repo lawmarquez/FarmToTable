@@ -22,7 +22,7 @@ const router = (app) => {
   app.post('/save-order-transaction', saveOrderTransaction);
 
   app.post('/update-productqty', updateProductQty);
-  app.post('/save-cart', saveCart);
+  app.put('/save-cart/:userId', saveCart);
   app.post('/update-user', updateUser);
   app.post('/update-ordertransaction', updateOrderTransaction);
 
