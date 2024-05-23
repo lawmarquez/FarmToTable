@@ -23,4 +23,17 @@
   "password": "$2b$10$uYs4XcoTZeanWkN191MiG.QeFTkrW.WoQnKSzCgemMyBLD0xSTSXa",
   "__v": 0,
   "type": "user"
+},
+{
+  "_id": {
+    "$oid": "664cec15c853ca58d5fe18de"
+  },
+  "fname": "Lawrence Oliver",
+  "mname": "",
+  "lname": "Marquez",
+  "email": "lumarquez@up.edu.ph",
+  "username": "lumarquez",
+  "password": "$2b$10$wRTJj4r424CCY4gY4/L3Ku0IGyQJEUiTwVNAviyAlw0Pq3Ejgwl.a",
+  "type": "user",
+  "__v": 0
 }]

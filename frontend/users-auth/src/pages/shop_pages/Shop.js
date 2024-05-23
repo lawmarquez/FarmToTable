@@ -14,11 +14,6 @@ import '../pages_css/shop_css/Shop.css'
 //     {"id":5, "name": "Potato", "price": 64},
 // ]
 
-
-
-
-
-
 function Shop() {
     // May 15 - A little lost on the routing used (di tulad ng sa Week10 sample), di ko na muna pinakialaman
     // Suggestion: display shop on user log in
@@ -170,7 +165,6 @@ function Shop() {
         return updatedCart;
     });
 };
-
 
     return (
         <>

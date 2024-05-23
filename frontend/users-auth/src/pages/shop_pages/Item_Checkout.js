@@ -1,0 +1,31 @@
+import React, { useState, useEffect } from 'react';
+
+/*
+  Items to checkout component
+    - displays all the items to chekout
+*/
+
+export default function CheckoutItems(props) {
+
+  const checkoutList = props.list;
+  const prodList = props.prods;
+
+  return (
+    <>
+      <div>
+        {checkoutList.map((item) => {
+          const product = prodList.find(product => product.pid === item.itemid);
+          console.log(product);
+          return (
+            <div key={item.id}>
+              <h3>{product.name} - ${product.price}</h3>
+              <p>QTY: {item.qty}</p>
+            </div>
+          );
+        })
+      }
+          
+      </div>
+    </>
+  );
+}

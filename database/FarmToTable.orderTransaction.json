@@ -1,0 +1,30 @@
+[{
+  "_id": {
+    "$oid": "6637ca7b10c1f1a647f5710d"
+  },
+  "tid": "Ey44hMZBd_fr8QzzXxMpW",
+  "pid": "Ey44hMZBd_fr8QzzXxNwP",
+  "oqty": 2,
+  "ostatus": 0,
+  "email": "user@user.com",
+  "date": {
+    "$date": "2024-05-05T16:00:00.000Z"
+  },
+  "time": "4:00PM",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6637d794eebc740553747bfa"
+  },
+  "tid": "Ey44hMZBd_fr8QzzXxMnU",
+  "pid": "Ey44hMZBd_fr8QzzXxMlK",
+  "oqty": 3,
+  "ostatus": 2,
+  "email": "lumarquez@up.edu.ph",
+  "date": {
+    "$date": "2024-05-05T20:34:52.000Z"
+  },
+  "time": "8:00PM",
+  "__v": 0
+}]

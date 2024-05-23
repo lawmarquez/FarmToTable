@@ -8,6 +8,7 @@ import SignUp from './pages/SignUp.js';
 import Account from './pages/Account.js';
 
 import Shop from './pages/shop_pages/Shop.js';
+import Checkout from './pages/shop_pages/Checkout.js';
 
 
 import AdminAccount from './pages/admin_pages/AdminAccount.js';
@@ -71,8 +72,9 @@ function App() {
               </>
             ) : (
               <>
-              <Route path='/account' element={<Account />} />
-              <Route path='/shop' element={<ProtectedRoute isAllowed={!isAdmin} redirectPath='/'> <Shop /> </ProtectedRoute>} />
+                <Route path='/account' element={<Account />} />
+                <Route path='/shop' element={<ProtectedRoute isAllowed={!isAdmin} redirectPath='/'> <Shop /> </ProtectedRoute>} />
+                <Route path='/checkout' element={<Checkout />} />
               </>
             )}
 
