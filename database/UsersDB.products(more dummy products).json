@@ -1,0 +1,216 @@
+[{
+  "_id": {
+    "$oid": "6637c9b710c1f1a647f5710b"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxNwP",
+  "pname": "chicken",
+  "pdesc": "fresh chicken",
+  "ptype": 3,
+  "pqty": 6,
+  "__v": 0,
+  "price": 50.5
+},
+{
+  "_id": {
+    "$oid": "6637d58b2f553f92e850cacb"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMlK",
+  "pname": "shrimp",
+  "pdesc": "fresh",
+  "ptype": 4,
+  "pqty": 15,
+  "__v": 0,
+  "price": 100.99
+},
+{
+  "_id": {
+    "$oid": "66474417b2344f6cf882fd70"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMwH",
+  "pname": "fish",
+  "pdesc": "a",
+  "ptype": 4,
+  "pqty": 2,
+  "__v": 0,
+  "price": 75.5
+},
+{
+  "_id": {
+    "$oid": "6647c9b710c1f1a647f5710e"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxNwQ",
+  "pname": "beef",
+  "pdesc": "fresh beef",
+  "ptype": 3,
+  "pqty": 10,
+  "__v": 0,
+  "price": 120
+},
+{
+  "_id": {
+    "$oid": "6647d58b2f553f92e850cacc"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMlL",
+  "pname": "pork",
+  "pdesc": "fresh pork",
+  "ptype": 3,
+  "pqty": 20,
+  "__v": 0,
+  "price": 80.75
+},
+{
+  "_id": {
+    "$oid": "6647d7c32f553f92e850cacd"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMlM",
+  "pname": "lamb",
+  "pdesc": "fresh lamb",
+  "ptype": 3,
+  "pqty": 5,
+  "__v": 0,
+  "price": 150.5
+},
+{
+  "_id": {
+    "$oid": "66474417b2344f6cf882fd71"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMlN",
+  "pname": "salmon",
+  "pdesc": "fresh salmon",
+  "ptype": 4,
+  "pqty": 8,
+  "__v": 0,
+  "price": 200.99
+},
+{
+  "_id": {
+    "$oid": "66474417b2344f6cf882fd72"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMlO",
+  "pname": "turkey",
+  "pdesc": "fresh turkey",
+  "ptype": 3,
+  "pqty": 12,
+  "__v": 0,
+  "price": 90.5
+},
+{
+  "_id": {
+    "$oid": "6647dfb710c1f1a647f5710e"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxNwR",
+  "pname": "rice",
+  "pdesc": "white rice",
+  "ptype": 1,
+  "pqty": 100,
+  "__v": 0,
+  "price": 30
+},
+{
+  "_id": {
+    "$oid": "6647e58b2f553f92e850cace"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMlP",
+  "pname": "apple",
+  "pdesc": "fresh apple",
+  "ptype": 2,
+  "pqty": 50,
+  "__v": 0,
+  "price": 10.5
+},
+{
+  "_id": {
+    "$oid": "6647e7c32f553f92e850cacf"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMlQ",
+  "pname": "carrot",
+  "pdesc": "fresh carrot",
+  "ptype": 2,
+  "pqty": 30,
+  "__v": 0,
+  "price": 5
+},
+{
+  "_id": {
+    "$oid": "66474417b2344f6cf882fd73"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMlR",
+  "pname": "potato",
+  "pdesc": "fresh potato",
+  "ptype": 2,
+  "pqty": 40,
+  "__v": 0,
+  "price": 8.5
+},
+{
+  "_id": {
+    "$oid": "66474417b2344f6cf882fd74"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMlS",
+  "pname": "onion",
+  "pdesc": "fresh onion",
+  "ptype": 2,
+  "pqty": 25,
+  "__v": 0,
+  "price": 12
+},
+{
+  "_id": {
+    "$oid": "66474417b2344f6cf882fd75"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMlT",
+  "pname": "bread",
+  "pdesc": "whole grain bread",
+  "ptype": 1,
+  "pqty": 60,
+  "__v": 0,
+  "price": 15
+},
+{
+  "_id": {
+    "$oid": "66474417b2344f6cf882fd76"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMlU",
+  "pname": "milk",
+  "pdesc": "fresh milk",
+  "ptype": 5,
+  "pqty": 80,
+  "__v": 0,
+  "price": 20
+},
+{
+  "_id": {
+    "$oid": "66474417b2344f6cf882fd77"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMlV",
+  "pname": "eggs",
+  "pdesc": "organic eggs",
+  "ptype": 5,
+  "pqty": 90,
+  "__v": 0,
+  "price": 18
+},
+{
+  "_id": {
+    "$oid": "66474417b2344f6cf882fd78"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMlW",
+  "pname": "cheese",
+  "pdesc": "cheddar cheese",
+  "ptype": 5,
+  "pqty": 35,
+  "__v": 0,
+  "price": 25
+},
+{
+  "_id": {
+    "$oid": "66474417b2344f6cf882fd79"
+  },
+  "pid": "Ey44hMZBd_fr8QzzXxMlX",
+  "pname": "yogurt",
+  "pdesc": "greek yogurt",
+  "ptype": 5,
+  "pqty": 45,
+  "__v": 0,
+  "price": 22
+}]
