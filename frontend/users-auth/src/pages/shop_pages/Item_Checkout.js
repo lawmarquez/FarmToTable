@@ -18,8 +18,8 @@ export default function CheckoutItems(props) {
           console.log(product);
           return (
             <div key={item.id}>
-              <h3>{product.name} - ${product.price}</h3>
-              <p>QTY: {item.qty}</p>
+              <h3>{product.pname} - ${product.price}</h3>
+              <p>QTY: {item.itemqty}</p>
             </div>
           );
         })
