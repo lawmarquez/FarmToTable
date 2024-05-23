@@ -141,11 +141,11 @@ const products = async (req, res) => {
 };
 
 const orderTransactions = async (req, res) => {
-  const mem = await OrderTransaction.find();
-  if (mem.length > 0) {
-    res.send(mem);
-  } else {
-    res.send([]);
+  try {
+    const ot = await OrderTransaction.find();
+    res.json(ot);
+  } catch (err) {
+    res.status(500).json({ error: 'Error fetching order transactions' });
   }
 };
 

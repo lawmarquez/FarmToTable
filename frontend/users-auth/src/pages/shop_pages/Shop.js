@@ -177,11 +177,14 @@ function Shop() {
   return (
     <>
       <div className='wrapper'>
-        <h2 className='shop-message'>Shop Message</h2>
+        
 
         <div className='shop-content'>
-
+          <div>
+          <h2 className='shop-message'>Shop Message</h2>
           <Items list={products} addToCart={addToCart} />
+          </div>
+        
 
           <Cart list={cart} products={products} removeOneFromCart={removeOneFromCart} addOneToCart={addOneToCart} removeFromCart={removeFromCart} />
         </div>
