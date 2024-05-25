@@ -17,12 +17,18 @@ import '../pages_css/shop_css/Shop.css'
 function Shop() {
     const [products, setProducts] = useState([]);
     const [userId, setUserId] = useState("");
+    const [email, setEmail] = useState("");               // * ADDITION: user email to pass to cart
     const [cart, setCart] = useState([]);
     
     useEffect(() => {
         const user_id = localStorage.getItem('userId');
         setUserId(user_id);
-      }, []);
+    }, []);
+
+    useEffect(() => {
+      const email = localStorage.getItem('email');        // * ADDITION: user email to pass to cart
+      setEmail(email);
+    });
       
     useEffect(() => {
         const fetchProducts = async () => {
@@ -169,7 +175,7 @@ function Shop() {
 
                     <Items list={products} addToCart={addToCart} />
 
-                    <Cart list={cart} cid={userId} products = {products} removeOneFromCart={removeOneFromCart} addOneToCart={addOneToCart} removeFromCart={removeFromCart} />
+                    <Cart list={cart} email={email} products = {products} removeOneFromCart={removeOneFromCart} addOneToCart={addOneToCart} removeFromCart={removeFromCart} />
                 </div>
             </div>
 

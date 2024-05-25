@@ -174,8 +174,18 @@ const saveProduct = async (req, res) => {
 };
 
 const saveOrderTransaction = async (req, res) => {
-  if (req.body.tid && req.body.cid && req.body.pid && req.body.oqty && req.body.ostatus && req.body.email && req.body.date && req.body.time) {
+  // * omit tid for now to test saving
+  if (
+    typeof req.body.pid !== 'undefined' &&
+    typeof req.body.oqty !== 'undefined' &&
+    typeof req.body.ostatus !== 'undefined' &&
+    typeof req.body.date !== 'undefined' &&
+    typeof req.body.time !== 'undefined'
+  ) {
+  
+  // if (req.body.pid && req.body.oqty && req.body.ostatus && req.body.date  && req.body.time) {
     const newOrder = new OrderTransaction(req.body);
+    console.log("new order", newOrder);
     await newOrder.save();
     res.json({ inserted: true });
   } else {

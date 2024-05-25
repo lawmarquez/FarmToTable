@@ -11,7 +11,7 @@ function Cart(props) {
   const navigate = useNavigate();
 
   // const list = props.list;
-  const {list, products, removeOneFromCart, removeFromCart, addOneToCart} = props;
+  const {list, email, products, removeOneFromCart, removeFromCart, addOneToCart} = props;
   const [cartList, setCart] = useState(list);
   useEffect(() => {
     setCart(list);
@@ -35,11 +35,9 @@ function Cart(props) {
     if(totalQuantity == 0){
       alert("Your cart is empty");
     } else {
-      navigate('/checkout', {state: {cartList, products, totalQuantity, totalPrice}});
+      navigate('/checkout', {state: {email, cartList, products, totalQuantity, totalPrice}});
     }
   };
-
-
 
 
   return (
@@ -65,6 +63,7 @@ function Cart(props) {
         {/* Buttons for checkout navigation testing */}
         {/* Pass products list and necessary info to checkout page */}
         <button onClick={handleCheckout}>Checkout</button>
+        {/* ! Remove Save cart button */}
         <button>Save Cart</button>
       </div>
     </>
