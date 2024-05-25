@@ -15,12 +15,6 @@ import '../pages_css/shop_css/Shop.css'
 // ]
 
 function Shop() {
-    // May 15 - A little lost on the routing used (di tulad ng sa Week10 sample), di ko na muna pinakialaman
-    // Suggestion: display shop on user log in
-    // OR: change destination of on user log in. Navigate to user home on successful log in.
-    // stuff to display in the account page
-    // shopping cart link somewhere
-
     const [products, setProducts] = useState([]);
     const [userId, setUserId] = useState("");
     const [cart, setCart] = useState([]);
@@ -175,7 +169,7 @@ function Shop() {
 
                     <Items list={products} addToCart={addToCart} />
 
-                    <Cart list ={cart} products = {products} removeOneFromCart={removeOneFromCart} addOneToCart={addOneToCart} removeFromCart={removeFromCart} />
+                    <Cart list={cart} cid={userId} products = {products} removeOneFromCart={removeOneFromCart} addOneToCart={addOneToCart} removeFromCart={removeFromCart} />
                 </div>
             </div>
 

@@ -10,10 +10,30 @@ import CheckoutItems from "./Item_Checkout.js";
 
 function Checkout() {
   const state = useLocation();
+  const cid = state.state.cid;
   const cart = state.state.cartList;
   const products = state.state.products;
   const qty = state.state.totalQuantity;
   const amt = state.state.totalPrice;
+
+  console.log()
+
+  const saveOrderTransactions = async (prodinfo, cartiteminfo) => {
+    try {
+      console.log(prodinfo);
+      console.log(cartiteminfo);
+    } catch (error) {
+      console.error('Error placing orders:', error);
+    }
+  };
+
+  const handlePlaceOrder = async (event) => {
+    event.preventDefault();
+    // cart.forEach((item) => {
+    // });
+    console.log(cart);
+  };
+
  
   return (
     <>
@@ -27,11 +47,11 @@ function Checkout() {
         </div>
 
         <div>
-          <p>Total Items: ${qty}</p>
+          <p>Total Items: {qty}</p>
           <p>Amount: ${amt}</p>
         </div>
         
-        <button>Place Order</button>
+        <button onClick={handlePlaceOrder}>Place Order</button>
       </div>
     </>
   );

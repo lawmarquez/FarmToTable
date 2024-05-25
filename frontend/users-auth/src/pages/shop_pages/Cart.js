@@ -18,16 +18,29 @@ function Cart(props) {
   }, [list]);
   // const itemCount = props.count;
 
-   // Calculate total quantity and price
-   let totalQuantity = 0;
-   let totalPrice = 0;
-   cartList.forEach((item) => {
-     const product = products.find((product) => product.pid === item.itemid);
-     totalQuantity += item.itemqty;
-     totalPrice += item.itemqty * product.price;
-   });
+  // Calculate total quantity and price
+  let totalQuantity = 0;
+  let totalPrice = 0;
+  cartList.forEach((item) => {
+    const product = products.find((product) => product.pid === item.itemid);
+    totalQuantity += item.itemqty;
+    totalPrice += item.itemqty * product.price;
+  });
 
-   console.log(cartList);
+  //console.log(cartList);
+
+  // Check for invalid carts
+  const handleCheckout = (event) => {
+    event.preventDefault();
+    if(totalQuantity == 0){
+      alert("Your cart is empty");
+    } else {
+      navigate('/checkout', {state: {cartList, products, totalQuantity, totalPrice}});
+    }
+  };
+
+
+
 
   return (
     <>
@@ -51,7 +64,7 @@ function Cart(props) {
 
         {/* Buttons for checkout navigation testing */}
         {/* Pass products list and necessary info to checkout page */}
-        <button onClick={() => navigate('/checkout', {state: {cartList, products, totalQuantity, totalPrice}})}>Checkout</button>
+        <button onClick={handleCheckout}>Checkout</button>
         <button>Save Cart</button>
       </div>
     </>
