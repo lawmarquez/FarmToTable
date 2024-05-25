@@ -168,7 +168,7 @@ function Shop() {
 
     return (
         <>
-            <div className='wrapper'>
+            <div className='shopwrapper'>
                 <h2 className='shop-message'>Shop Message</h2>
 
                 <div className='shop-content'>

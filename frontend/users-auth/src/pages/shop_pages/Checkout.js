@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from "react-router-dom";
 import CheckoutItems from "./Item_Checkout.js";
 
+import '../pages_css/shop_css/Checkout.css'
+
 /*
   Implementation:
     - receive cart info from Cart by navigate params and useLocation.
@@ -56,26 +58,66 @@ function Checkout() {
       saveOrderTransactions(product, item);
     });
     console.log(cart);
+    // TODO: navigate to success page or show alert box
   };
 
  
   return (
     <>
-      <div>
-        <h2>Ready to checkout?</h2>
-        <h4>Check your items here</h4>
-        
+      <div id='checkoutbody'>
         <div>
-          Items to checkout
-          <CheckoutItems list={cart} prods={products} qty={qty} amt={amt}/>
+          <h2 id='msg1'>Ready to checkout?</h2>
+          <h4 id='msg2'>Check your items here</h4>
         </div>
+        
+        
+        <div id='checkoutinner'>
+          <div id='checkoutitemsflex'>
+            <div id='checkoutitemheaders'>
+                <p id='header1'>Product</p>
+                <p>Quantity</p>
+                <p>Total Price</p>
+              {/* <div className='tablehr top'>
+                  <hr class="solid"></hr>
+              </div> */}
+            </div>
+            <div className='tablehr top'>
+                  <hr class="solid"></hr>
+              </div>
+            <div id='checkoutitemgrid'>
+              <CheckoutItems list={cart} prods={products} qty={qty} amt={amt}/>
+            </div>
+            <div className='tablehr bottom'>
+                <hr class="solid"></hr>
+            </div>
+            {/* ADDITION: Redirect to /shop on click */}
+            <button id='tocartbtn'>Continue Shopping</button>
 
-        <div>
-          <p>Total Items: {qty}</p>
-          <p>Amount: ${amt}</p>
+          </div>
+
+          <div id='checkoutsummary'>
+            <p id='checkoutsummarytitle'>Order Summary</p>
+            <p>Payment Method: COD</p>
+            <p>Total Items: {qty}</p>
+            <div id='topaydetails'>
+              <div className='detail'>
+                <p>Subtotal:</p>
+                <p>${amt}</p>
+              </div>
+              <div className='detail'>
+                <p>Shipping:</p>
+                <p>Free</p>
+              </div>
+            </div>
+            <hr class="solid"></hr>
+            <div id='totaltopay'>
+              <p>Total:</p>
+              <p>${amt}</p>
+            </div>
+            
+            <button id='placeorderbtn' onClick={handlePlaceOrder}>Place Order</button>
+          </div>
         </div>
-        
-        <button onClick={handlePlaceOrder}>Place Order</button>
       </div>
     </>
   );
