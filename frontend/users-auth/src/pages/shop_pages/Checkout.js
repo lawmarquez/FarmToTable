@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from "react-router-dom";
 import CheckoutItems from "./Item_Checkout.js";
+import { nanoid } from 'nanoid'
 
 import '../pages_css/shop_css/Checkout.css'
 
@@ -18,20 +19,22 @@ function Checkout() {
   const qty = state.state.totalQuantity;
   const amt = state.state.totalPrice;
 
-  // * generate unique id to be used for this transaction
 
   // * saves to db for every unique item/product in cart
   const saveOrderTransactions = async (prodinfo, cartiteminfo) => {
     try {
-      // console.log(prodinfo);
-      // console.log(cartiteminfo);
+      // * generate unique id for this item
+      const uid = nanoid();
+
+      // console.log(uid);
+
       const response = await fetch('http://localhost:3001/save-order-transaction', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          // tid: unique id here
+          tid: uid,
           pid: prodinfo.pid,
           oqty: cartiteminfo.itemqty,
           ostatus: 0,
@@ -61,7 +64,6 @@ function Checkout() {
     // TODO: navigate to success page or show alert box
   };
 
- 
   return (
     <>
       <div id='checkoutbody'>

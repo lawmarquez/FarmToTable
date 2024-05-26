@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose';
 const OrderTransactionSchema = new Schema({
     tid: {
         type: String,
-        // required: true
+        required: true
     },
     pid: {
         type: String,

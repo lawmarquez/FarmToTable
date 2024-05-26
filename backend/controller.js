@@ -174,8 +174,9 @@ const saveProduct = async (req, res) => {
 };
 
 const saveOrderTransaction = async (req, res) => {
-  // * omit tid for now to test saving
+  // * added tid back in
   if (
+    typeof req.body.tid !== 'undefined' &&
     typeof req.body.pid !== 'undefined' &&
     typeof req.body.oqty !== 'undefined' &&
     typeof req.body.ostatus !== 'undefined' &&
