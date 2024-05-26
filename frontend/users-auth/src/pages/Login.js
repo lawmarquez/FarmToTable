@@ -60,7 +60,8 @@ function Login({ onLoginSuccess }) {
             localStorage.setItem('token', token);
             localStorage.setItem("isAdmin", isAdmin);
             localStorage.setItem("userId", user_info.userId);
-            // console.log(user_info.userId);
+            localStorage.setItem("userEmail", user_info.userEmail); //Added userEmail to local storage for Account.js
+            //console.log(user_info);
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 setMessage('Invalid username or password');
@@ -100,7 +101,6 @@ function Login({ onLoginSuccess }) {
                     {message && <p2 className="error-message">{message}</p2>}
 
                     <button className='button_login' type='submit'>Login</button>
-                    <br/>
                     <p>By continuing, you agree to our Terms of Service and Privacy Policy</p>
                 </form>
             </div>
