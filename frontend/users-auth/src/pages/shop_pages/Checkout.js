@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
+import { useHistory } from "react-router";
 import CheckoutItems from "./Item_Checkout.js";
 import { nanoid } from 'nanoid'
 
@@ -19,13 +20,13 @@ function Checkout() {
   const qty = state.state.totalQuantity;
   const amt = state.state.totalPrice;
 
+  const navigate = useNavigate();
 
   // * saves to db for every unique item/product in cart
   const saveOrderTransactions = async (prodinfo, cartiteminfo) => {
     try {
       // * generate unique id for this item
       const uid = nanoid();
-
       // console.log(uid);
 
       const response = await fetch('http://localhost:3001/save-order-transaction', {
@@ -46,6 +47,19 @@ function Checkout() {
       
       console.log(response);
 
+      if(response.ok){
+        var success = document.getElementById("successmodal");
+        success.style.display = "block";
+
+
+        window.onclick = function(event) {
+          if (event.target == success) {
+            success.style.display = "none";
+          }
+        }
+
+      }
+
     } catch (error) {
       console.error('Error placing orders:', error);
     }
@@ -63,6 +77,16 @@ function Checkout() {
     console.log(cart);
     // TODO: navigate to success page or show alert box
   };
+
+  // * for going back to shop in cancelling and after order success
+  const handleContinueShopping = () => {
+    var success = document.getElementById("successmodal");
+    success.style.display = "none";
+    navigate(-1);
+  }
+
+ 
+          
 
   return (
     <>
@@ -84,16 +108,16 @@ function Checkout() {
               </div> */}
             </div>
             <div className='tablehr top'>
-                  <hr class="solid"></hr>
+                  <hr className="solid"></hr>
               </div>
             <div id='checkoutitemgrid'>
               <CheckoutItems list={cart} prods={products} qty={qty} amt={amt}/>
             </div>
             <div className='tablehr bottom'>
-                <hr class="solid"></hr>
+                <hr className="solid"></hr>
             </div>
             {/* ADDITION: Redirect to /shop on click */}
-            <button id='tocartbtn'>Continue Shopping</button>
+            <button onClick={handleContinueShopping} id='tocartbtn'>Continue Shopping</button>
 
           </div>
 
@@ -111,13 +135,22 @@ function Checkout() {
                 <p>Free</p>
               </div>
             </div>
-            <hr class="solid"></hr>
+            <hr className="solid"></hr>
             <div id='totaltopay'>
               <p>Total:</p>
               <p>${amt}</p>
             </div>
             
             <button id='placeorderbtn' onClick={handlePlaceOrder}>Place Order</button>
+
+            <div id='successmodal'>
+              <div className='modalcontent'>
+                <p>Your order has been placed!</p>
+                <span onClick={handleContinueShopping} className="close">Continue Shopping</span> 
+              </div>
+            </div>
+            
+
           </div>
         </div>
       </div>
