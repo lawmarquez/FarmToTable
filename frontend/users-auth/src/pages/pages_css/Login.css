@@ -1,59 +1,121 @@
-.form_container{
-    display: flex;
-    width: 100%;
-    height: 100vh;
-}
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap'); */
+/* Remore font import if codes are ready for production */
 
-.form_content{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    width: 100%;
+/* Background video styling */
+.bg-video {
+    position: fixed;
+    background-size: cover;
+    background: no-repeat center;
+    user-select: none;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.4;
     height: 100%;
+    width: 100%; 
+    min-width: 100%;
+    min-height: 56.25vw; 
 }
 
-.loginText{
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Form container styling */
+.form_container_login {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%;
+    min-height: 100vh; 
+    margin: 0 auto; 
+}
+
+/* Half side of the site styling */
+.half_filler_login {
     display: flex;
     flex-direction: column;
-    align-items: start;
     justify-content: center;
     align-items: center;
-    margin: 50px;
+    max-width: 50%;
+    padding: 20px;
 }
 
-h1{
-    margin: 0.5px;
+.half_filler_login h1 {
+    font-size: 52px; 
+    font-weight: 600;
+    color: black;
 }
 
-.form_main{
+.half_filler_login h4 {
+    font-size: 20px; 
+    font-weight: 400;
+    color: #666;
+}
+
+/* Form styling */
+.form_content_login {
     display: flex;
     flex-direction: column;
-    -ms-flex-align: center;
     justify-content: center;
+    align-items: center;
+    max-width: 40%;
+    padding: 20px;
+}
+
+.form_main_login {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    margin-left: 50%;
+    background-color: white;
+    text-align: center;
     border-radius: 10px;
     width: 600px;
     height: 400px;
     padding: 9;
 }
 
-.input_container{
-   width: 400px;
-   height: 40px;
-   border: transparent;
-   border-radius: 8px; 
-   padding: 2px;
-   box-shadow: 2px 3px 5.5px 3px rgba(115, 115, 115, 0.129);
+.input_container_login {
+    padding: 15px; 
+    border: 1px solid #ccc; 
+    border-radius: 10px; 
+    width: 75%; 
+    height: 18%;
+    font-size: 18px; 
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
 }
 
-.button{
-    width: 408px;
-    height: 50px;
+/* Button styling */
+.button_login {
+    width: 75%;
+    height: 15%;
+    padding: 12px 20px; 
+    border: none; 
+    border-radius: 4px; 
+    margin-top: 0px;
+    font-size: 18px;
     color: white;
-    border-color: transparent;
-    border-radius: 8px;
     background-color: #3A5A40;
     transition: background-color 0.2s ease-in-out;
     &:hover{
         background-color: #588157;
     }
+}
 
+.error-message {
+    color: red;
+}
+
+.form_content_login p {
+    font-size: 12px;
+}
+
+.form_content_login p2 {
+    font-size: 16px;
 }

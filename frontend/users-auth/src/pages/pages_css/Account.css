@@ -1,9 +1,156 @@
-.account{
+/* CSS for Account.js */
+.accountpage_container {
     display: flex;
-    width: 100%;
-    height: 100vh;
-    background-color: #1a1a1a;
-    color: white;
-    justify-content: center;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+
+}
+
+/* Global font color and properties for h1 and */
+h1 {
+    text-align: center;
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: black;
+    margin-bottom: 40px;
+}
+
+/* Account section styling */
+
+.account-section {
+    display: flex;
+    gap: 20px;
+}
+
+.account_nav {
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    height: 400px;
+}
+
+.account_nav_welcome{
+    width: 400px;
+}
+
+.account_nav_welcome h2{
+    font-size: 25px;
+    color: black;
+}
+
+    /* For the form */
+.account_nav_form{
+    width: 800px;
+}
+
+.account_form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px; 
+    border: 1px solid #ccc; 
+    border-radius: 10px; 
+    width: 75%; 
+    height: 18%;
+    font-size: 18px; 
+    align-items: center;
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+.account_nav_form label {
+    font-size: 18px; 
+    color: black;
+    margin-bottom: 5px; 
+}
+
+    /* Buttons for Edit, Save and Cancel */
+.account_nav_form input,
+.account_nav_form button {
+    font-size: 14px; 
+    margin-bottom: 10px;
+    
+}
+
+.account_nav_form p {
+    font-size: 25px;
+    color: #6c757d;
+}
+
+.account_nav_form button{
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    width: fit-content;
+    margin-right: 10px;
+}
+
+
+.account_nav_form button:hover {
+    background-color: #c82333;
+}
+
+
+/* Order status section styling */
+.order-status-section {
+    margin-bottom: 40px;
+}
+
+.order-status-section h3 {
+    background-color: #344E41;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Transaction card styling */
+.transaction-card {
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction-info {
+    flex: 1;
+}
+
+.transaction-info p {
+    margin: 5px 0;
+    color: #6c757d;
+}
+
+.transaction-card button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.transaction-card button:hover {
+    background-color: #c82333;
 }

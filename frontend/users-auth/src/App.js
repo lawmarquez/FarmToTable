@@ -47,6 +47,7 @@ function App() {
     localStorage.removeItem('isAdmin');
     localStorage.removeItem('isAdmin');
     localStorage.removeItem('userId');
+    localStorage.removeItem('userEmail');
     setIsUserSignedIn(false);
     setIsAdmin(false);
   };
