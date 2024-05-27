@@ -6,60 +6,40 @@ import Cart from './Cart.js'
 import '../pages_css/shop_css/Shop.css'
 
 function Shop() {
-    const [products, setProducts] = useState([]);
-    const [userId, setUserId] = useState("");
-    const [email, setEmail] = useState("");               // * ADDITION: user email to pass to cart
-    const [cart, setCart] = useState([]);
-    
-    useEffect(() => {
-        const user_id = localStorage.getItem('userId');
-        setUserId(user_id);
-    }, []);
-
-    useEffect(() => {
-      const email = localStorage.getItem('userEmail');        // * ADDITION: user email to pass to cart
-      setEmail(email);
-    });
-      
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await fetch(`http://localhost:3001/products`); // Adjust the endpoint if necessary
-                console.log('Response:', response);
-                const data = await response.json();
-                setProducts(data);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            }
-        };
-
-        fetchProducts();
-    }, []);
-
-    useEffect(() => {
-      if(userId){
-        const fetchCart = async () => {
-          try {
-            const response = await fetch(`http://localhost:3001/cart-by-user/${userId}`);
-            if (response.ok) {
-              const cartData = await response.json();
-              setCart(cartData.cart); // Assuming the cart array is in cartData.cart
-              console.log(cartData.cart);
-              console.log(cart);
-            } else {
-              console.error('Failed to fetch cart:', response.statusText);
-            }
-          } catch (error) {
-            console.error('Error fetching cart:', error);
-          }
-        };
-        fetchCart();
-      }
-    };
-    fetchProducts();
+  const [products, setProducts] = useState([]);
+  const [userId, setUserId] = useState("");
+  const [email, setEmail] = useState("");               // * ADDITION: user email to pass to cart
+  const [cart, setCart] = useState([]);
+  
+  useEffect(() => {
+      const user_id = localStorage.getItem('userId');
+      setUserId(user_id);
   }, []);
 
+  // * ADDITION: user email to pass to cart
   useEffect(() => {
+    const email = localStorage.getItem('userEmail');        
+    setEmail(email);
+  });
+  
+  // Obtain products to display for sale
+  useEffect(() => {                                     
+      const fetchProducts = async () => {
+          try {
+              const response = await fetch(`http://localhost:3001/products`); // Adjust the endpoint if necessary
+              console.log('Response:', response);
+              const data = await response.json();
+              setProducts(data);
+          } catch (error) {
+              console.error('Error fetching products:', error);
+          }
+      };
+
+      fetchProducts();
+  }, []);
+
+  // Obtain user cart
+  useEffect(() => { 
     if (userId) {
       const fetchCart = async () => {
         try {
@@ -192,8 +172,10 @@ function Shop() {
     <>
       <div className='shopwrapper'>
         <h2 className='shop-message'>Shop Message</h2>        
-        <div className='shop-content'>          
-          <Items list={products} addToCart={addToCart} />                
+        <div className='shop-content'>
+          <div id='prodlistandsorting'>
+            <Items list={products} addToCart={addToCart} />     
+          </div>               
           <Cart list={cart} email={email} products = {products} removeOneFromCart={removeOneFromCart} addOneToCart={addOneToCart} removeFromCart={removeFromCart} />
         </div>
       </div>                    

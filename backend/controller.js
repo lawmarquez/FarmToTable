@@ -32,7 +32,7 @@ const OrderTransaction = mongoose.model("OrderTransaction", {
   email: String,
   date: Date,
   time: String
-}, 'orderTransaction');
+}, 'orderTransactions');
 
 // CartProduct
 const CartProduct = new mongoose.Schema({
