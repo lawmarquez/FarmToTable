@@ -25,7 +25,7 @@ const OrderTransactionSchema = new Schema({
         required: true
     }, 
     time: {
-        type: Time,
+        type: String,
         required: true
     }
 });

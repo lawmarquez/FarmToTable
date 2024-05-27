@@ -263,8 +263,8 @@ const userCart = async (req, res) => {
 // Saving -----
 const saveProduct = async (req, res) => {
   if (req.body.pid && req.body.pname && req.body.pdesc && req.body.ptype && req.body.pqty) {
-    const newStudent = new Product(req.body);
-    await newStudent.save();
+    const newProduct = new Product(req.body);
+    await newProduct.save();
     res.json({ inserted: true });
   } else {
     res.json({ inserted: false });
@@ -272,9 +272,20 @@ const saveProduct = async (req, res) => {
 };
 
 const saveOrderTransaction = async (req, res) => {
-  if (req.body.tid && req.body.pid && req.body.oqty && req.body.ostatus && req.body.email && req.body.date && req.body.time) {
-    const newStudent = new OrderTransaction(req.body);
-    await newStudent.save();
+  // * added tid back in
+  if (
+    typeof req.body.tid !== 'undefined' &&
+    typeof req.body.pid !== 'undefined' &&
+    typeof req.body.oqty !== 'undefined' &&
+    typeof req.body.ostatus !== 'undefined' &&
+    typeof req.body.date !== 'undefined' &&
+    typeof req.body.time !== 'undefined'
+  ) {
+  
+  // if (req.body.pid && req.body.oqty && req.body.ostatus && req.body.date  && req.body.time) {
+    const newOrder = new OrderTransaction(req.body);
+    console.log("new order", newOrder);
+    await newOrder.save();
     res.json({ inserted: true });
   } else {
     res.json({ inserted: false });
