@@ -162,7 +162,6 @@ const userCart = async (req, res) => {
 
 };
 
-
 // Saving -----
 const saveProduct = async (req, res) => {
   if (req.body.pid && req.body.pname && req.body.pdesc && req.body.ptype && req.body.pqty && req.body.price) {

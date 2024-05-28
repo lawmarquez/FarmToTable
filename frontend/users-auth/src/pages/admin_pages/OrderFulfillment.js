@@ -3,6 +3,7 @@ import '../pages_css/AdminAccount.css'
 
 function OrderFulfillment() {
     const [products, setProducts] = useState([]);
+    const [users, setUsers] = useState([]);
     const [orderTransactions, setOrders] = useState([]);
 
     useEffect(() => {
@@ -15,6 +16,19 @@ function OrderFulfillment() {
             setProducts(products);
         } catch (e) {
             console.error('Error fetching products:', e)
+        }
+    }
+
+    useEffect(()=>{
+        fetchUsers();
+    }, [users])
+
+    const fetchUsers = async () => {
+        try{
+            const users = await fetch('http://localhost:3001/users').then(response => response.json());
+            setUsers(users);
+        } catch (e) {
+            console.error('Error fetching users.', e);
         }
     }
 
@@ -74,6 +88,11 @@ function OrderFulfillment() {
         return prod
     }
 
+    const user = email => {
+        const user = users.map((user) => (user.email===email? `${user.fname} ${user.lname}`: ""))
+        return user
+    }
+
     function status (ostatus) {
         switch(ostatus){
             case 1:
@@ -97,7 +116,8 @@ function OrderFulfillment() {
                             <li><span className="label">Order quantity:</span> {orderTransaction.oqty}</li>
                             <li><span className="label">Product: </span> {product(orderTransaction.pid)}</li>
                             <li><span className="label">Order status: </span> {status(orderTransaction.ostatus)}</li>
-                            <li><span className="label">User email: </span> {orderTransaction.email}</li>
+                            <li><span className="label">Buyer name: </span> {user(orderTransaction.email)}</li>
+                            <li><span className="label">Buyer email: </span> {orderTransaction.email}</li>
                             <li><span className="label">Date of transaction: </span> {orderTransaction.date.substring(0,10)}</li>
                             <li><span className="label">Time of transaction: </span> {orderTransaction.time}</li>
                         </ul>
