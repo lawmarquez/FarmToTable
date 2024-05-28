@@ -181,7 +181,7 @@ function ProductListings(){
 
     return(
         <div className="productListings">  
-            PRODUCT LISTINGS
+            <h1 className="title">Product Listings</h1>
             <div className="sort">
                 <label>Sort by: </label>
                 <select value={sortOption} onChange={changeSortOption}>

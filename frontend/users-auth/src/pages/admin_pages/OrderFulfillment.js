@@ -71,7 +71,7 @@ function OrderFulfillment() {
     return(
         <>
             <div className="orderFulfillment"> 
-            <h1>Order Fulfillment</h1>
+            <h1 className="title">Order Fulfillment</h1>
                 {orderTransactions.map((orderTransaction, index) => (
                     <div className="orderTransaction">
                         <ul>

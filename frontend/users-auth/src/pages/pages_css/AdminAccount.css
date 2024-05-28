@@ -9,20 +9,57 @@
 }
 
 .title{
-    font-size: larger;
+    font-size: 40px;
+    padding-bottom: 40px;
 }
 
-.dashboard{
-    display: grid;
-    padding: 8%;
-    grid-auto-columns: 50%;
-    row-gap:110%;
+tr:nth-child(even) {
+    background-color: #eee2ae94;
+}
+
+thead {
+    font-style: oblique;
+    font-weight: 700;
+    font-size: 23px;
+    color: white;
+    background-color: #A3B18A;
+}
+
+th,td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #dddddc;
+}
+
+button{
+    padding: 5px;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 /* USERS MANAGEMENT */
-button{
-    cursor: pointer;
+.userManagement {
+    padding: 3%;
 }
+
+.userTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#deleteUser {
+    color: white;
+    background-color: rgb(173, 26, 26);
+    border-color: rgb(144, 40, 40);
+}
+
+#changeUser {
+    color: white;
+    background-color: #e0c36d;
+    border-color: #bdb8ab;
+}
+
 
 /* PRODUCT LISTINGS */
 .productListings{
@@ -43,16 +80,6 @@ button{
 .products{
     padding-left: 5%;
     padding-right: 5%;
-}
-
-th{
-    background-color: #A3B18A;
-}
-
-th,td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
 }
 
 #addProduct{
