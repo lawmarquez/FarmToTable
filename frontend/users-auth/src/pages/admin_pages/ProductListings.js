@@ -182,30 +182,38 @@ function ProductListings(){
     return(
         <div className="productListings">  
             <h1 className="title">Product Listings</h1>
-            <div className="sort">
-                <label>Sort by: </label>
-                <select value={sortOption} onChange={changeSortOption}>
-                    <option value={"name"}>Name</option>
-                    <option value={"price"}>Price</option>
-                    <option value={"type"}>Type</option>
-                    <option value={"quantity"}>Quantity</option>
-                </select>
-                <label>Order:</label>
-                <select value={sortOrder} onChange={changeSortOrder}>
-                    <option value={"ascending"}>Ascending</option>
-                    <option value={"descending"}>Descending</option>
-                </select>
-            </div>
             <div className="products">
                 <table className="productTable">
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Type</th>
-                        <th>Stock</th>
-                        <th>Price</th>
-                        <th></th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Type</th>
+                            <th>Stock</th>
+                            <th>Price</th>
+                            <th>
+                                <div className="sort">
+                                    <div className="sortContainer">
+                                        <label>Sort by: </label>
+                                        <select value={sortOption} onChange={changeSortOption}>
+                                            <option value={"name"}>Name</option>
+                                            <option value={"price"}>Price</option>
+                                            <option value={"type"}>Type</option>
+                                            <option value={"quantity"}>Quantity</option>
+                                        </select>
+                                    </div>
+                                    <div className="sortContainer"> 
+                                        <label>Order:  </label> 
+                                        <select value={sortOrder} onChange={changeSortOrder}>
+                                            <option value={"ascending"}>Ascending</option>
+                                            <option value={"descending"}>Descending</option>
+                                        </select>
+                                    </div>    
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    
                     {products.map(product => (
                         <tr key={product.pid}>
                             <td className="name">{product.pname}</td>
@@ -216,25 +224,25 @@ function ProductListings(){
                             <td><button id="deleteProductButton" onClick={()=>{confirmDelete(product.pname, product.pid)}}>Delete</button></td>
                         </tr>
                     ))}
-                    <tr id="addProduct"><button onClick={addProduct} id="addProductButton">Add Product</button></tr>
                 </table>
+                <button onClick={addProduct} id="addProductButton">Add New Product</button>
             </div>
 
             <div id="addProductModal">
                 <div id="addProductContent">
+                    <h1>New Product</h1>
                     <form id="form" action="submit" method="GET">
-                        ADD A PRODUCT
                         <br/>
                         <br/>
-                        <label for="name">Product name </label>
+                        <label for="name">Product name </label><br/>
                         <input type="text" id="name" name="name" value={pname} onChange={setName} required />
                         <br/>
                         <br/>
-                        <label for="desc">Product description </label>
+                        <label for="desc">Product description </label><br/>
                         <input type="text" id="desc" name="desc" value={pdesc} onChange={setDesc} required />
                         <br/>
                         <br/>
-                        <label>Product type </label>
+                        <label>Product type </label><br/>
                         <select value={prodType} onChange={setNewProductType}>
                             <option value={""}></option>
                             <option value={"Staple"}>Staple</option>
@@ -245,11 +253,11 @@ function ProductListings(){
                         </select>
                         <br/>
                         <br/>
-                        <label for="qty">Product quantity </label>
+                        <label for="qty">Product quantity </label><br/>
                         <input type="number" id="qty" name="qty" value={pqty} onChange={setQty} required />
                         <br/>
                         <br/>
-                        <label for="price">Product price </label>
+                        <label for="price">Product price </label><br/>
                         <input type="number" id="price" name="price" value={price} onChange={setPrice} required />         
                     </form>
                     <br/>

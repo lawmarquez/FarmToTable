@@ -67,9 +67,16 @@ button{
 }
 
 .sort{
-    padding-top: 2%;
-    padding-left: 3%;
-    padding-bottom: 10px;
+    float: center;
+    text-align: right;
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 500;
+    margin: -4%;
+}
+
+.sortContainer {
+    padding: 2px;
 }
 
 .productTable{
@@ -78,24 +85,29 @@ button{
 }
 
 .products{
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 5%; 
+    padding-right: 5%; 
 }
 
-#addProduct{
-    align-content: center;
+#deleteProductButton {
+    color: white;
+    background-color: #ad1a1a;
+    border-color: #902828;
 }
 
 #addProductButton{
-    width: 300%;
-    background-color: #cbc8be;
+    width: 100%;
+    font-size: 17px;
+    background-color: #c3b999;
     border-color: #e7e3d8;
     border-width: 1px;
     color: white;
 }
 
 #addProductModal {
-    padding-top: 25%;
+    padding: 5%;
+    padding-left: 20%;
+    padding-right: 20%;
     display: none;
     position: fixed;
     left: 0;
@@ -107,11 +119,37 @@ button{
 }
 
   #addProductContent {
-    background-color: #fefefe;
+    text-align: center;
+    background-color: #f3eacc;
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 7px solid #a5876f52;
     width: 80%;
+    border-radius: 10px;
+  }
+
+  form {
+    text-align: left;
+    padding-left: 10px;
+  }
+
+  input, select {
+    border: 1px solid #705c4eb6;
+    border-radius: 2px;
+  }
+
+  label {
+    font-style: italic;
+    font-weight: 600;
+    padding-bottom: 5px;
+  }
+
+  #addButton {
+    padding: 10px;
+    width: 100px;
+    color: white;
+    background-color: #859966;
+    border-color: #6d7e54;
   }
 
 /* ORDER FULFILLMENT */
