@@ -15,12 +15,18 @@ import '../pages_css/shop_css/Checkout.css'
 function Checkout() {
   const state = useLocation();
   const email = state.state.email;
-  const cart = state.state.cartList;
+  const [cart, setCart] = useState(state.state.cartList);
   const products = state.state.products;
   const qty = state.state.totalQuantity;
   const amt = state.state.totalPrice;
+  const [userId, setUserId] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const user_id = localStorage.getItem('userId');
+    setUserId(user_id);
+}, []);
 
   // * saves to db for every unique item/product in cart
   const saveOrderTransactions = async (prodinfo, cartiteminfo) => {
@@ -65,23 +71,62 @@ function Checkout() {
     }
   };
 
+  const clearCart = async () => {
+    const emptyCart = [];
+    await updateCartInDatabase(emptyCart);
+    // Update the local state or context to reflect the empty cart
+    setCart(emptyCart);
+  };
+
+  const updateCartInDatabase = async (updatedCart) => {
+    try {
+      const response = await fetch(`http://localhost:3001/save-cart/${userId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ cart: updatedCart })
+      });
+  
+      if (!response.ok) {
+        console.error('Failed to update cart:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error updating cart:', error);
+    }
+  };
+  
   // * loop for every item in cart, save it to db
   const handlePlaceOrder = async (event) => {
     event.preventDefault();
-    cart.forEach((item) => {
-      const product = products.find((prod) => prod.pid === item.itemid);
-      console.log(item);
-      console.log(product);
-      saveOrderTransactions(product, item);
-    });
-    console.log(cart);
-    // TODO: navigate to success page or show alert box
+    
+    try {
+      for (const item of cart) {
+        const product = products.find((prod) => prod.pid === item.itemid);
+        if (product) {
+          await saveOrderTransactions(product, item);
+        } else {
+          console.error(`Product with ID ${item.itemid} not found.`);
+        }
+      }
+      
+      
+      
+      // Show success modal or navigate to success page
+      var success = document.getElementById("successmodal");
+      success.style.display = "block";
+    } catch (error) {
+      console.error('Error placing orders:', error);
+      // Handle error (e.g., display error message to the user)
+    }
   };
-
+  
   // * for going back to shop in cancelling and after order success
-  const handleContinueShopping = () => {
+  const handleContinueShopping = async () => {
     var success = document.getElementById("successmodal");
     success.style.display = "none";
+    // Clear the cart only after successfully saving all order transactions
+    await clearCart();
     navigate(-1);
   }
 
