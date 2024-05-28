@@ -7,10 +7,7 @@ function OrderFulfillment() {
 
     useEffect(() => {
         fetchProducts();
-    }, []);
-
-    useEffect(() => {   
-    }, [products])
+    }, [products]);
 
     const fetchProducts = async () => {
         try{
@@ -23,9 +20,6 @@ function OrderFulfillment() {
 
     useEffect(() => {
         fetchOrderTransactions();
-    }, []);
-
-    useEffect(() => {
     }, [orderTransactions]);
 
     const fetchOrderTransactions = async () => {

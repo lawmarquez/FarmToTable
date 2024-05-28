@@ -20,7 +20,8 @@ const Product = mongoose.model("Product", {
   pname: String,
   pdesc: String,
   ptype: Number,
-  pqty: Number
+  pqty: Number,
+  price: Number
 }, 'products');
 
 const OrderTransaction = mongoose.model("OrderTransaction", {
@@ -164,9 +165,9 @@ const userCart = async (req, res) => {
 
 // Saving -----
 const saveProduct = async (req, res) => {
-  if (req.body.pid && req.body.pname && req.body.pdesc && req.body.ptype && req.body.pqty) {
-    const newStudent = new Product(req.body);
-    await newStudent.save();
+  if (req.body.pid && req.body.pname && req.body.pdesc && req.body.ptype && req.body.pqty && req.body.price) {
+    const newProduct = new Product(req.body);
+    await newProduct.save();
     res.json({ inserted: true });
   } else {
     res.json({ inserted: false });
