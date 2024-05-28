@@ -48,6 +48,12 @@ button{
     width: 100%;
 }
 
+#totalUsers{
+    font-style: normal;
+    font-size: 18px;
+    text-align: right;
+}
+
 #deleteUser {
     color: white;
     background-color: #ad1a1a;

@@ -82,7 +82,7 @@ const UserManagement = () => {
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Type</th>
-                            <th> </th>
+                            <th id='totalUsers'>Total Users: {users.length}</th>
                         </tr>
                     </thead>
                     {users.map(user => (
