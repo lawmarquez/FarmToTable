@@ -134,7 +134,6 @@ function SignUp() {
                     {passwordError && <p className="error-message">{passwordError}</p>}
                     <br />
                     <button className='button_signup' type='submit'>Sign Up</button>
-                    <br />
                     <p>By continuing, you agree to our Terms of Service and Privacy Policy</p>
                 </form>
             </div>

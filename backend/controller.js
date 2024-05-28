@@ -13,6 +13,7 @@ const SECRET_KEY = 'authentication'
 
 //SCHEMA
 import User from './models/UserSchema.js';
+//import Product from "./models/ProductSchema.js";
 
 // Models
 const Product = mongoose.model("Product", {
@@ -131,6 +132,38 @@ const users = async (req, res) => {
   }
 }
 
+const user_info = async (req, res) => {
+  try {
+    const email = req.params.email;
+    //Finding user by email and returning user info
+    const user = await User.findOne({ email });
+    if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+    }
+    res.json(user);
+} catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+}
+}
+
+
+const updateUser_info = async (req, res) => {
+  try {
+    //Getting personal info from the database which will be updated
+    const { email, fname, mname, lname } = req.body;
+    const user = await User.findOneAndUpdate({ email }, { fname, mname, lname }, { new: true });
+    if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+    }
+    res.json(user);
+} catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+}
+}
+
+//fetching products
 const products = async (req, res) => {
   try {
     const products = await Product.find();
@@ -140,6 +173,7 @@ const products = async (req, res) => {
   }
 };
 
+//fetching order transactions
 const orderTransactions = async (req, res) => {
   try {
     const ot = await OrderTransaction.find();
@@ -148,6 +182,70 @@ const orderTransactions = async (req, res) => {
     res.status(500).json({ error: 'Error fetching order transactions' });
   }
 };
+
+//fetching order transactions by user specifically email
+const orderTransaction_users = async (req, res) => {
+  const email = req.params.email;
+
+  console.log(`Fetching order transactions for email: ${email}`); // Debug log
+
+  try {
+    const transactions = await OrderTransaction.find({ email: email });
+    
+    console.log(`Found transactions: ${transactions.length}`); // Debug log
+
+    res.json(transactions);
+  } catch (error) {
+    console.error('Error fetching order transactions:', error); // Debug log
+    res.status(500).json({ error: 'Failed to fetch order transactions' });
+  }
+};
+
+// Find product by ID
+const findProduct = async (req, res) => {
+  try {
+    let productId = req.params.productId;
+    if (!productId) {
+        return res.status(400).json({ error: 'Product ID is required' });
+    }
+    productId = productId.trim(); // Trim leading/trailing spaces
+    //console.log('Product ID:', productId); // Debug log
+    //Given productId, find the product in the database
+    const product = await Product.findOne({ pid: productId });
+    if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+    }
+
+    res.json(product);
+  } catch (error) {
+    console.error('Error fetching product:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+//updatinf order status using id
+const updateOrderUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { ostatus } = req.body;
+
+    // Find the transaction by ID and update the order status
+    const updatedTransaction = await OrderTransaction.findByIdAndUpdate(
+        id,
+        { ostatus },
+        { new: true } // Return the updated document
+    );
+
+    if (!updatedTransaction) {
+        return res.status(404).send('Transaction not found');
+    }
+
+    res.json(updatedTransaction);
+} catch (error) {
+    console.error('Error updating order status:', error);
+    res.status(500).send('Server error');
+}
+}
 
 // Retrieve specific cart for Shopping cart
 const userCart = async (req, res) => {
@@ -165,8 +263,8 @@ const userCart = async (req, res) => {
 // Saving -----
 const saveProduct = async (req, res) => {
   if (req.body.pid && req.body.pname && req.body.pdesc && req.body.ptype && req.body.pqty) {
-    const newStudent = new Product(req.body);
-    await newStudent.save();
+    const newProduct = new Product(req.body);
+    await newProduct.save();
     res.json({ inserted: true });
   } else {
     res.json({ inserted: false });
@@ -174,9 +272,20 @@ const saveProduct = async (req, res) => {
 };
 
 const saveOrderTransaction = async (req, res) => {
-  if (req.body.tid && req.body.pid && req.body.oqty && req.body.ostatus && req.body.email && req.body.date && req.body.time) {
-    const newStudent = new OrderTransaction(req.body);
-    await newStudent.save();
+  // * added tid back in
+  if (
+    typeof req.body.tid !== 'undefined' &&
+    typeof req.body.pid !== 'undefined' &&
+    typeof req.body.oqty !== 'undefined' &&
+    typeof req.body.ostatus !== 'undefined' &&
+    typeof req.body.date !== 'undefined' &&
+    typeof req.body.time !== 'undefined'
+  ) {
+  
+  // if (req.body.pid && req.body.oqty && req.body.ostatus && req.body.date  && req.body.time) {
+    const newOrder = new OrderTransaction(req.body);
+    console.log("new order", newOrder);
+    await newOrder.save();
     res.json({ inserted: true });
   } else {
     res.json({ inserted: false });
@@ -355,8 +464,13 @@ export {
   register,
   login,
   users,
+  user_info,
+  updateUser_info,
   products,
   orderTransactions,
+  orderTransaction_users,
+  findProduct,
+  updateOrderUser,
   userCart,
   saveProduct,
   saveOrderTransaction,
