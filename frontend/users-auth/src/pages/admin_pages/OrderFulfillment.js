@@ -57,14 +57,14 @@ function OrderFulfillment() {
         return prod
     }
 
-    const status = ostatus => {
+    function status (ostatus) {
         switch(ostatus){
             case 1:
-                return "Complete"
+                return <span id="complete">Complete</span>
             case 2:
-                return "Cancelled"
+                return <span id="cancelled">Cancelled</span>
             default:
-                return "Pending"
+                return <span id="pending">Pending</span>
         }
     } 
 
@@ -72,21 +72,23 @@ function OrderFulfillment() {
         <>
             <div className="orderFulfillment"> 
             <h1 className="title">Order Fulfillment</h1>
+                <div className="ordersGrid">
                 {orderTransactions.map((orderTransaction, index) => (
                     <div className="orderTransaction">
+                        <h2 id="orderNum">Order #{index+1}</h2>
                         <ul>
-                            Order #{index+1}
-                            <li>Order quantity: {orderTransaction.oqty}</li>
-                            <li>Product: {product(orderTransaction.pid)}</li>
-                            <li>Order status: {status(orderTransaction.ostatus)}</li>
-                            <li>User email: {orderTransaction.email}</li>
-                            <li>Date of transaction: {orderTransaction.date}</li>
-                            <li>Time of transaction: {orderTransaction.time}</li>
-                            {orderTransaction.ostatus===0? <button className="completeOrder" onClick={() => completeOrderTransaction(orderTransaction.tid)}>Complete</button> : <></>}
+                            <li><span className="label">Order quantity:</span> {orderTransaction.oqty}</li>
+                            <li><span className="label">Product: </span> {product(orderTransaction.pid)}</li>
+                            <li><span className="label">Order status: </span> {status(orderTransaction.ostatus)}</li>
+                            <li><span className="label">User email: </span> {orderTransaction.email}</li>
+                            <li><span className="label">Date of transaction: </span> {orderTransaction.date.substring(0,10)}</li>
+                            <li><span className="label">Time of transaction: </span> {orderTransaction.time}</li>
                         </ul>
+                        {orderTransaction.ostatus===0? <button className="completeOrder" onClick={() => completeOrderTransaction(orderTransaction.tid)}>Complete</button> : <></>}
                         <br/>
                     </div>   
                 ))}
+                </div>
             </div>
         </>
         
