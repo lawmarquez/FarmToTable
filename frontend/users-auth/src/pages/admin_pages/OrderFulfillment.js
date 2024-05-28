@@ -31,8 +31,9 @@ function OrderFulfillment() {
         }
     };
 
-    const completeOrderTransaction = async (transactionId) => {
+    const completeOrderTransaction = async (transactionId, orderQty, productId) => {
         try{
+            // Update order transaction status
             const response = await fetch('http://localhost:3001/update-ordertransaction', {
                 method: 'POST',
                 headers: {
@@ -42,7 +43,23 @@ function OrderFulfillment() {
             })
 
             if(response.ok){
-                setOrders(orderTransactions.map(orderTransaction => (orderTransaction.tid === transactionId ? {...orderTransaction, ostatus: 1} : orderTransaction)));
+                try{
+                    // Update product quantity
+                    const result = await fetch('http://localhost:3001/update-productqty', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({pid: productId, oqty: orderQty})
+                    })
+
+                    if(result.ok) {
+                        setOrders(orderTransactions.map(orderTransaction => (orderTransaction.tid === transactionId ? {...orderTransaction, ostatus: 1} : orderTransaction)));
+                    }
+                } catch (e) {
+                    console.error('Error updating product quantity:', e);
+                }
+                
             }else{
                 console.error('Error completing order transaction:', response.statusText);
             }
@@ -84,7 +101,7 @@ function OrderFulfillment() {
                             <li><span className="label">Date of transaction: </span> {orderTransaction.date.substring(0,10)}</li>
                             <li><span className="label">Time of transaction: </span> {orderTransaction.time}</li>
                         </ul>
-                        {orderTransaction.ostatus===0? <button className="completeOrder" onClick={() => completeOrderTransaction(orderTransaction.tid)}>Complete</button> : <></>}
+                        {orderTransaction.ostatus===0? <button className="completeOrder" onClick={() => completeOrderTransaction(orderTransaction.tid, orderTransaction.oqty, orderTransaction.pid)}>Complete</button> : <></>}
                         <br/>
                     </div>   
                 ))}
