@@ -230,9 +230,12 @@ const saveCart = async (req, res) => {
 
 // Updating -----
 const updateProductQty = async (req, res) => {
-  if (req.body.pid && req.body.pqty) {
+  if (req.body.pid && req.body.oqty) {
     if (await Product.exists({ pid: req.body.pid })) {
-      await Product.updateOne({ pid: req.body.pid }, { $set: { pqty: req.body.pqty } })
+      const product = await Product.findOne({pid: req.body.pid});
+      const prevQty = product.pqty;
+      const newQty = prevQty - req.body.oqty;
+      await Product.updateOne({ pid: req.body.pid }, { $set: { pqty: newQty } })
       res.json({ udProdQtySuccess: true });
     } else {
       res.json({ udProdQtySuccess: false });
