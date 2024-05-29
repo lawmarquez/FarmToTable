@@ -25,6 +25,7 @@ function ProductListings() {
         (response) => response.json()
       );
       setProducts(products);
+      sortProducts(products, sortOption, sortOrder);
     } catch (e) {
       console.error("Error fetching products:", e);
     }
