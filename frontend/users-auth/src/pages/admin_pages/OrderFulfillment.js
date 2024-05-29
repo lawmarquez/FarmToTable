@@ -68,13 +68,18 @@ function OrderFulfillment() {
 
                 if (response.ok) {
                     try {
+                        // Get previous product quantity and new quantity after decrementing qty from order
+                        const product = products.find(prod => prod.pid === productId);
+                        const prevQty = product.pqty;
+                        const newQty = prevQty - orderQty;
+
                         // Update product quantity
                         const result = await fetch('http://localhost:3001/update-productqty', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({ pid: productId, oqty: orderQty })
+                            body: JSON.stringify({ pid: productId, pqty: newQty })
                         })
 
                         if (result.ok) {
@@ -95,8 +100,8 @@ function OrderFulfillment() {
     }
 
     const product = productId => {
-        const prod = products.map((product) => (product.pid === productId ? product.pname : ""))
-        return prod
+        const prod = products.find(product => product.pid === productId);
+        return prod ? prod.pname : "";
     }
 
     const productPrice = productId => {
@@ -105,8 +110,8 @@ function OrderFulfillment() {
     };
 
     const user = email => {
-        const user = users.map((user) => (user.email === email ? `${user.fname} ${user.lname}` : ""))
-        return user
+        const user = users.find(user => user.email === email);
+        return user ? `${user.fname} ${user.lname}` : "";
     }
 
     function status(ostatus) {
