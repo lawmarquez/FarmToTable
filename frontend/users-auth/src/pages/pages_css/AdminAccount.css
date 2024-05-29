@@ -8,9 +8,18 @@
     align-items: center;
 }
 
+.pageHeader {
+    text-align: center;
+    padding-bottom: 40px;
+}
+
 .title{
     font-size: 40px;
-    padding-bottom: 40px;
+}
+
+.pageDescription {
+    font-weight: 100;
+    color: #a8a8a8;
 }
 
 tr:nth-child(even) {
@@ -38,14 +47,14 @@ button{
     border-radius: 5px;
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
 /* USERS MANAGEMENT */
 .userManagement {
     padding: 3%;
-}
-
-.userTable {
-    border-collapse: collapse;
-    width: 100%;
 }
 
 #totalUsers{
@@ -72,6 +81,12 @@ button{
     padding: 3%;
 }
 
+#highlightDescription {
+    font-weight: 100;
+    font-style: italic;
+    color: #8e8e8e;
+}
+
 .sort{
     float: center;
     text-align: right;
@@ -85,14 +100,33 @@ button{
     padding: 2px;
 }
 
-.productTable{
-    border-collapse: collapse;
-    width: 100%;
+.sortSelect {
+    border-color: transparent;
+    border-radius: 3px;
+    font-size: 12px;
+    background-color: #ffffff8d;
 }
 
-.products{
-    padding-left: 5%; 
-    padding-right: 5%; 
+.prodQty {
+    font-weight: 100;
+    display: inline-block;
+}
+
+.editQtyInput {
+    display: none;
+    width: 50px;
+    float: left;
+    margin: 2px;
+}
+
+.saveEditQty {
+    display: none;
+    float: center;
+    margin: 2px;
+    font-size: 11px;
+    color: white;
+    border-color: transparent;
+    background-color:#5db85d;
 }
 
 #deleteProductButton {
@@ -111,7 +145,7 @@ button{
 }
 
 #addProductModal {
-    padding: 5%;
+    padding-top: 130px;
     padding-left: 20%;
     padding-right: 20%;
     display: none;
@@ -122,9 +156,10 @@ button{
     height: 100%;
     overflow: auto;
     background-color: #ffffff90;
+    z-index: 100;
 }
 
-  #addProductContent {
+#addProductContent {
     text-align: center;
     background-color: #f3eacc;
     margin: auto;
@@ -132,31 +167,27 @@ button{
     border: 7px solid #a5876f52;
     width: 80%;
     border-radius: 10px;
-  }
+}
 
-  form {
-    text-align: left;
-    padding-left: 10px;
-  }
-
-  input, select {
+input, #ptypeSelect {
     border: 1px solid #705c4eb6;
     border-radius: 2px;
-  }
+    margin-top: 2px;
+    height: 25px;
+}
 
-  label {
+label {
     font-style: italic;
     font-weight: 600;
-    padding-bottom: 5px;
-  }
+}
 
-  #addButton {
+#addButton {
     padding: 10px;
     width: 100px;
     color: white;
     background-color: #859966;
     border-color: #6d7e54;
-  }
+}
 
 /* ORDER FULFILLMENT */
 
@@ -217,7 +248,7 @@ li {
     transition: 0.3s;
     overflow: auto;
     box-shadow: 0 6px 10px 0 #6e6e6e27;
-    background-color: rgb(247, 238, 215);
+    background-color: rgb(237, 229, 207);
     border: 10px;
     border-radius: 7px;
 }
@@ -230,3 +261,24 @@ li {
 }
 
 /* SALES REPORTS */
+
+#salesReports {
+    padding: 3%;
+}
+
+.sortInput {
+    border-color: transparent;
+    border-radius: 3px;
+    font-size: 12px;
+    background-color: #ffffff8d;
+    width: 90px;
+    height: 20px;
+}
+
+#total {
+    background-color: #c6daa8;
+}
+
+#totalQtySold {
+    background-color: #b4ce8d;
+}
