@@ -44,7 +44,7 @@ function Login({ onLoginSuccess }) {
             }
             if (isAdmin) {
                 onLoginSuccess(true);
-                navigate('/admin-account');
+                navigate('/admin/sales-reports');
             } else {
                 onLoginSuccess(false);
                 // navigate('/account');

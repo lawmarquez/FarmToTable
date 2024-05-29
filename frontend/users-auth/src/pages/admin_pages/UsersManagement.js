@@ -72,20 +72,19 @@ const UserManagement = () => {
     };
 
     return (
-        <div>
-            <h1>User Management</h1>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Middle Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Type</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <div className='userManagement'>
+            <h1 className='title'>User Management</h1>
+            <table className='userTable'>
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Type</th>
+                            <th id='totalUsers'>Total Users: {users.length}</th>
+                        </tr>
+                    </thead>
                     {users.map(user => (
                         <tr key={user._id}>
                             <td>{user.fname}</td>
@@ -94,14 +93,13 @@ const UserManagement = () => {
                             <td>{user.email}</td>
                             <td>{user.type}</td>
                             <td>
-                                <button onClick={() => confirmDeleteUser(user._id)}>Delete</button>
-                                <button onClick={() => confirmChangeUserType(user._id, user.type === 'admin' ? 'user' : 'admin')}>
+                                <button id='deleteUser' onClick={() => confirmDeleteUser(user._id)}>Delete</button>
+                                <button id='changeUser' onClick={() => confirmChangeUserType(user._id, user.type === 'admin' ? 'user' : 'admin')}>
                                     {user.type === 'admin' ? 'Change to User' : 'Change to Admin'}
                                 </button>
                             </td>
                         </tr>
                     ))}
-                </tbody>
             </table>
         </div>
     );

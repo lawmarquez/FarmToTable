@@ -9,20 +9,224 @@
 }
 
 .title{
-    font-size: larger;
+    font-size: 40px;
+    padding-bottom: 40px;
 }
 
-.dashboard{
-    display: grid;
-    padding: 8%;
-    grid-auto-columns: 50%;
-    row-gap:110%;
+tr:nth-child(even) {
+    background-color: #eee2ae94;
+}
+
+thead {
+    font-style: oblique;
+    font-weight: 700;
+    font-size: 23px;
+    color: white;
+    background-color: #A3B18A;
+}
+
+th,td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #dddddc;
+}
+
+button{
+    padding: 5px;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 /* USERS MANAGEMENT */
+.userManagement {
+    padding: 3%;
+}
+
+.userTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#totalUsers{
+    font-style: normal;
+    font-size: 18px;
+    text-align: right;
+}
+
+#deleteUser {
+    color: white;
+    background-color: #ad1a1a;
+    border-color: #902828;
+}
+
+#changeUser {
+    color: white;
+    background-color: #e0c36d;
+    border-color: #bdb8ab;
+}
+
 
 /* PRODUCT LISTINGS */
+.productListings{
+    padding: 3%;
+}
+
+.sort{
+    float: center;
+    text-align: right;
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 500;
+    margin: -4%;
+}
+
+.sortContainer {
+    padding: 2px;
+}
+
+.productTable{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.products{
+    padding-left: 5%; 
+    padding-right: 5%; 
+}
+
+#deleteProductButton {
+    color: white;
+    background-color: #ad1a1a;
+    border-color: #902828;
+}
+
+#addProductButton{
+    width: 100%;
+    font-size: 17px;
+    background-color: #c3b999;
+    border-color: #e7e3d8;
+    border-width: 1px;
+    color: white;
+}
+
+#addProductModal {
+    padding: 5%;
+    padding-left: 20%;
+    padding-right: 20%;
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #ffffff90;
+}
+
+  #addProductContent {
+    text-align: center;
+    background-color: #f3eacc;
+    margin: auto;
+    padding: 20px;
+    border: 7px solid #a5876f52;
+    width: 80%;
+    border-radius: 10px;
+  }
+
+  form {
+    text-align: left;
+    padding-left: 10px;
+  }
+
+  input, select {
+    border: 1px solid #705c4eb6;
+    border-radius: 2px;
+  }
+
+  label {
+    font-style: italic;
+    font-weight: 600;
+    padding-bottom: 5px;
+  }
+
+  #addButton {
+    padding: 10px;
+    width: 100px;
+    color: white;
+    background-color: #859966;
+    border-color: #6d7e54;
+  }
 
 /* ORDER FULFILLMENT */
+
+.orderFulfillment{
+    padding: 3%;
+}
+
+.ordersGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+}
+
+#orderNum {
+    text-align: center;
+    color: #4c4b49;
+    padding-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    text-align: left;
+}
+
+.label {
+    font-style: italic;
+    font-weight: 600;
+    color: #647a40;
+}
+
+span {
+    font-weight: 600;
+}
+
+#complete {
+    color: rgb(29, 167, 29);
+}
+
+#cancelled {
+    color: rgb(232, 71, 68);
+}
+
+#pending {
+    color: #6d6d6c;
+}
+
+li {
+    padding: 10px;
+}
+
+.orderTransaction{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 7%;
+    margin:10%;
+    transition: 0.3s;
+    overflow: auto;
+    box-shadow: 0 6px 10px 0 #6e6e6e27;
+    background-color: rgb(247, 238, 215);
+    border: 10px;
+    border-radius: 7px;
+}
+
+.completeOrder {
+    color: white;
+    background-color: #5db85d;
+    border-color: #5db85d;
+    margin-top: 10px;
+}
 
 /* SALES REPORTS */

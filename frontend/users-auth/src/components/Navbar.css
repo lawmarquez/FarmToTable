@@ -1,14 +1,55 @@
 .NavigationBar{
     display: flex;
-    justify-content:space-evenly;
-    align-items: center;
-    /* padding: 3px; */
+    align-content: center;
+    flex-direction: column;
     background-color: #344E41;
     color: white;
+    box-shadow: 0 8px 15px 0 rgba(0,0,0,0.2);
+    padding: 8px;
+    position: sticky;
+    top: 0;
 }
 
-ul{
+.headerTitle{
+    align-self: flex-start;
+    font-family: Arial, Helvetica, sans-serif ;
+    font-size: 37px;
+    font-style: italic;
+    padding: 8px;
+}
+
+.navsContainer{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navButton{
+    color: white;
+    font-size: 90%;
+    font-weight: 600;
+    align-self: flex-start;
+    text-decoration: none;
+    margin-left: 20px;
+    background-color: transparent;
+    border-color: transparent;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    &:hover{
+        color: #A3B18A;
+    }
+    cursor: pointer;
+}
+
+#signOut{
+    color: #c0ebbb;
+    &:hover{
+        color: #A3B18A;
+    }
+}
+
+/* ul{
     list-style-type: none;
+
 }
 
 li{
@@ -25,4 +66,4 @@ Link{
 
 button {
     cursor: pointer;
-}
+} */
