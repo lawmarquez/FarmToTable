@@ -21,7 +21,7 @@ export default function CheckoutItems(props) {
             </div>
             <h3 className='grid itemname'>{product.pname}</h3>
             <p className='grid itemqty'>{item.itemqty}</p>
-            <p className='grid itemprice'>${product.price}</p>
+            <p className='grid itemprice'>${product.price.toFixed(2)}</p>
           </div>
         );
       })}   
