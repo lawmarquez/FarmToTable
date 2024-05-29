@@ -14,7 +14,7 @@ body {
 } 
 */
 
-.wrapper {
+.shopwrapper {
   display: flex;
   flex-direction: column ;
 }
@@ -22,8 +22,9 @@ body {
   display: flex;
   /* Allows the main content to grow and push the footer down */
 }
-.shop-name {
-  
+#prodlistandsorting {
+  display: flex;
+  flex-direction: column;
 }
 
 

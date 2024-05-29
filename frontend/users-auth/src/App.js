@@ -21,19 +21,19 @@ import ProtectedRoute from './components/RouteProtection.js'; // Importing the H
 
 
 function App() {
-  {/**Added initial state */}
+  /**Added initial state */
   const [isUserSignedIn, setIsUserSignedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
-    {/**Read values from localStorage (coming from Login.js) */}
+    /**Read values from localStorage (coming from Login.js) */
     useEffect(() => {
       const token = localStorage.getItem('token');
       const adminStatus = localStorage.getItem('isAdmin') === 'true'; // Ensure it's a boolean
       setIsUserSignedIn(!!token);
       setIsAdmin(adminStatus);
-    }, []); {/**effect should run once after initial render */}
+    }, []); /**effect should run once after initial render */
 
-  {/**Check for isAdminProp to check is user is signed in for later checks*/}
+  /**Check for isAdminProp to check is user is signed in for later checks*/
   const handleLoginSuccess = (token, isAdminProp) => {
     localStorage.setItem('token', token); // Set token for successful login
     localStorage.setItem('isAdmin', isAdminProp); //Set whether isAdmin or not
@@ -41,12 +41,13 @@ function App() {
     setIsAdmin(isAdminProp);
   };
 
-  {/**Handles logging out */}
+  /**Handles logging out */
   const handleSignOut = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('isAdmin');
     localStorage.removeItem('isAdmin');
     localStorage.removeItem('userId');
+    localStorage.removeItem('userEmail');
     setIsUserSignedIn(false);
     setIsAdmin(false);
   };

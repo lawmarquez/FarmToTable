@@ -12,20 +12,19 @@ export default function CheckoutItems(props) {
 
   return (
     <>
-      <div>
-        {checkoutList.map((item) => {
-          const product = prodList.find(product => product.pid === item.itemid);
-          console.log(product);
-          return (
-            <div key={item.id}>
-              <h3>{product.name} - ${product.price}</h3>
-              <p>QTY: {item.qty}</p>
+      {checkoutList.map((item) => {
+        const product = prodList.find(product => product.pid === item.itemid);
+        return (
+          <div className='checkout itemdetails' key={item.id}>
+            <div className='grid img'>
+              <img src='chayote-1.jpg'></img>
             </div>
-          );
-        })
-      }
-          
-      </div>
+            <h3 className='grid itemname'>{product.pname}</h3>
+            <p className='grid itemqty'>{item.itemqty}</p>
+            <p className='grid itemprice'>${product.price}</p>
+          </div>
+        );
+      })}   
     </>
   );
 }

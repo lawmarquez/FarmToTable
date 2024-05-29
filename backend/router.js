@@ -3,7 +3,7 @@
   - transferred methods from server.js
 */
 
-import {getReg, register, login, users, products, orderTransactions, userCart, saveProduct, saveOrderTransaction, updateProductQty, saveCart, updateUser, updateOrderTransaction, deleteProduct, deleteUser, updateUserType} from './controller.js';
+import {getReg, register, login, users, user_info, updateUser_info, products, orderTransactions, orderTransaction_users, findProduct, updateOrderUser, userCart, saveProduct, saveOrderTransaction, updateProductQty, saveCart, updateUser, updateOrderTransaction, deleteProduct, deleteUser, updateUserType} from './controller.js';
 
 const router = (app) => {
 
@@ -13,6 +13,8 @@ const router = (app) => {
 
   // Added routes from dbCart
   app.get('/users', users);
+  app.get('/user-info/:email', user_info);
+  app.put('/user-info/update', updateUser_info);
   app.get('/products', products);
   app.get('/orderTransactions', orderTransactions);
   app.get('/cart-by-user/:id', userCart);
@@ -26,6 +28,9 @@ const router = (app) => {
   app.post('/update-user', updateUser);
   app.put('/users/:id', updateUserType);
   app.post('/update-ordertransaction', updateOrderTransaction);
+  app.get('/order-transactions/:email', orderTransaction_users);
+  app.get('/find-product/:productId', findProduct);
+  app.put('/update-order-status/:id', updateOrderUser);
 
   app.post('/delete-product', deleteProduct);
   app.delete('/delete-user/:id', deleteUser);

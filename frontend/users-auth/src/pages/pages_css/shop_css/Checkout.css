@@ -1,0 +1,192 @@
+
+/* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} 
+*/
+
+/* ! NOTE: Uncomment to apply font and margin settings keme */
+
+/* body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Use viewport height to ensure the footer can stick to the bottom
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+} */
+
+
+#checkoutbody {
+  display: flex;
+  flex-direction: column;
+}
+
+/* * Messages Styling ---------- */
+#msg1 {
+  margin: 20px 0px 10px 0px;
+  padding: 10px 100px 10px 100px;
+  /* outline-style: solid; */
+}
+#msg2 {
+  margin: 0;
+  padding: 10px 100px 10px 100px;
+  /* outline-style: solid; */
+}
+
+#checkoutinner {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px 100px 10px 100px;
+}
+
+/* * Items Styling ---------- */
+#checkoutitemsflex {
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px 30px 20px 20px;
+}
+#checkoutitemgrid {
+  display: grid;
+  grid-template-columns: 100%;
+  overflow: auto;
+  height: 375px;
+}
+#checkoutitemheaders {
+  margin-bottom: 0;
+  display: grid;
+  grid-template-columns: 34% 28% 20% 20%;
+  text-align: center;
+}
+#header1 {
+  grid-column: 1 / span 2;
+  text-align: start;
+}
+.tablehr.top {
+  margin: 0;
+  grid-column: 1 / span 4;
+}
+/* .tablehr.bottom {
+  margin-top: 20px;
+} */
+hr.solid {
+  margin-left: 0;
+  margin-right: 0;
+  border-top: 2px round #bbb;
+  opacity: 0.5;
+}
+.checkout.itemdetails {
+  display: grid;
+  margin-top: 15px;
+  grid-template-columns: 34% 30% 18% 18%;
+  /* outline-style: solid; */
+}
+.grid {
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  text-align: center;
+  padding: 20px 0;
+}
+.grid.itemname  {
+  text-align: start;
+}
+.grid.img {
+  display: flex;
+  max-height: 100px;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 10px 0px;
+}
+.grid.img img {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+#tocartbtn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: start;
+}
+#tocartbtn:hover {
+  color: darkgreen;
+}
+
+/* * Summary Styling ---------- */
+#checkoutsummary {
+  display: flex;
+  flex: 1.75;
+  flex-direction: column;
+  background-color: #efefef;
+  margin: 20px 20px 20px 30px;
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+p#checkoutsummarytitle {
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+#topaydetails {
+  display: flex;
+  flex-direction: column;
+}
+.detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#totaltopay {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#placeorderbtn {
+  margin: 10px 0px;
+  background-color: darkgreen;
+  color: white;
+  font-size: 15px;
+  border-style: none;
+  border-radius: 5px;
+  padding: 8px 0px;
+}
+
+
+/* * Modal Styling */
+#successmodal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+#close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.modalcontent {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
