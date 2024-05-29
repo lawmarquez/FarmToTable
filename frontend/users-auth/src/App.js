@@ -1,88 +1,134 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import './App.css';
-import Navbar from './components/Navbar.js';
-import Home from './pages/Home.js';
-import Login from './pages/Login.js';
-import SignUp from './pages/SignUp.js';
-import Account from './pages/Account.js';
+import React, { useState, useEffect } from "react";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import "./App.css";
+import Navbar from "./components/Navbar.js";
+import Home from "./pages/Home.js";
+import Login from "./pages/Login.js";
+import SignUp from "./pages/SignUp.js";
+import Account from "./pages/Account.js";
 
-import Shop from './pages/shop_pages/Shop.js';
-import Checkout from './pages/shop_pages/Checkout.js';
+import Shop from "./pages/shop_pages/Shop.js";
+import Checkout from "./pages/shop_pages/Checkout.js";
 
+import AdminAccount from "./pages/admin_pages/AdminAccount.js";
+import UsersManagement from "./pages/admin_pages/UsersManagement.js";
+import ProductListings from "./pages/admin_pages/ProductListings.js";
+import OrderFulfillment from "./pages/admin_pages/OrderFulfillment.js";
+import SalesReports from "./pages/admin_pages/SalesReports.js";
 
-import AdminAccount from './pages/admin_pages/AdminAccount.js';
-import UsersManagement from './pages/admin_pages/UsersManagement.js';
-import ProductListings from './pages/admin_pages/ProductListings.js';
-import OrderFulfillment from './pages/admin_pages/OrderFulfillment.js';
-import SalesReports from './pages/admin_pages/SalesReports.js';
-
-import ProtectedRoute from './components/RouteProtection.js'; // Importing the HOC (explanation in RouteProtection.js)
-
+import ProtectedRoute from "./components/RouteProtection.js"; // Importing the HOC (explanation in RouteProtection.js)
 
 function App() {
   /**Added initial state */
   const [isUserSignedIn, setIsUserSignedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
-    /**Read values from localStorage (coming from Login.js) */
-    useEffect(() => {
-      const token = localStorage.getItem('token');
-      const adminStatus = localStorage.getItem('isAdmin') === 'true'; // Ensure it's a boolean
-      setIsUserSignedIn(!!token);
-      setIsAdmin(adminStatus);
-    }, []); /**effect should run once after initial render */
+  /**Read values from localStorage (coming from Login.js) */
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const adminStatus = localStorage.getItem("isAdmin") === "true"; // Ensure it's a boolean
+    setIsUserSignedIn(!!token);
+    setIsAdmin(adminStatus);
+  }, []); /**effect should run once after initial render */
 
   /**Check for isAdminProp to check is user is signed in for later checks*/
   const handleLoginSuccess = (token, isAdminProp) => {
-    localStorage.setItem('token', token); // Set token for successful login
-    localStorage.setItem('isAdmin', isAdminProp); //Set whether isAdmin or not
+    localStorage.setItem("token", token); // Set token for successful login
+    localStorage.setItem("isAdmin", isAdminProp); //Set whether isAdmin or not
     setIsUserSignedIn(true); //Changing State if Login is a success
     setIsAdmin(isAdminProp);
   };
 
   /**Handles logging out */
   const handleSignOut = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('isAdmin');
-    localStorage.removeItem('isAdmin');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userEmail');
+    localStorage.removeItem("token");
+    localStorage.removeItem("isAdmin");
+    localStorage.removeItem("isAdmin");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userEmail");
     setIsUserSignedIn(false);
     setIsAdmin(false);
+    window.location.reload(true);
   };
 
   return (
     <div className="App">
-      <Navbar isAdmin={isAdmin} isUserSignedIn={isUserSignedIn} handleSignOut={handleSignOut} />
+      <Navbar
+        isAdmin={isAdmin}
+        isUserSignedIn={isUserSignedIn}
+        handleSignOut={handleSignOut}
+      />
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login onLoginSuccess={handleLoginSuccess} />} />
-        <Route path='/signup' element={<SignUp />} />
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/login"
+          element={<Login onLoginSuccess={handleLoginSuccess} />}
+        />
+        <Route path="/signup" element={<SignUp />} />
         {/* Protected routes */}
         {isUserSignedIn ? (
           <>
             {isAdmin ? (
               <>
-              <Route path='/admin/account' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <AdminAccount /> </ProtectedRoute>} />
-                <Route path='/admin/users-management' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <UsersManagement /> </ProtectedRoute>} />
-                <Route path='/admin/product-listings' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <ProductListings /> </ProtectedRoute>}/>
-                <Route path='/admin/order-fulfillment' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <OrderFulfillment /> </ProtectedRoute>} />
-                <Route path='/admin/sales-reports' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <SalesReports /> </ProtectedRoute>} />
-              
+                <Route path="/account" element={<Account />} />
+                {/* <Route path='/admin/account' element={<ProtectedRoute isAllowed={isAdmin} redirectPath='/'> <AdminAccount /> </ProtectedRoute>} /> */}
+                <Route
+                  path="/admin/users-management"
+                  element={
+                    <ProtectedRoute isAllowed={isAdmin} redirectPath="/">
+                      {" "}
+                      <UsersManagement />{" "}
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/product-listings"
+                  element={
+                    <ProtectedRoute isAllowed={isAdmin} redirectPath="/">
+                      {" "}
+                      <ProductListings />{" "}
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/order-fulfillment"
+                  element={
+                    <ProtectedRoute isAllowed={isAdmin} redirectPath="/">
+                      {" "}
+                      <OrderFulfillment />{" "}
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/sales-reports"
+                  element={
+                    <ProtectedRoute isAllowed={isAdmin} redirectPath="/">
+                      {" "}
+                      <SalesReports />{" "}
+                    </ProtectedRoute>
+                  }
+                />
               </>
             ) : (
               <>
-                <Route path='/account' element={<Account />} />
-                <Route path='/shop' element={<ProtectedRoute isAllowed={!isAdmin} redirectPath='/'> <Shop /> </ProtectedRoute>} />
-                <Route path='/checkout' element={<Checkout />} />
+                <Route path="/account" element={<Account />} />
+
+                <Route
+                  path="/shop"
+                  element={
+                    <ProtectedRoute isAllowed={!isAdmin} redirectPath="/">
+                      {" "}
+                      <Shop />{" "}
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/checkout" element={<Checkout />} />
               </>
             )}
-
           </>
         ) : (
           // Redirect to the home page if the user is not signed in (maybe insert to error page later on)
-          <Route path='/*' element={<Navigate to='/' />} />
+          <Route path="/*" element={<Navigate to="/" />} />
         )}
       </Routes>
     </div>
