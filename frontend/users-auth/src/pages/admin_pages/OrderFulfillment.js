@@ -132,7 +132,10 @@ function OrderFulfillment() {
     return (
         <>
             <div className="orderFulfillment">
-                <h1 className="title">Order Fulfillment</h1>
+                <div className="pageHeader">
+                    <h1 className="title">Order Fulfillments</h1>
+                    <span className="pageDescription">Displayed below are the product orders by Farm To Table Customers.</span>
+                </div>
                 <div className="ordersGrid">
                     {orderTransactions.map((orderTransaction, index) => (
                         <div className="orderTransaction" key={orderTransaction.tid}>
