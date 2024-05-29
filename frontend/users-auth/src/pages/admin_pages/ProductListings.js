@@ -13,7 +13,7 @@ function ProductListings(){
     const [pqty, setProdQty] = useState("");
     const [price, setProdPrice] = useState("");
 
-    const [newQty, setNewQty] = useState(pqty);
+    const [newQty, setNewQty] = useState("");
 
     useEffect(() => {
         fetchProducts();
@@ -144,9 +144,11 @@ function ProductListings(){
         }
     }
 
-    function showEditQty(pid) {
+    function showEditQty(pid, pqty) {
         const qtyText = document.getElementById(`${pid}prodQty`)
         qtyText.style.display = "none";
+
+        setNewQty(pqty);
 
         const qtyInput = document.getElementById(`${pid}editQtyInput`);
         qtyInput.style.display = "block"
@@ -271,11 +273,10 @@ function ProductListings(){
                             <td className="desc">{product.pdesc}</td>
                             <td className="type">{getTypeName(product.ptype)}</td>
                             <td className="qty">
-                                <span id={`${product.pid}prodQty`} className="prodQty" onClick={()=>{showEditQty(product.pid)}}>{product.pqty}</span>
+                                <span id={`${product.pid}prodQty`} className="prodQty" onClick={()=>{showEditQty(product.pid, product.pqty)}}>{product.pqty}</span>
                                 <div id="editQty">
                                    <input type="number" value={newQty} id={`${product.pid}editQtyInput`} className="editQtyInput" onChange={inputNewQty} /><button id={`${product.pid}saveEditQty`} className="saveEditQty" onClick={()=>{saveNewQty(product.pid, product.pqty)}}>Save</button> 
                                 </div>
-                                
                             </td>
                             <td className="price">{product.price}</td>
                             <td><button id="deleteProductButton" onClick={()=>{confirmDelete(product.pname, product.pid)}}>Delete</button></td>
