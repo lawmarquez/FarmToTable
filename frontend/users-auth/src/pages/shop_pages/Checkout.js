@@ -166,7 +166,7 @@ function Checkout() {
                 <hr className="solid"></hr>
             </div>
             {/* ADDITION: Redirect to /shop on click */}
-            {/* <button onClick={handleGoBack} id='tocartbtn'>Continue Shopping</button> */}
+            <button onClick={handleGoBack} id='tocartbtn'>Continue Shopping</button>
 
           </div>
 
