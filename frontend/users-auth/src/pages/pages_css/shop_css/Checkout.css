@@ -162,6 +162,17 @@ p#checkoutsummarytitle {
   padding: 8px 0px;
 }
 
+#gobackbtn {
+  background-color: darkgreen;
+  color: white;
+  font-size: 15px;
+  border-style: none;
+  border-radius: 5px;
+  padding: 8px 0px;
+  margin-left: 15px;
+  width: 50px;
+}
+
 
 /* * Modal Styling */
 #successmodal {

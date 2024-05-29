@@ -130,6 +130,9 @@ function Checkout() {
     navigate(-1);
   }
 
+  const handleGoBack = () => {
+    navigate(-1);
+  }
  
           
 
@@ -138,6 +141,7 @@ function Checkout() {
       <div id='checkoutbody'>
         <div>
           <h2 id='msg1'>Ready to checkout?</h2>
+          <button id='gobackbtn' onClick={handleGoBack}>🡸</button>
           <h4 id='msg2'>Check your items here</h4>
         </div>
         
@@ -173,7 +177,7 @@ function Checkout() {
             <div id='topaydetails'>
               <div className='detail'>
                 <p>Subtotal:</p>
-                <p>${amt}</p>
+                <p>${amt.toFixed(2)}</p>
               </div>
               <div className='detail'>
                 <p>Shipping:</p>
@@ -183,10 +187,11 @@ function Checkout() {
             <hr className="solid"></hr>
             <div id='totaltopay'>
               <p>Total:</p>
-              <p>${amt}</p>
+              <p>${amt.toFixed(2)}</p>
             </div>
             
             <button id='placeorderbtn' onClick={handlePlaceOrder}>Place Order</button>
+
 
             <div id='successmodal'>
               <div className='modalcontent'>
