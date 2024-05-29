@@ -8,6 +8,7 @@
     padding: 8px;
     position: sticky;
     top: 0;
+    z-index: 100;
 }
 
 .headerTitle{
@@ -16,6 +17,7 @@
     font-size: 37px;
     font-style: italic;
     padding: 8px;
+    color:white;
 }
 
 .navsContainer{
