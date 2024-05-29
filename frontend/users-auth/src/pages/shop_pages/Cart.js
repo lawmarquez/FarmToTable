@@ -50,21 +50,30 @@ function Cart(props) {
               <div key={item.itemid} className="cartItem">
                 <p className="itemName">{product.pname} - ${product.price.toFixed(2)}</p>
                 <p className="itemPrice">QTY: {item.itemqty}</p>
-                <button onClick={() => removeOneFromCart(product)}>Remove One</button>
-                <button onClick={() => addOneToCart(product)}>Add One</button>
-                <button onClick={() => removeFromCart(product)}>Remove All</button>
+                <div className="cart-buttons">
+                <button onClick={() => removeOneFromCart(product)}>-</button>
+                <button onClick={() => addOneToCart(product)}>+</button>
+                <button className="remove" onClick={() => removeFromCart(product)}>Remove</button>
+                </div>
               </div>
             );
           })}
         </div>
-        <p id="total">Total items: {totalQuantity}</p>
-        <p id="totalPrice">Total price: ${totalPrice.toFixed(2)}</p>
+        {/* <p id="total">Total items: {totalQuantity}</p>
+        <p id="totalPrice">Total price: ${totalPrice.toFixed(2)}</p> */}
+
+        <div className="cart-summary">
+        <p>Total Items: {totalQuantity}</p>
+        <p>Total Price: ${totalPrice.toFixed(2)}</p>
+        </div>
 
         {/* Buttons for checkout navigation testing */}
         {/* Pass products list and necessary info to checkout page */}
-        <button onClick={handleCheckout}>Checkout</button>
+        <div className="checkout">
+        <button className="checkout-button" onClick={handleCheckout}>Checkout</button>
+        </div>
         {/* ! Remove Save cart button */}
-        <button>Save Cart</button>
+        {/* <button>Save Cart</button> */}
       </div>
     </>
   )
