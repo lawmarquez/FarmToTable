@@ -85,6 +85,7 @@ export default function Items(props) {
           <div key={item.pid} className="listItem">
             {/* <img src={item.image} alt={item.name}></img> */}
             <h3>{item.pname}</h3>
+            <p>{item.pdesc}</p>
             <p>${item.price.toFixed(2)}</p>
             <p>{getTypeName(item.ptype)}</p>
             <p>QTY:{item.pqty}</p>
