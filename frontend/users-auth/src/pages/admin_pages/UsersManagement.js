@@ -74,7 +74,7 @@ const UserManagement = () => {
     return (
         <div className='userManagement'>
             <h1 className='title'>User Management</h1>
-            <table className='userTable'>
+            <table>
                     <thead>
                         <tr>
                             <th>First Name</th>

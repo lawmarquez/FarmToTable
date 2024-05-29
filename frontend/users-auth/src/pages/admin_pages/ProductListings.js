@@ -236,7 +236,7 @@ function ProductListings(){
                 <span id="highlightDescription">Click on a product's stock quantity to edit.</span>
             </div>
             <div className="products">
-                <table className="productTable">
+                <table>
                     <thead>
                         <tr>
                             <th>Name</th>

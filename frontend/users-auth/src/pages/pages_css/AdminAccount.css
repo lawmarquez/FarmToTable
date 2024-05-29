@@ -47,14 +47,14 @@ button{
     border-radius: 5px;
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
 /* USERS MANAGEMENT */
 .userManagement {
     padding: 3%;
-}
-
-.userTable {
-    border-collapse: collapse;
-    width: 100%;
 }
 
 #totalUsers{
@@ -98,11 +98,6 @@ button{
 
 .sortContainer {
     padding: 2px;
-}
-
-.productTable{
-    border-collapse: collapse;
-    width: 100%;
 }
 
 .sortSelect {
@@ -266,3 +261,24 @@ li {
 }
 
 /* SALES REPORTS */
+
+#salesReports {
+    padding: 3%;
+}
+
+.sortInput {
+    border-color: transparent;
+    border-radius: 3px;
+    font-size: 12px;
+    background-color: #ffffff8d;
+    width: 90px;
+    height: 20px;
+}
+
+#total {
+    background-color: #c6daa8;
+}
+
+#totalQtySold {
+    background-color: #b4ce8d;
+}
