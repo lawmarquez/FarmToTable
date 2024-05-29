@@ -155,8 +155,17 @@ const SalesReports = () => {
   };
 
   const handleDateChange = (e) => {
-    setSelectedDate(new Date(e.target.value));
-  };
+    const selectedDateString = e.target.value;
+    const selectedDate = new Date(selectedDateString);
+    // Check if the selected date is valid
+    if (!isNaN(selectedDate.getTime())) {
+        setSelectedDate(selectedDate);
+    } else {
+        // If the date is invalid, reset to the current date
+        setSelectedDate(new Date());
+    }
+};
+
 
   const handleYearChange = (e) => {
     setSelectedYear(parseInt(e.target.value));
