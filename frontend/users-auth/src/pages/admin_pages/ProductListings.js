@@ -181,7 +181,10 @@ function ProductListings(){
 
     return(
         <div className="productListings">  
-            <h1 className="title">Product Listings</h1>
+            <div className="pageHeader">
+                <h1 className="title">Product Listings</h1>
+                <span className="pageDescription">The table below reflects the products currently available for customers on the Farm To Table shop.</span> 
+            </div>
             <div className="products">
                 <table className="productTable">
                     <thead>
@@ -195,7 +198,7 @@ function ProductListings(){
                                 <div className="sort">
                                     <div className="sortContainer">
                                         <label>Sort by: </label>
-                                        <select value={sortOption} onChange={changeSortOption}>
+                                        <select className="sortSelect" value={sortOption} onChange={changeSortOption}>
                                             <option value={"name"}>Name</option>
                                             <option value={"price"}>Price</option>
                                             <option value={"type"}>Type</option>
@@ -204,7 +207,7 @@ function ProductListings(){
                                     </div>
                                     <div className="sortContainer"> 
                                         <label>Order:  </label> 
-                                        <select value={sortOrder} onChange={changeSortOrder}>
+                                        <select className="sortSelect" value={sortOrder} onChange={changeSortOrder}>
                                             <option value={"ascending"}>Ascending</option>
                                             <option value={"descending"}>Descending</option>
                                         </select>
@@ -243,7 +246,7 @@ function ProductListings(){
                         <br/>
                         <br/>
                         <label>Product type </label><br/>
-                        <select value={prodType} onChange={setNewProductType}>
+                        <select id="ptypeSelect" value={prodType} onChange={setNewProductType}>
                             <option value={""}></option>
                             <option value={"Staple"}>Staple</option>
                             <option value={"Fruits and Vegetables"}>Fruits and Vegetables</option>

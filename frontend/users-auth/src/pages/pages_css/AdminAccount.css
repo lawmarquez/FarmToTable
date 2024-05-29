@@ -8,9 +8,18 @@
     align-items: center;
 }
 
+.pageHeader {
+    text-align: center;
+    padding-bottom: 40px;
+}
+
 .title{
     font-size: 40px;
-    padding-bottom: 40px;
+}
+
+.pageDescription {
+    font-weight: 100;
+    color: #bbbbbb;
 }
 
 tr:nth-child(even) {
@@ -90,9 +99,11 @@ button{
     width: 100%;
 }
 
-.products{
-    padding-left: 5%; 
-    padding-right: 5%; 
+.sortSelect {
+    border-color: transparent;
+    border-radius: 3px;
+    font-size: 12px;
+    background-color: #ffffff8d;
 }
 
 #deleteProductButton {
@@ -111,7 +122,7 @@ button{
 }
 
 #addProductModal {
-    padding: 5%;
+    padding-top: 130px;
     padding-left: 20%;
     padding-right: 20%;
     display: none;
@@ -122,9 +133,10 @@ button{
     height: 100%;
     overflow: auto;
     background-color: #ffffff90;
+    z-index: 100;
 }
 
-  #addProductContent {
+#addProductContent {
     text-align: center;
     background-color: #f3eacc;
     margin: auto;
@@ -132,31 +144,27 @@ button{
     border: 7px solid #a5876f52;
     width: 80%;
     border-radius: 10px;
-  }
+}
 
-  form {
-    text-align: left;
-    padding-left: 10px;
-  }
-
-  input, select {
+input, #ptypeSelect {
     border: 1px solid #705c4eb6;
     border-radius: 2px;
-  }
+    margin-top: 2px;
+    height: 25px;
+}
 
-  label {
+label {
     font-style: italic;
     font-weight: 600;
-    padding-bottom: 5px;
-  }
+}
 
-  #addButton {
+#addButton {
     padding: 10px;
     width: 100px;
     color: white;
     background-color: #859966;
     border-color: #6d7e54;
-  }
+}
 
 /* ORDER FULFILLMENT */
 
