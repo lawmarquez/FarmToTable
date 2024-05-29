@@ -13,6 +13,8 @@ function ProductListings(){
     const [pqty, setProdQty] = useState("");
     const [price, setProdPrice] = useState("");
 
+    const [newQty, setNewQty] = useState(pqty);
+
     useEffect(() => {
         fetchProducts();
     },[]);
@@ -141,6 +143,51 @@ function ProductListings(){
             return;
         }
     }
+
+    function showEditQty(pid) {
+        const qtyText = document.getElementById(`${pid}prodQty`)
+        qtyText.style.display = "none";
+
+        const qtyInput = document.getElementById(`${pid}editQtyInput`);
+        qtyInput.style.display = "block"
+        const saveButton = document.getElementById(`${pid}saveEditQty`);
+        saveButton.style.display = "block"
+    }
+
+    const saveNewQty = async (productId, prevQty) => {
+        const qtyText = document.getElementById(`${productId}prodQty`)
+        qtyText.style.display = "block";
+
+        // Only update if newQty is not blank or is not equal to previous quantity
+        if (newQty!="" || newQty!=prevQty) {
+            try {
+                const result = await fetch('http://localhost:3001/update-productqty', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ pid: productId, pqty: newQty })
+                })
+
+                if (result.ok) {
+                    // Fetch products again to display updated values
+                    fetchProducts();
+                }
+
+            } catch (e) {
+                console.log('Error saving product quantity:', e);
+            }
+        }
+
+        const qtyInput = document.getElementById(`${productId}editQtyInput`);
+        qtyInput.style.display = "none"
+        const saveButton = document.getElementById(`${productId}saveEditQty`);
+        saveButton.style.display = "none"
+    }
+
+    function inputNewQty (event) {
+        setNewQty(event.target.value);
+    }
     
     function setName (event) {
         setProdName(event.target.value)
@@ -183,7 +230,8 @@ function ProductListings(){
         <div className="productListings">  
             <div className="pageHeader">
                 <h1 className="title">Product Listings</h1>
-                <span className="pageDescription">The table below reflects the products currently available for customers on the Farm To Table shop.</span> 
+                <span className="pageDescription">The table below reflects the products currently available for customers on the Farm To Table shop. </span>
+                <span id="highlightDescription">Click on a product's stock quantity to edit.</span>
             </div>
             <div className="products">
                 <table className="productTable">
@@ -222,7 +270,13 @@ function ProductListings(){
                             <td className="name">{product.pname}</td>
                             <td className="desc">{product.pdesc}</td>
                             <td className="type">{getTypeName(product.ptype)}</td>
-                            <td className="qty">{product.pqty}</td>
+                            <td className="qty">
+                                <span id={`${product.pid}prodQty`} className="prodQty" onClick={()=>{showEditQty(product.pid)}}>{product.pqty}</span>
+                                <div id="editQty">
+                                   <input type="number" value={newQty} id={`${product.pid}editQtyInput`} className="editQtyInput" onChange={inputNewQty} /><button id={`${product.pid}saveEditQty`} className="saveEditQty" onClick={()=>{saveNewQty(product.pid, product.pqty)}}>Save</button> 
+                                </div>
+                                
+                            </td>
                             <td className="price">{product.price}</td>
                             <td><button id="deleteProductButton" onClick={()=>{confirmDelete(product.pname, product.pid)}}>Delete</button></td>
                         </tr>

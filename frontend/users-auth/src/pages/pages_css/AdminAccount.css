@@ -19,7 +19,7 @@
 
 .pageDescription {
     font-weight: 100;
-    color: #bbbbbb;
+    color: #a8a8a8;
 }
 
 tr:nth-child(even) {
@@ -81,6 +81,12 @@ button{
     padding: 3%;
 }
 
+#highlightDescription {
+    font-weight: 100;
+    font-style: italic;
+    color: #8e8e8e;
+}
+
 .sort{
     float: center;
     text-align: right;
@@ -104,6 +110,28 @@ button{
     border-radius: 3px;
     font-size: 12px;
     background-color: #ffffff8d;
+}
+
+.prodQty {
+    font-weight: 100;
+    display: inline-block;
+}
+
+.editQtyInput {
+    display: none;
+    width: 50px;
+    float: left;
+    margin: 2px;
+}
+
+.saveEditQty {
+    display: none;
+    float: center;
+    margin: 2px;
+    font-size: 11px;
+    color: white;
+    border-color: transparent;
+    background-color:#5db85d;
 }
 
 #deleteProductButton {
