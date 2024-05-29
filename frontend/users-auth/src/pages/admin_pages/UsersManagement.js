@@ -73,7 +73,10 @@ const UserManagement = () => {
 
     return (
         <div className='userManagement'>
-            <h1 className='title'>User Management</h1>
+            <div className="pageHeader">
+                <h1 className="title">User Management</h1>
+                <span className="pageDescription">The table below reflects all the registered users of Farm To Table.</span>
+            </div>
             <table>
                     <thead>
                         <tr>
