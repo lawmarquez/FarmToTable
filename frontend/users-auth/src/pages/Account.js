@@ -217,7 +217,7 @@ function Account() {
             {userInfo.fname} {userInfo.mname} {userInfo.lname}!
           </h2>
         </div>
-  
+
         <div className="account_nav_form">
           {/* If edit mode is TRUE input will be editable */}
           {editMode ? (
@@ -310,7 +310,10 @@ function Account() {
       {!isAdmin && (
         /* Second half for the transaction */
         <>
-          <h2>Order Transactions for {email}</h2>
+          {Object.keys(groupedTransactions).length > 0 && (
+            <h2>Order Transactions for {email}</h2>
+          )}
+
           {Object.keys(groupedTransactions).map((orderStatus) => (
             <div key={orderStatus} className="order-status-section">
               {/* Then, Categorized by order status */}
@@ -331,7 +334,7 @@ function Account() {
                           {/* <p>Product ID: {transaction.pid}</p> Optional to show */}
                           <p>Product Name: {transaction.productName}</p>
                           <p>Quantity: {transaction.oqty}</p>
-  
+
                           {/* Displaying "Cancel" button if the order is 0 - Pending */}
                           {orderStatus === "0" && (
                             <button
@@ -352,7 +355,6 @@ function Account() {
       )}
     </div>
   );
-  
 }
 
 export default Account;
