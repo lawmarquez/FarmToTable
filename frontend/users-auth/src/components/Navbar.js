@@ -42,7 +42,7 @@ function Navbar({ isUserSignedIn, isAdmin, handleSignOut }) {
                                     <button className="navButton" onClick={() => handleNavigation("/shop")}>Shop</button>
                             </>
                         )}
-                        <button className="navButton" id="signOut" onClick={handleSignOut}>Sign out</button>
+                        <button className="navButton" id="signOut" onClick={handleSignOut}>Log out</button>
                     </>
                 ) : (
                     <>
