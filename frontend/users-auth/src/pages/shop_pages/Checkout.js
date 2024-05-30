@@ -141,7 +141,7 @@ function Checkout() {
       <div id='checkoutbody'>
         <div>
           <h2 id='msg1'>Ready to checkout?</h2>
-          <button id='gobackbtn' onClick={handleGoBack}>🡸</button>
+          {/* <button id='gobackbtn' onClick={handleGoBack}>🡸</button> */}
           <h4 id='msg2'>Check your items here</h4>
         </div>
         
@@ -166,7 +166,7 @@ function Checkout() {
                 <hr className="solid"></hr>
             </div>
             {/* ADDITION: Redirect to /shop on click */}
-            <button onClick={handleGoBack} id='tocartbtn'>Continue Shopping</button>
+            <button onClick={handleGoBack} id='tocartbtn'>🡸 Continue Shopping</button>
 
           </div>
 
@@ -195,8 +195,16 @@ function Checkout() {
 
             <div id='successmodal'>
               <div className='modalcontent'>
-                <p>Your order has been placed!</p>
-                <span onClick={handleContinueShopping} className="close">Continue Shopping</span> 
+                <div className='modalheader'>
+                  <h2>Success!</h2>
+                </div>
+                <div className='modalbody'>
+                  <p>Your order has been placed.</p>
+                </div>
+                <div className='modalfooter'>
+                <button onClick={handleGoBack} id='tocartbtn'>🡸  Continue Shopping</button>
+                </div>
+                
               </div>
             </div>
             

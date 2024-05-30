@@ -42,18 +42,26 @@ function Cart(props) {
 
   return (
     <>
-      <div id='cart'>Shopping Cart
+      <div id='cart'>
+        <p id='cartTitle'>Shopping Cart</p>
         <div id='cartList'>
         {cartList.map((item) => {
             const product = products.find(product => product.pid === item.itemid); // Define product here
             return (
               <div key={item.itemid} className="cartItem">
-                <p className="itemName">{product.pname} - ${product.price.toFixed(2)}</p>
-                <p className="itemPrice">QTY: {item.itemqty}</p>
-                <div className="cart-buttons">
-                <button onClick={() => removeOneFromCart(product)}>-</button>
-                <button onClick={() => addOneToCart(product)}>+</button>
-                <button className="remove" onClick={() => removeFromCart(product)}>Remove</button>
+                <div className='cartItemtop'>
+                  <p className="itemName">{product.pname}</p>
+                  <button className="remove" onClick={() => removeFromCart(product)}>&times;</button>
+                </div>
+                <div className='cartItembottom'>
+                  <div className='qtyandbuttons'>
+                    <button onClick={() => removeOneFromCart(product)}>-</button>
+                    <p className="itemPrice">{item.itemqty}</p>
+                    <button onClick={() => addOneToCart(product)}>+</button>
+                  </div>
+                  <div className='cartItemprice'>
+                    <p> ${product.price.toFixed(2)}</p>
+                  </div>
                 </div>
               </div>
             );
@@ -63,8 +71,8 @@ function Cart(props) {
         <p id="totalPrice">Total price: ${totalPrice.toFixed(2)}</p> */}
 
         <div className="cart-summary">
-        <p>Total Items: {totalQuantity}</p>
-        <p>Total Price: ${totalPrice.toFixed(2)}</p>
+          <p>Total Items: {totalQuantity}</p>
+          <p className='subtotal'>Subtotal: ${totalPrice.toFixed(2)}</p>
         </div>
 
         {/* Buttons for checkout navigation testing */}

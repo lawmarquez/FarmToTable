@@ -259,7 +259,7 @@ function Account() {
                 )}
               </div>
               <div className="button_form">
-                <button type="submit">Save</button>
+                <button type="submit" id="button_form_save">Save</button>
                 <button type="button" onClick={handleCancel}>
                   Cancel
                 </button>
