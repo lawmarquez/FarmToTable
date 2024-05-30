@@ -101,7 +101,7 @@ function SignUp() {
     return (
         <div className='signup_container'>
             <iframe 
-              class="bg-video"
+              className="bg-video"
               src="https://www.youtube.com/embed/cGNbq0-fdRk?autoplay=1&mute=1&controls=0&loop=1&playlist=cGNbq0-fdRk"
               allowFullScreen
               allow="autoplay"
@@ -109,7 +109,7 @@ function SignUp() {
 
             <div className='half_filler_signup'>
                 <h3>Let's create an account</h3>
-                <p2>And start your freshness shopping with us!</p2>
+                <p>And start your freshness shopping with us!</p>
             </div>
 
             <div className='form_content_signup'>

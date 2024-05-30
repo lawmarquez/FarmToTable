@@ -76,7 +76,7 @@ function Login({ onLoginSuccess }) {
     return (
         <div className='form_container_login'>
             <iframe 
-              class="bg-video"
+              className="bg-video"
               src="https://www.youtube.com/embed/dkSpKdY2X4k?autoplay=1&mute=1&controls=0&loop=1&playlist=dkSpKdY2X4k"
               allowFullScreen
               allow="autoplay"

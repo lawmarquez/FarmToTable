@@ -17,7 +17,7 @@ export default function CheckoutItems(props) {
         return (
           <div className='checkout itemdetails' key={item.id}>
             <div className='grid img'>
-              <img src='chayote-1.jpg'></img>
+              <img src='chayote.png'></img>
             </div>
             <h3 className='grid itemname'>{product.pname}</h3>
             <p className='grid itemqty'>{item.itemqty}</p>

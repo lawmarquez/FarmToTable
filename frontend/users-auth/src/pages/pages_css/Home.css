@@ -7,3 +7,46 @@
     justify-content: center;
     align-items: center;
 }
+
+/* Home.css */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .heading {
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .user-greeting {
+    font-size: 1.2rem;
+    margin-top: 20px;
+  }
+  
+  .contact {
+    margin-top: 40px;
+  }
+  
+  .contact h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .contact h3 {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  

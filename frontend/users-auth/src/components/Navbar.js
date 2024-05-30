@@ -31,7 +31,7 @@ function Navbar({ isUserSignedIn, isAdmin, handleSignOut }) {
                                     {/* <Link to="/admin/users-management">Admin Account</Link> */}
                                     <button className="navButton" onClick={()=> handleNavigation("/admin/users-management")}>User Management</button>
                                     {/* <Link to="/admin/account">Admin Account</Link> */}
-                                    <button className="navButton" onClick={() => handleNavigation("/admin/account")}>Admin Account</button>
+                                    <button className="navButton" onClick={() => handleNavigation("/account")}>Account</button>
                             </>
                             
                         ) : (
