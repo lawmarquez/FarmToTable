@@ -20,7 +20,7 @@ function Shop() {
   useEffect(() => {
     const email = localStorage.getItem('userEmail');
     setEmail(email);
-  });
+  },[]);
 
   // Obtain products to display for sale
   useEffect(() => {

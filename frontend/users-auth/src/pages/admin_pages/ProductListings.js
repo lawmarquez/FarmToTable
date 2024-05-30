@@ -17,6 +17,8 @@ function ProductListings() {
 
   useEffect(() => {
     fetchProducts();
+    // Including fetchProducts here to avoid infinite loop
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchProducts = async () => {
@@ -32,7 +34,7 @@ function ProductListings() {
   };
 
   useEffect(() => {
-    sortProducts(products, sortOption, sortOrder);
+    sortProducts(products, sortOption, sortOrder);  
   }, [sortOption, sortOrder]);
 
   function changeSortOption(event) {

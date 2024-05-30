@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 /*
   Items to checkout component
@@ -17,7 +17,7 @@ export default function CheckoutItems(props) {
         return (
           <div className='checkout itemdetails' key={item.id}>
             <div className='grid img'>
-              <img src='chayote.png'></img>
+              <img src='chayote.png' alt='product'></img>
             </div>
             <h3 className='grid itemname'>{product.pname}</h3>
             <p className='grid itemqty'>{item.itemqty}</p>

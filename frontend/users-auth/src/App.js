@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate} from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar.js";
 import Home from "./pages/Home.js";
@@ -10,7 +10,7 @@ import Account from "./pages/Account.js";
 import Shop from "./pages/shop_pages/Shop.js";
 import Checkout from "./pages/shop_pages/Checkout.js";
 
-import AdminAccount from "./pages/admin_pages/AdminAccount.js";
+// import AdminAccount from "./pages/admin_pages/AdminAccount.js";
 import UsersManagement from "./pages/admin_pages/UsersManagement.js";
 import ProductListings from "./pages/admin_pages/ProductListings.js";
 import OrderFulfillment from "./pages/admin_pages/OrderFulfillment.js";

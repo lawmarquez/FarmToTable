@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate} from "react-router-dom";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 import CheckoutItems from "./Item_Checkout.js";
 import { nanoid } from 'nanoid'
 
@@ -51,7 +51,7 @@ function Checkout() {
         })
       });
       
-      console.log(response);
+      // console.log(response);
 
       if(response.ok){
         var success = document.getElementById("successmodal");
@@ -59,7 +59,7 @@ function Checkout() {
 
 
         window.onclick = function(event) {
-          if (event.target == success) {
+          if (event.target === success) {
             success.style.display = "none";
           }
         }
