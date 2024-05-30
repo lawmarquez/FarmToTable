@@ -27,7 +27,7 @@ function Shop() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(`http://localhost:3001/products`); // Adjust the endpoint if necessary
-        console.log('Response:', response);
+        // console.log('Response:', response);
         const data = await response.json();
         setProducts(data);
       } catch (error) {
@@ -47,8 +47,8 @@ function Shop() {
           if (response.ok) {
             const cartData = await response.json();
             setCart(cartData.cart); // Assuming the cart array is in cartData.cart
-            console.log(cartData.cart);
-            console.log(cart);
+            // console.log(cartData.cart);
+            // console.log(cart);
           } else {
             console.error('Failed to fetch cart:', response.statusText);
           }

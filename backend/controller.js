@@ -188,12 +188,12 @@ const orderTransactions = async (req, res) => {
 const orderTransaction_users = async (req, res) => {
   const email = req.params.email;
 
-  console.log(`Fetching order transactions for email: ${email}`); // Debug log
+  // console.log(`Fetching order transactions for email: ${email}`); // Debug log
 
   try {
     const transactions = await OrderTransaction.find({ email: email });
     
-    console.log(`Found transactions: ${transactions.length}`); // Debug log
+    // console.log(`Found transactions: ${transactions.length}`); // Debug log
 
     res.json(transactions);
   } catch (error) {
@@ -286,7 +286,7 @@ const saveOrderTransaction = async (req, res) => {
   
   // if (req.body.pid && req.body.oqty && req.body.ostatus && req.body.date  && req.body.time) {
     const newOrder = new OrderTransaction(req.body);
-    console.log("new order", newOrder);
+    // console.log("new order", newOrder);
     await newOrder.save();
     res.json({ inserted: true });
   } else {
@@ -331,7 +331,7 @@ const saveCart = async (req, res) => {
       res.status(500).json({ success: false, message: 'error' });
     }
   } else {
-    console.log('Incomplete body');
+    // console.log('Incomplete body');
     res.status(400).json({ success: false, message: 'incomplete body' });
   }
   
