@@ -174,7 +174,7 @@ function Shop() {
   return (
     <>
       <div className='shopwrapper'>
-        <h2 className='shop-message'>Shop Message</h2>
+        <h2 className='shop-message'>Shop Page</h2>
         <div className='shop-content'>
           <div id='prodlistandsorting'>
             <Items list={products} addToCart={addToCart} />
