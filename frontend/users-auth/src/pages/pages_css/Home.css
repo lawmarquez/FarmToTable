@@ -10,43 +10,128 @@
 
 /* Home.css */
 
+/* General styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Hero Section */
+.hero {
+  background: url('./farm.jpg') no-repeat center center/cover;
+  height: 60vh;
+  display: flex;
+  color: #fff;  
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.title {
+  font-size: 72px;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+.tagline {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+/* About Section */
+#about {
+  display: flex;
+  height: 400px;
+  margin-top: 50px;
   
-  .heading {
-    text-align: center;
+} 
+
+.about-us-half {
+  padding-top: 175px;
+  width: 50%;
+  background: linear-gradient(135deg, #158E4B, #93FB7E, #58CB53, #C3FA04);
+  height: 400px;
+  border-radius: 10px;
+  margin-right: 75px;
+}
+
+.about h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.about-content-half {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  width: 50%;
+  justify-content: center;
+  align-self: center;
+}
+
+
+/* Contact Section */
+.contact-us-half {
+  padding-top: 175px;
+  width: 50%;
+  background: linear-gradient(75deg, #158E4B, #93FB7E, #58CB53, #C3FA04);
+  height: 400px;
+  border-radius: 10px;
+  margin-left: 75px;
+}
+.contact {
+  display: flex;
+  height: 400px;
+  margin-top: 50px;
+}
+
+.contact h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.contact p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.contact a {
+  color: #333;
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero {
+    height: 50vh;
   }
-  
+
   .title {
-    font-size: 2rem;
-    margin-bottom: 10px;
+    font-size: 36px;
   }
-  
+
   .subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
+    font-size: 18px;
   }
-  
-  .user-greeting {
-    font-size: 1.2rem;
-    margin-top: 20px;
+
+  .tagline {
+    font-size: 16px;
   }
-  
-  .contact {
-    margin-top: 40px;
-  }
-  
-  .contact h1 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .contact h3 {
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-  
-  
+}
